@@ -1,21 +1,729 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
+    <title>容器</title>
     <url>/2020/07/25/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="容器介绍"><a href="#容器介绍" class="headerlink" title="容器介绍"></a>容器介绍</h1><p> 容器其实是一种沙盒技术。沙盒就是能够像一个集装箱一样，把你的应用”装”起来的技术。这样，应用与应用之间，就因为有了边界而不至于相互干扰；而被装进集装箱的应用，也可以被方便地搬来搬去。</p>
+<p>​    问题：容器的本质到底是什么？</p>
+<p>​    <strong>容器的本质是进程。容器镜像就是这个系统里的”.exe”安装包.</strong></p>
+<p>.iso镜像文件—&gt;(linux/wind/)   docker—–下载images——run——&gt;docker容器—–打包—-images—放到其他机器—–run镜像——容器</p>
+<p>docker  —下载镜像imagesc7—jdk,tomcat —–打包成images—-导出来放到其他机器上–run-images—容器</p>
+<p><strong>Docker介绍：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Docker是Docker.Inc公司开源的一个基于轻量级虚拟化技术的容器引擎项目,整个项目基于Go语言开发，并遵从Apache 2.0协议。通过分层镜像标准化和内核虚拟化技术，Docker使得应用开发者和运维工程师可以以统一的方式跨平台发布应用，并且以几乎没有额外开销的情况下提供资源隔离的应用运行环境。</span><br><span class="line"></span><br><span class="line">Docker 是一个开源工具，它可以让创建和管理 Linux 容器变得简单。**容器就像是轻量级的虚拟机，并且可以以秒级的速度来启动或停止。**</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">官网：docker.com</span><br><span class="line">docker.io  ---docker官方库也叫docker-hub</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>  没有容器的时候：</p>
+<p>1.rd开发产品（需要配置开发环境）lamp</p>
+<p>2.测试(需要配置测试环境)</p>
+<p>3.op上线（需要线上环境）</p>
+<p>开发 测试  运维 </p>
+<p> 有容器之后：</p>
+<ol>
+<li><p>rd开发产品（需要在docker容器里配置开发环境）      </p>
+</li>
+<li><p>把容器打包成镜像交给运维，运维上线 </p>
+<p><strong>Docker跟原有的工具区别：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">传统的部署模式是：安装(包管理工具或者源码包编译)-&gt;配置-&gt;运行；</span><br><span class="line">Docker的部署模式是：复制-&gt;运行。</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p><strong>Docker对服务器端开发/部署带来的变化：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">方便快速部署</span><br><span class="line">对于部署来说可以极大的减少部署的时间成本和人力成本</span><br><span class="line">Docker支持将应用打包进一个可以移植的容器中，重新定义了应用开发，测试，部署上线的过程，核心理念</span><br><span class="line">是 Build once, Run anywhere</span><br><span class="line">1）标准化应用发布，docker容器包含了运行环境和可执行程序，可以跨平台和主机使用；</span><br><span class="line">2）节约时间，快速部署和启动，VM启动一般是分钟级，docker容器启动是秒级；</span><br><span class="line">3）方便构建基于微服务架构的系统，通过服务编排，更好的松耦合；</span><br><span class="line">4）节约成本，以前一个虚拟机至少需要几个G的磁盘空间，docker容器可以减少到MB级；</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+</li>
+</ol>
+<p><strong>Docker 优势：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1、交付物标准化</span><br><span class="line">Docker的标准化交付物称为"镜像"，它包含了应用程序及其所依赖的运行环境，大大简化了应用交付的模式。</span><br><span class="line"></span><br><span class="line">2、应用隔离</span><br><span class="line">Docker可以隔离不同应用程序之间的相互影响，但是比虚拟机开销更小。总之，容器技术部署速度快，开发、测试更敏捷；提高系统利用率，降低资源成本. </span><br><span class="line"></span><br><span class="line">3、一次构建，多次交付</span><br><span class="line">类似于集装箱的"一次装箱，多次运输"，Docker镜像可以做到"一次构建，多次交付"。</span><br><span class="line"></span><br><span class="line">Docker的度量：</span><br><span class="line"></span><br><span class="line">Docker是利用容器来实现的一种轻量级的虚拟技术，从而在保证隔离性的同时达到节省资源的目的。Docker的</span><br><span class="line"></span><br><span class="line">可移植性可以让它一次建立，到处运行。Docker的度量可以从以下四个方面进行：</span><br><span class="line"></span><br><span class="line">1）隔离性</span><br><span class="line"></span><br><span class="line"> 通过内核的命名空间来实现的，将容器的进程、网络、消息、文件系统和主机名进行隔离。</span><br><span class="line"></span><br><span class="line">2）可度量性</span><br><span class="line"></span><br><span class="line"> Docker主要通过cgroups控制组来控制资源的度量和分配。</span><br><span class="line"></span><br><span class="line">3）移植性</span><br><span class="line"></span><br><span class="line"> Docker利用AUFS来实现对容器的快速更新。</span><br><span class="line"></span><br><span class="line"> AUFS是一种支持将不同目录挂载到同一个虚拟文件系统下的文件系统，支持对每个目录的读写权限管理。AUFS具有层</span><br><span class="line"></span><br><span class="line"> 的概念，每一次修改都是在已有的只写层进行增量修改，修改的内容将形成新的文件层，不影响原有的层。</span><br><span class="line"></span><br><span class="line">4）安全性</span><br><span class="line"></span><br><span class="line"> 安全性可以分为容器内部之间的安全性；容器与托管主机之间的安全性。</span><br><span class="line"></span><br><span class="line"> 容器内部之间的安全性主要是通过命名空间和cgroups来保证的。</span><br><span class="line"></span><br><span class="line"> 容器与托管主机之间的安全性主要是通过内核能力机制的控制，可以防止Docker非法入侵托管主机。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">Docker容器使用AUFS作为文件系统，有如下优势：</span><br><span class="line"></span><br><span class="line">1）节省存储空间</span><br><span class="line"></span><br><span class="line"> 多个容器可以共享同一个基础镜像存储。</span><br><span class="line"></span><br><span class="line">2）快速部署</span><br><span class="line"></span><br><span class="line">3）升级方便</span><br><span class="line"></span><br><span class="line"> 升级一个基础镜像即可影响到所有基于它的容器。需要注意已经在运行的docker容器不受影响</span><br></pre></td></tr></table></figure>
+
+<p><strong>容器和 VM 的主要区别：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">表面区别：</span><br><span class="line">容器占用体积小，虚拟机占用体积大</span><br><span class="line">隔离性：容器提供了基于进程的隔离，而虚拟机提供了资源的完全隔离。</span><br><span class="line">启动速度：虚拟机可能需要一分钟来启动，而容器只需要一秒钟或更短。</span><br><span class="line">容器使用宿主操作系统的内核，而虚拟机使用独立的内核。Docker 的局限性之一是，它只能用在64位的操作系统上。</span><br><span class="line">本质区别：</span><br><span class="line">容器是被隔离的进程</span><br></pre></td></tr></table></figure>
+
+<h1 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a><strong>docker安装</strong></h1><p>CentOS 7 中 Docker 的安装:</p>
+<p>Docker 软件包已经包括在默认的 CentOS-Extras 软件源(联网使用centos7u2自带网络Yum源)里。因此想要安装 docker，只需要运行下面的 yum 命令： </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install -y epel*</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum install docker</span></span><br><span class="line">启动 Docker 服务:</span><br><span class="line"><span class="meta">#</span><span class="bash"> service docker start</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> chkconfig docker on</span></span><br><span class="line">CentOS 7    </span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl start docker.service</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl <span class="built_in">enable</span> docker.service</span></span><br></pre></td></tr></table></figure>
+
+<p>确定docker服务在运行：</p>
+<p>结果会显示服务端和客户端的版本，如果只显示客户端版本说明服务没有启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker version</span></span><br><span class="line"></span><br><span class="line">Client:</span><br><span class="line">Version:         1.10.3</span><br><span class="line">API version:     1.22</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker版本与官方安装方式"><a href="#docker版本与官方安装方式" class="headerlink" title="docker版本与官方安装方式"></a><strong>docker版本与官方安装方式</strong></h2><p>moby、docker-ce与docker-ee</p>
+<p>最早时docker是一个开源项目，主要由docker公司维护。</p>
+<p>2017年3月1日起，docker公司将原先的docker项目改名为moby，并创建了docker-ce和docker-ee。</p>
+<p>三者关系：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">moby是继承了原先的docker的项目，是社区维护的的开源项目，谁都可以在moby的基础打造自己的容器产品</span><br><span class="line"></span><br><span class="line">docker-ce是docker公司维护的开源项目，是一个基于moby项目的免费的容器产品</span><br><span class="line"></span><br><span class="line">docker-ee是docker公司维护的闭源产品，是docker公司的商业产品</span><br></pre></td></tr></table></figure>
+
+<p>​    moby project由社区维护，docker-ce project是docker公司维护，docker-ee是闭源的docker公司维护。</p>
+<p>CentOS–官方安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">如果是centos，上面的安装命令会在系统上添加yum源:/etc/yum.repos.d/docker-ce.repo </span><br><span class="line"><span class="meta">#</span><span class="bash"> wget https://download.docker.com/linux/centos/docker-ce.repo</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mv docker-ce.repo /etc/yum.repos.d</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum install -y docker-ce</span></span><br></pre></td></tr></table></figure>
+
+<p>​    或者直接下载rpm安装:</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum localinstall docker-ce-17.09.0.ce-1.el7.centos.x86_64.rpm</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="国内源安装新版docker"><a href="#国内源安装新版docker" class="headerlink" title="国内源安装新版docker"></a><strong>国内源安装新版docker</strong></h2><p>使用aliyun docker yum源安装新版docker</p>
+<p>删除已安装的Docker</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> [root@yixuan ~]# yum remove docker \</span><br><span class="line">docker-client \</span><br><span class="line">docker-client-latest \</span><br><span class="line">docker-common \</span><br><span class="line">docker-latest \</span><br><span class="line">docker-latest-logrotate \</span><br><span class="line">docker-logrotate \</span><br><span class="line">docker-selinux \</span><br><span class="line">docker-engine-selinux \</span><br><span class="line">docker-engine</span><br></pre></td></tr></table></figure>
+
+<p>配置阿里云Docker Yum源</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install -y yum-utils device-mapper-persistent-data lvm2 git</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span></span><br></pre></td></tr></table></figure>
+
+<p>安装指定版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> 查看Docker版本：</span><br><span class="line"><span class="meta">#</span><span class="bash"> yum list docker-ce --showduplicates</span></span><br></pre></td></tr></table></figure>
+
+<p>​    安装较旧版本（比如Docker 17.03.2) ：</p>
+<p>​        需要指定完整的rpm包的包名，并且加上–setopt=obsoletes=0 参数：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install -y --<span class="built_in">setopt</span>=obsoletes=0 \</span></span><br><span class="line">docker-ce-17.03.2.ce-1.el7.centos.x86_64 \</span><br><span class="line">docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line"><span class="meta">#</span><span class="bash"> yum install -y --<span class="built_in">setopt</span>=obsoletes=0 docker-ce-19.03.2 docker-ce-selinux-19.03.2</span></span><br></pre></td></tr></table></figure>
+
+<p>安装Docker新版本（比如Docker 18.03.0)：加上rpm包名的版本号部分或不加都可以：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install docker-ce-18.03.0.ce  -y</span></span><br><span class="line">或者</span><br><span class="line">[root@yixuan ~]# yum install -y docker-ce</span><br></pre></td></tr></table></figure>
+
+<p>启动Docker服务：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">systemctl <span class="built_in">enable</span> docker</span></span><br><span class="line"><span class="meta">#</span><span class="bash">systemctl start docker</span></span><br></pre></td></tr></table></figure>
+
+<p>查看docker版本状态：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker -v</span><br><span class="line">Docker version 19.03.2, build 6a30dfc</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker version</span><br><span class="line">Client: Docker Engine - Community</span><br><span class="line"> Version:           19.03.2</span><br><span class="line"> API version:       1.40</span><br><span class="line"> Go version:        go1.12.8</span><br><span class="line"> Git commit:        6a30dfc</span><br><span class="line"> Built:             Thu Aug 29 05:28:55 2019</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Experimental:      false</span><br><span class="line"></span><br><span class="line">Server: Docker Engine - Community</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          19.03.2</span><br><span class="line">  API version:      1.40 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.12.8</span><br><span class="line">  Git commit:       6a30dfc</span><br><span class="line">  Built:            Thu Aug 29 05:27:34 2019</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     false</span><br><span class="line"> containerd:</span><br><span class="line">  Version:          1.2.6</span><br><span class="line">  GitCommit:        894b81a4b802e4eb2a91d1ce216b8817763c29fb</span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.0.0-rc8</span><br><span class="line">  GitCommit:        425e105d5a03fabd737a126ad93d62a9eeede87f</span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.18.0</span><br><span class="line">  GitCommit:        fec3683</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看docker运行状态：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker info</span></span><br><span class="line">Containers: 0</span><br><span class="line">Running: 0</span><br><span class="line">Paused: 0</span><br><span class="line">Stopped: 0</span><br><span class="line">Images: 0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>=======================================================</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">报错1：</span><br><span class="line"></span><br><span class="line">docker info的时候报如下错误</span><br><span class="line"></span><br><span class="line">bridge-nf-call-iptables is disabled</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">解决1：</span><br><span class="line"></span><br><span class="line">追加如下配置,然后重启系统</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> vim /etc/sysctl.conf   </span></span><br><span class="line"></span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line"></span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line"></span><br><span class="line">net.bridge.bridge-nf-call-arptables = 1</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">问题2：</span><br><span class="line"></span><br><span class="line">虚拟机ping百度也能ping通，但是需要等好几秒才出结果，关键是下载镜像一直报错如下</span><br><span class="line"></span><br><span class="line"><span class="meta"> #</span><span class="bash"> docker pull daocloud.io/library/nginx</span></span><br><span class="line"></span><br><span class="line"> Using default tag: latest</span><br><span class="line"></span><br><span class="line"> Error response from daemon: Get https://daocloud.io/v2/: dial tcp: lookup daocloud.io on 192.168.1.2:53: read udp   192.168.1.189:41335-&gt;192.168.1.2:53: i/o timeout</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">解决2：</span><br><span class="line"></span><br><span class="line">我的虚拟机用的网关和dns都是虚拟机自己的.1或者.2，把DNS改成8.8.8.8问题就解决了，ping百度也秒出结果</span><br><span class="line"></span><br><span class="line"><span class="meta"> #</span><span class="bash"> vim /etc/resolv.conf</span></span><br><span class="line"></span><br><span class="line"> nameserver 8.8.8.8</span><br></pre></td></tr></table></figure>
+
+<p><strong>简单测试</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">运行一个容器</span><br><span class="line">[root@192 ~]# docker run -it daocloud.io/library/ubuntu /bin/bash #运行容器</span><br><span class="line">Unable to find image 'daocloud.io/library/ubuntu:latest' locally</span><br><span class="line">latest: Pulling from library/ubuntu</span><br><span class="line">5c939e3a4d10: Pull complete </span><br><span class="line">c63719cdbe7a: Pull complete </span><br><span class="line">19a861ea6baf: Pull complete </span><br><span class="line">651c9d2d6c4f: Pull complete </span><br><span class="line">Digest: sha256:bc025862c3e8ec4a8754ea4756e33da6c41cba38330d7e324abd25c8e0b93300</span><br><span class="line">Status: Downloaded newer image for daocloud.io/library/ubuntu:latest</span><br><span class="line"></span><br><span class="line">如果自动进入下面的容器环境，说明﻿ubuntu镜像运行成功，Docker的安装也没有问题：可以操作容器了</span><br><span class="line">root@db8e84e2ea96:/#</span><br></pre></td></tr></table></figure>
+
+<h2 id="国内镜像源"><a href="#国内镜像源" class="headerlink" title="国内镜像源"></a><strong>国内镜像源</strong></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">去查看如何使用aliyun的docker镜像库</span><br><span class="line">去查看如何使用网易蜂巢的docker镜像库----作业，并且通过网易蜂巢源下载一个nginx的镜像---docker  pull  镜像仓库与镜像名字</span><br><span class="line">daocloud.io</span><br></pre></td></tr></table></figure>
+
+<p>*<em>Docker 加速器 *</em></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">使用 Docker 的时候，需要经常从官方获取镜像，但是由于显而易见的网络原因，拉取镜像的过程非常耗时，严重影响使用 Docker 的体验。因此 DaoCloud 推出了加速器工具解决这个难题，通过智能路由和缓存机制，极大提升了国内网络访问 Docker Hub 的速度。</span><br><span class="line"></span><br><span class="line">Docker 加速器对 Docker 的版本有要求吗？    </span><br><span class="line">需要 Docker 1.8 或更高版本才能使用。</span><br><span class="line"></span><br><span class="line">Docker 加速器支持什么系统？    </span><br><span class="line">Linux, MacOS 以及 Windows 平台。</span><br><span class="line"></span><br><span class="line">Docker 加速器是否收费？    </span><br><span class="line">提供永久免费的加速器服务，请放心使用。</span><br></pre></td></tr></table></figure>
+
+<p><strong>国内比较好的镜像源：网易蜂巢、aliyun和daocloud</strong></p>
+<p>daocloud.io–官网</p>
+<p>===========以下为亲测================</p>
+<p>使用国内镜像：</p>
+<p>进入网站：<a href="https://daocloud.io/" target="_blank" rel="noopener">https://daocloud.io/</a></p>
+<p>注册帐号：soso666</p>
+<p>进入镜像市场</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570200192111.png" alt="1570200192111"></p>
+<p> 随便选择一个，选择mysql</p>
+<p> <img src= "/img/loading.gif" data-src="assets/1570200445170.png" alt="1570200445170"></p>
+<p><img src= "/img/loading.gif" data-src="assets/1570200848229.png" alt="1570200848229"></p>
+<p>上面有详细的使用命令。但是每个镜像的命令不一样，在选择一个：</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570201197359.png" alt="1570201197359"></p>
+<p><img src= "/img/loading.gif" data-src="assets/1570201259933.png" alt="1570201259933"></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/nginx   #下载镜像</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/nginx</span><br><span class="line">0a4690c5d889: Pull complete </span><br><span class="line">9719afee3eb7: Pull complete </span><br><span class="line">44446b456159: Pull complete </span><br><span class="line">Digest: sha256:f83b2ffd963ac911f9e638184c8d580cc1f3139d5c8c33c87c3fb90aebdebf76</span><br><span class="line">Status: Downloaded newer image for daocloud.io/library/nginx:latest</span><br><span class="line">daocloud.io/library/nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>现在我们使用web界面管理docker容器：</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570201320225.png" alt="1570201320225"></p>
+<p><img src= "/img/loading.gif" data-src="assets/1570201424714.png" alt="1570201424714"></p>
+<p><img src= "/img/loading.gif" data-src="assets/1570201526997.png" alt="1570201526997"></p>
+<p>等一会，不要手动终止：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# curl -sSL https://get.daocloud.io/daomonit/install.sh | sh -s 8e6d8ce76e4ec4668f31859dae6297439ac49243 </span><br><span class="line"> * Installing Daomonit...</span><br><span class="line"> * Downloading Daomonit from https://get.daocloud.io/daomonit/daomonit.x86_64.rpm</span><br><span class="line"><span class="meta">  %</span><span class="bash"> Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   279  100   279    0     0   1091      0 --:--:-- --:--:-- --:--:--  1094</span><br><span class="line">100   337  100   337    0     0    950      0 --:--:-- --:--:-- --:--:--   950</span><br><span class="line">100 3349k  100 3349k    0     0  2060k      0  0:00:01  0:00:01 --:--:-- 2207k</span><br><span class="line">准备中...                          ################################# [100%]</span><br><span class="line">正在升级/安装...</span><br><span class="line">   1:daomonit-0.1.70-1                ################################# [100%]</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/daomonit.service to /usr/lib/systemd/system/daomonit.service.</span><br><span class="line"> * Configuring Daomonit...</span><br><span class="line">[10/04/19 23:05:51] [DEBG] Writing configuration file /etc/daocloud/daomonit.yml</span><br><span class="line">[10/04/19 23:05:51] [INFO] You have successfully saved your config file.</span><br><span class="line"> * Start Daomonit...</span><br><span class="line">Starting daomonit (via systemctl):                         [  OK  ]</span><br><span class="line"></span><br><span class="line">You can view daomonit log at /var/log/daomonit.log</span><br><span class="line">And You can Start or Stop daomonit with: service daomonit start/stop/restart/status</span><br><span class="line"></span><br><span class="line">*********************************************************************</span><br><span class="line">*********************************************************************</span><br><span class="line">***</span><br><span class="line">***  Installed and Started Daomonit 0.1.70</span><br><span class="line">***</span><br><span class="line">***  NOTICE: </span><br><span class="line">***  You can pull image very Fast by dao, For Example: </span><br><span class="line">***     dao pull ubuntu</span><br><span class="line">***</span><br><span class="line">*********************************************************************</span><br><span class="line">*********************************************************************</span><br><span class="line">[root@yixuan ~]#</span><br></pre></td></tr></table></figure>
+
+<p>完成之后：</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570201748054.png" alt="1570201748054"></p>
+<p>点击查看主机</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570201858823.png" alt="1570201858823"></p>
+<p>启动我们的容器</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker images   #查看镜像</span><br><span class="line">REPOSITORY                              TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">daocloud.io/library/nginx               latest              98ebf73aba75        2 months ago        109MB</span><br><span class="line">daocloud.io/daocloud/daocloud-toolset   latest              bbdc71e950ea        2 years ago         147MB</span><br><span class="line"></span><br><span class="line">[root@yixuan ~]# docker run -it daocloud.io/library/nginx /bin/bash   #运行容器</span><br><span class="line">root@37b8b8cdd75f:/#</span><br></pre></td></tr></table></figure>
+
+<p>将容器启动之后刷新一下刚才的界面点击容器就会显示出来</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570203257235.png" alt="1570203257235"></p>
+<p>点击查看详情…</p>
+<p><strong>配置阿里云的镜像仓库</strong></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200308222414879.png" alt="image-20200308222414879"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200308222502111.png" alt="image-20200308222502111"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200308222559298.png" alt="image-20200308222559298"></p>
+<p><strong>创建阿里云的私有仓库</strong></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516194706857.png" alt="image-20200516194706857"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516194734064.png" alt="image-20200516194734064"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516194811376.png" alt="image-20200516194811376"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516202258168.png" alt="image-20200516202258168"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516195029906.png" alt="image-20200516195029906"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516202347774.png" alt="image-20200516202347774"></p>
+<p><strong>使用自己的私有仓库</strong></p>
+<p>注意使用自己的私有仓库</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">登录：</span><br><span class="line">[root@yixuan ~]# docker login --username=xuan2504 registry.cn-shanghai.aliyuncs.com</span><br><span class="line">Password: </span><br><span class="line">...</span><br><span class="line">Login Succeeded</span><br><span class="line">重新打标记</span><br><span class="line">[root@yixuan ~]# docker tag daocloud.io/library/nginx:latest registry.cn-shanghai.aliyuncs.com/testpm/nginx:1.1</span><br><span class="line">上传到自己的仓库</span><br><span class="line">[root@yixuan ~]# docker push registry.cn-shanghai.aliyuncs.com/testpm/nginx:1.1</span><br><span class="line">The push refers to repository [registry.cn-shanghai.aliyuncs.com/testpm/nginx]</span><br><span class="line">be91fceb796e: Layer already exists </span><br><span class="line">919b6770519b: Layer already exists </span><br><span class="line">b60e5c3bcef2: Layer already exists </span><br><span class="line">1.1: digest: sha256:6b3b6c113f98e901a8b1473dee4c268cf37e93d72bc0a01e57c65b4ab99e58ee size: 948</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看上传的镜像</strong></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516203027062.png" alt="image-20200516203027062"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516203045619.png" alt="image-20200516203045619"></p>
+<p><strong>自己的nginx:1.1版本已经上传成功！</strong></p>
+<p><strong>使用自己的仓库</strong></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516203352642.png" alt="image-20200516203352642"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200516203447628.png" alt="image-20200516203447628"></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">使用阿里的仓库下载镜像：</span><br><span class="line">删除镜像</span><br><span class="line">[root@yixuan ~]# docker rmi registry.cn-shanghai.aliyuncs.com/testpm/nginx:1.1</span><br><span class="line">Untagged: registry.cn-shanghai.aliyuncs.com/testpm/nginx:1.1</span><br><span class="line">Untagged: registry.cn-shanghai.aliyuncs.com/testpm/nginx@sha256:6b3b6c113f98e901a8b1473dee4c268cf37e93d72bc0a01e57c65b4ab99e58ee</span><br><span class="line"></span><br><span class="line">从自己的仓库下载</span><br><span class="line">[root@yixuan ~]# docker pull registry.cn-shanghai.aliyuncs.com/testpm/nginx:1.1</span><br><span class="line">1.1: Pulling from testpm/nginx</span><br><span class="line">Digest: sha256:6b3b6c113f98e901a8b1473dee4c268cf37e93d72bc0a01e57c65b4ab99e58ee</span><br><span class="line">Status: Downloaded newer image for registry.cn-shanghai.aliyuncs.com/testpm/nginx:1.1</span><br><span class="line">registry.cn-shanghai.aliyuncs.com/testpm/nginx:1.1</span><br><span class="line"></span><br><span class="line">查看</span><br><span class="line">[root@yixuan ~]# docker images </span><br><span class="line">REPOSITORY                                                               TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">registry.cn-shanghai.aliyuncs.com/testpm/nginx                           1.1                 e791337790a6        4 weeks ago         127MB</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="assets/image-20200308222731329.png" alt="image-20200308222731329"></p>
+<p><img src= "/img/loading.gif" data-src="assets/image-20200308222757002.png" alt="image-20200308222757002"></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">配置阿里加速器：</span><br><span class="line">如果这个目录/etc/docker/不存在就创建</span><br><span class="line">[root@yixuan ~]# vim /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line">  "registry-mirrors": ["https://br003st4.mirror.aliyuncs.com"]</span><br><span class="line">&#125;</span><br><span class="line">[root@yixuan ~]# systemctl daemon-reload</span><br><span class="line">[root@yixuan ~]# systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h1 id="docker基本概念"><a href="#docker基本概念" class="headerlink" title="docker基本概念"></a>docker基本概念</h1><p>Docker系统</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Docker系统有两个程序：docker服务端和docker客户端</span><br><span class="line"></span><br><span class="line">docker服务端：是一个服务进程，管理着所有的容器。也叫docker engine</span><br><span class="line"></span><br><span class="line">docker客户端：扮演着docker服务端的远程控制器，可以用来控制docker的服务端进程。</span><br><span class="line"></span><br><span class="line">大部分情况下，docker服务端和客户端运行在一台机器上</span><br></pre></td></tr></table></figure>
+
+<p>Docker三大核心组件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Docker 镜像 - Docker  images </span><br><span class="line"></span><br><span class="line">Docker 仓库 - Docker  registeries</span><br><span class="line"></span><br><span class="line">Docker 容器 - Docker  containers</span><br></pre></td></tr></table></figure>
+
+<p>容器的三大组成要素：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">名称空间 namespace  容器隔离(pid,net,mnt,user,)</span><br><span class="line"></span><br><span class="line">资源限制 cgroups  资源(内存，cpu)</span><br><span class="line"></span><br><span class="line">文件系统 overlay2(UnionFS)</span><br></pre></td></tr></table></figure>
+
+<p>docker 仓库：</p>
+<p>  <strong>用来保存镜像，可以理解为代码控制中的代码仓库。</strong>同样的，Docker 仓库也有公有和私有的概念。</p>
+<p>公有的 Docker  仓库名字是 Docker Hub。Docker Hub  提供了庞大的镜像集合供使用。这些镜像可以是自己创建，或者在别人的镜像基础上创建。 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">仓库(registry) --&gt;Repository--&gt;镜像(按版本区分)</span><br><span class="line"></span><br><span class="line">docker.io/centos:7</span><br><span class="line">registry/repository:tag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">repository:存储库</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker 国内仓库</span><br><span class="line">ali</span><br><span class="line">网易蜂巢</span><br><span class="line">daocloud</span><br><span class="line">=========================</span><br><span class="line">docker公有仓库</span><br><span class="line">docker.io -------docker官方库也叫docker-hub</span><br><span class="line">类似于github一样，面向全球的一个docker镜像的公共仓库。如果在国内使用速度太慢。</span><br><span class="line">===============================</span><br><span class="line">docker私有仓库</span><br><span class="line">个人或者公司部署的非公开库</span><br></pre></td></tr></table></figure>
+
+<p>Docker 镜像 </p>
+<p>​     Docker 镜像是 Docker 容器运行时的只读模板，每一个镜像由一系列的层 (layers) 组成。Docker 使用  UnionFS 来将这些层联合到单独的镜像中。正因为有了这些层的存在，Docker  是如此的轻量。当你改变了一个 Docker  镜像，比如升级到某个程序到新的版本，一个新的层会被创建。因此，不用替换整个原先的镜像或者重新建立(在使用虚拟机的时候你可能会这么做)，只是一个新的层被添加或升级了。</p>
+<p>  ﻿在 Docker 的术语里，一个只读层被称为镜像，一个镜像是永久不会变的。由于 Docker 使用一个统一文件系统，由于镜像不可写，所以镜像是无状态的。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">镜像由三部分组成：</span><br><span class="line">镜像名称：仓库名称+镜像分类+tag名称(镜像版本)</span><br><span class="line"></span><br><span class="line">1.存储对象：images</span><br><span class="line">2.格式：库名/分类：tag</span><br><span class="line">3.tag:表示镜像版本</span><br></pre></td></tr></table></figure>
+
+<p>镜像的大体分类方式：这不是规定</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> 1.以操作系统名字    </span><br><span class="line">centos的docker镜像:</span><br><span class="line">centos5</span><br><span class="line">centos6</span><br><span class="line">centos7</span><br><span class="line">-----------------</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">2.以应用的名字</span><br><span class="line">nginx的docker镜像</span><br><span class="line">tomcat的docker镜像</span><br><span class="line">mysql的docker镜像</span><br></pre></td></tr></table></figure>
+
+<p>镜像名字：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">完整镜像名称示例：        </span><br><span class="line">docker.io/library/nginx:v1</span><br><span class="line">docker.io/library/nginx:latest</span><br><span class="line">daocloud.io/library/nginx</span><br></pre></td></tr></table></figure>
+
+<p><strong>镜像ID：</strong></p>
+<p>所有镜像都是通过一个 64 位十六进制字符串来标识的。 为简化使用，前 12 个字符可以组成一个短ID，可以在命令行中使用。短ID还是有一定的碰撞机率，所以服务器总是返回长ID。</p>
+<p>镜像ID：64位的id号，一般我们看到的是12位的我们称之为短ID，只要我们每个ID号不冲突就可以了</p>
+<p><img src= "/img/loading.gif" data-src="assets/wps1.jpg" alt="img">    ﻿     </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">镜像本身：是由一层一层的镜像合在一起的，最底层的镜像我们称为基础镜像，在这个基础镜像的基础上还可以在做镜像，在做的镜像称为子镜像，对于子镜像来讲在谁的基础之上做的就是父镜像。</span><br><span class="line"></span><br><span class="line">基础镜像：一个没有任何父镜像的镜像，谓之基础镜像。</span><br><span class="line">centos7   镜像</span><br><span class="line">centos7+nginx 镜像</span><br></pre></td></tr></table></figure>
+
+<p>Docker 容器</p>
+<p>​    Docker 容器和文件夹很类似，一个Docker容器包含了所有的某个应用运行所需要的环境。每一个 Docker 容器都是从 Docker  镜像创建的。Docker 容器可以运行、开始、停止、移动和删除。每一个 Docker 容器都是独立和安全的应用平台，Docker 容器是  Docker 的运行部分。  </p>
+<h2 id="docker镜像命名解析"><a href="#docker镜像命名解析" class="headerlink" title="docker镜像命名解析"></a><strong>docker镜像命名解析</strong></h2><p>Docker镜像命名解析</p>
+<p>镜像是Docker最核心的技术之一，也是应用发布的标准格式。无论你是用docker pull image，或者是在</p>
+<p>Dockerfile里面写FROM image，从Docker官方Registry下载镜像应该是Docker操作里面最频繁的动作之一</p>
+<p>了。那么docker镜像是如何命名的，这也是Docker里面比较容易令人混淆的一块概念：Registry，Repository, Tag and Image。</p>
+<p>那么Registry又是什么呢？Registry存储镜像数据，并且提供拉取和上传镜像的功能。Registry中镜像是通过</p>
+<p>Repository来组织的，而每个Repository又包含了若干个Image。</p>
+<p>下面是在本地机器运行docker images的输出结果：</p>
+<p>﻿<img src= "/img/loading.gif" data-src="assets/image-20200308230042738.png" alt="image-20200308230042738"></p>
+<p>常说的”ubuntu”镜像其实不是一个镜像名称，而是代表了一个名为ubuntu的Repository，同时在这个Repository下面有一系列打了tag的Image，Image的标记是一个GUID，为了方便也可以通过Repository:tag来引用。</p>
+<p>Image[:tag]</p>
+<p>当一个镜像的名称不足以分辨这个镜像所代表的含义时，你可以通过tag将版本信息添加到run命令中，以执行特</p>
+<p>定版本的镜像。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">例如:docker run ubuntu:14.04</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker镜像和容器的区别"><a href="#docker镜像和容器的区别" class="headerlink" title="docker镜像和容器的区别"></a><strong>docker镜像和容器的区别</strong></h2><p> 一、Docker镜像</p>
+<p>要理解Docker镜像和docker容器之间的区别，确实不容易。。</p>
+<p>一个Docker镜像可以构建于另一个Docker镜像之上，这种层叠关系可以是多层的。第1层的镜像层我们称之为基础镜像（Base  Image），其他层的镜像（除了最顶层）我们称之为父层镜像（Parent  Image）。这些镜像继承了他们的父层镜像的所有属性和设置。</p>
+<p> Docker镜像通过镜像ID进行识别。镜像ID是一个64字符的十六进制的字符串。但是当我们运行镜像时，通常我们不会使用镜像ID来引用镜像，而是使用镜像名来引用。</p>
+<p>要列出本地所有有效的镜像，可以使用命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker images</span></span><br></pre></td></tr></table></figure>
+
+<p>镜像可以发布为不同的版本，这种机制我们称之为标签（Tag）。 </p>
+<p>可以使用pull命令加上指定的标签：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker pull ubuntu:14.04</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> docker pull ubuntu:12.04</span></span><br></pre></td></tr></table></figure>
+
+<p>二、Docker容器</p>
+<p>Docker容器可以使用命令创建：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker run  -it  imagename  /bin/bash</span></span><br></pre></td></tr></table></figure>
+
+<p>它会在所有的镜像层之上增加一个可写层。这个可写层有运行在CPU上的进程，而且有两个不同的状态：运行态（Running）和退出态 （Exited）。这就是Docker容器。当我们使用docker  run启动容器，Docker容器就进入运行态，当我们停止Docker容器时，它就进入退出态。</p>
+<p>当我们有一个正在运行的Docker容器时，从运行态到停止态，我们对它所做的一切变更都会永久地写到容器的文件系统中。要切记，对容器的变更是写入到容器的文件系统的，而不是写入到Docker镜像中的。我们可以用同一个镜像启动多个Docker容器，这些容器启动后都是活动的，彼此还是相互隔离的。我们对其中一个容器所做的变更只会局限于那个容器本身。如果对容器的底层镜像进行修改，那么当前正在运行的容器是不受影响的，不会发生自动更新现象。</p>
+<h2 id="名字空间–namespace"><a href="#名字空间–namespace" class="headerlink" title="名字空间–namespace"></a>名字空间–namespace</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">namespace  空间隔离</span><br><span class="line">cgroup   资源限制</span><br></pre></td></tr></table></figure>
+
+<p> 名字空间是 Linux 内核一个强大的特性。每个容器都有自己单独的名字空间，运行在其中的应用都像是在独立的操作系统中运行一样。名字空间保证了容器之间彼此互不影响。 </p>
+<ol>
+<li>pid 名字空间</li>
+</ol>
+<p>不同用户的进程就是通过 pid 名字空间隔离开的，且不同名字空间中可以有相同 pid。所有的 LXC 进程在 Docker中的父进程为Docker进程，每个 LXC 进程具有不同的名字空间。同时由于允许嵌套，因此可以很方便的实现嵌套的 Docker 容器。 </p>
+<ol start="2">
+<li><p>net 名字空间 —-做网络接口隔离的</p>
+<p>有 了 pid 名字空间, 每个名字空间中的 pid 能够相互隔离，但是网络端口还是共享 host 的端口。网络隔离是通过 net 名字空间实现的，  每个 net 名字空间有独立的 网络设备, IP 地址, 路由表, /proc/net 目录。这样每个容器的网络就能隔离开来。</p>
+</li>
+<li><p>ipc 名字空间   </p>
+</li>
+</ol>
+<p>容器中进程交互还是采用了 Linux 常见的进程间交互方法(interprocess communication - IPC),  <strong>包括信号量、消息队列和共享内存、socket、管道等。</strong></p>
+<p>面试题：linux系统里面ipc通信有几种方式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">socket:网络进程间的通信</span><br><span class="line">管道：本地进程间的通信：echo  hello  | grep e</span><br><span class="line">信号：  kill -9 PID   这种我们叫信号量级，也是本地进程间的通信</span><br><span class="line">共享内存：每个操作系统里面共享内存多大，是物理内存的一半</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>mnt名字空间</li>
+</ol>
+<p>mnt 名字空间允许不同名字空间的进程看到的文件结构不同，这样每个名字空间  中的进程所看到的文件目录就被隔离开了。</p>
+<ol start="5">
+<li>uts 名字空间</li>
+</ol>
+<p>UTS(“UNIX Time-sharing System”) 名字空间允许每个容器拥有独立的 hostname 和 domain name, 使其在网络上可以被视作一个独立的节点而非主机上的一个进程。</p>
+<ol start="6">
+<li>user 名字空间 </li>
+</ol>
+<p>每个容器可以有不同的用户和组 id, 也就是说可以在容器内用容器内部的用户执行程序而非主机上的用户。</p>
+<h1 id="镜像管理"><a href="#镜像管理" class="headerlink" title="镜像管理"></a><strong>镜像管理</strong></h1><p>搜索镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">这种方法只能用于官方镜像库</span><br><span class="line">搜索基于 centos 操作系统的镜像</span><br><span class="line"></span><br><span class="line">[root@yixuan ~]# docker search centos</span><br></pre></td></tr></table></figure>
+
+<p>​    按星级搜索镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">查找 star 数至少为 100 的镜像，默认不加 s 选项找出所有相关 centos 镜像：         </span><br><span class="line">[root@yixuan ~]## docker search centos -s 100</span><br><span class="line">或者</span><br><span class="line">[root@yixuan ~]## docker search ubuntu -f stars=100</span><br></pre></td></tr></table></figure>
+
+<p>拉取镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker pull centos</span></span><br><span class="line">注：没有加registry，默认是从docker.io下载的</span><br><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/tomcat:7</span><br><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/centos:6</span><br></pre></td></tr></table></figure>
+
+<p>查看本地镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker image list </span><br><span class="line">或者</span><br><span class="line">[root@yixuan ~]# docker images</span><br></pre></td></tr></table></figure>
+
+<p>查看镜像详情：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker image inspect 镜像id</span><br></pre></td></tr></table></figure>
+
+<p>删除镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">删除一个或多个，多个之间用空格隔开，可以使用镜像名称或id</span><br><span class="line">[root@yixuan ~]# docker rmi daocloud.io/library/mysql</span><br><span class="line">或者</span><br><span class="line">[root@yixuan ~]# docker rmi 81debc</span><br><span class="line"></span><br><span class="line">参数解释：</span><br><span class="line">rm          Remove one or more containers  ---移除一个或多个容器</span><br><span class="line">rmi         Remove one or more images   ---删除一个或多个镜像</span><br></pre></td></tr></table></figure>
+
+<p>​    强制删除：–force</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">如果镜像正在被使用中可以使用--force强制删除    </span><br><span class="line"><span class="meta">#</span><span class="bash"> docker rmi docker.io/ubuntu:latest --force</span></span><br><span class="line">-f, --force      Force removal of the image</span><br><span class="line"></span><br><span class="line">注意: 容器运行中不能删除，将容器停止后，删除容器在删除镜像。</span><br></pre></td></tr></table></figure>
+
+<p>只查看所有镜像的id:    </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker images -q</span><br><span class="line">98ebf73aba75</span><br><span class="line">81debc95563d</span><br><span class="line">d0957ffdf8a2</span><br><span class="line"></span><br><span class="line">-q, --quiet</span><br></pre></td></tr></table></figure>
+
+<p>删除所有镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
+
+<p>查看镜像制作的过程：</p>
+<p>​    相当于dockfile</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker history daocloud.io/library/nginx  使用镜像名或者镜像ID都可以</span><br></pre></td></tr></table></figure>
+
+<h1 id="容器管理"><a href="#容器管理" class="headerlink" title="容器管理"></a><strong>容器管理</strong></h1><p>创建新容器但不启动：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker create -it daocloud.io/library/centos:5 /bin/bash</span></span><br></pre></td></tr></table></figure>
+
+<p>创建并运行一个新Docker 容器：同一个镜像可以启动多个容器,每次执行run子命令都会运行一个全新的容器</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker run -it --restart=always daocloud.io/library/centos:7 /bin/bash   <span class="comment">#最常用</span></span></span><br><span class="line">-i ：标准输入输出</span><br><span class="line">-t：分配一个终端或控制台</span><br><span class="line">--restart=always：容器随docker engine自启动，因为在重启docker的时候默认容器都会被关闭   </span><br><span class="line">也适用于create选项</span><br><span class="line">-d	后台运行容器，并返回容器ID；</span><br></pre></td></tr></table></figure>
+
+<p>﻿ 如果执行成功，说明CentOS 容器已经被启动，并且应该已经得到了 bash 提示符。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--rm:默认情况下，每个容器在退出时，它的文件系统也会保存下来.另一方面，也可以保存容器所产生的数据。但是当你仅仅需要短暂的运行一个容器，并且这些数据不需要保存，你可能就希望Docker能在容器结束时自动清理其所产生的数据。这个时候就需要--rm参数了。</span><br><span class="line"></span><br><span class="line">注意：--rm 和 -d不能共用</span><br></pre></td></tr></table></figure>
+
+<p>容器名称</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">为容器分配一个名字，如果没有指定，docker会自动分配一个随机名称是 docker run子命令的参数</span><br><span class="line">--name= Assign a name to the container</span><br><span class="line"><span class="meta">#</span><span class="bash"> docker run -it --name 名字  daocloud.io/centos:6 /bin/bash   <span class="comment">#名字自定义</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果你在执行docker run时没有指定–name，那么自动生成一个随机字符串UUID。这个UUID标识是由Docker deamon生成的。但是对于一个容器来说有个name会非常方便，当你需要连接其它容器时或者类似需要区分其它容器时，使用容器名称可以简化操作。无论容器运行在前台或者后台，这个名字都是有效的。</p>
+<p>若要断开与容器的连接，并且关闭容器：容器内部执行如下命令</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@37b8b8cdd75f:/# exit</span><br></pre></td></tr></table></figure>
+
+<p>如果只想断开和容器的连接而不关闭容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">快捷键：ctrl+p+q</span><br></pre></td></tr></table></figure>
+
+<p>查看容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.只查看运行状态的容器：</span><br><span class="line"><span class="meta">#</span><span class="bash">docker ps</span></span><br><span class="line">2.-a  查看所有容器</span><br><span class="line"><span class="meta">#</span><span class="bash">docker ps -a</span></span><br><span class="line">3.只查看所有容器id:</span><br><span class="line"><span class="meta">#</span><span class="bash"> docker ps -a -q</span></span><br></pre></td></tr></table></figure>
+
+<p>查看容器详细信息：</p>
+<p>inspect  :用于查看容器的配置信息，包含容器名、环境变量、运行命令、主机配置、网络配置和数据卷配置等。</p>
+<p>目标：查找某一个运行中容器的id，然后使用docker inspect命令查看容器的信息。</p>
+<p>提示：可以使用容器id的前面部分，不需要完整的id。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker inspect bbdc71e   #机器上运行的一个容器ID或者名称</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        "Id": "d95a220a498e352cbfbc098c949fc528dbf5a5c911710b108ea3a9b4aa3a4761",</span><br><span class="line">        "Created": "2017-07-08T03:59:16.18225183Z",</span><br><span class="line">        "Path": "bash",</span><br><span class="line">        "Args": [],</span><br><span class="line">        "State": &#123;</span><br><span class="line">            "Status": "exited",</span><br><span class="line">           "Running": false,</span><br><span class="line">            "Paused": false,</span><br><span class="line">           "Restarting": false,</span><br><span class="line">            "OOMKilled": false,</span><br><span class="line">            "Dead": false,</span><br><span class="line">            "Pid": 0,</span><br><span class="line"></span><br><span class="line">容器信息很多，这里只粘贴了一部分</span><br></pre></td></tr></table></figure>
+
+<p>启动容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker start  name   <span class="comment">#容器ID也可以</span></span></span><br><span class="line">这里的名字是状态里面NAMES列列出的名字，这种方式同样会让容器运行在后台</span><br></pre></td></tr></table></figure>
+
+<p>关闭容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker stop  name</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> docker <span class="built_in">kill</span>  name      --强制终止容器</span></span><br></pre></td></tr></table></figure>
+
+<p>杀死所有running状态的容器</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker <span class="built_in">kill</span> $(docker ps  -q)</span></span><br></pre></td></tr></table></figure>
+
+<p>stop和kill的区别：</p>
+<p>​    docker stop命令给容器中的进程发送SIGTERM信号，默认行为是会导致容器退出，当然，容器内程序可以捕获该信号并自行处理，例如可以选择忽略。而docker kill则是给容器的进程发送SIGKILL信号，该信号将会使容器必然退出。  </p>
+<p>删除容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker rm 容器id或名称</span></span><br><span class="line">要删除一个运行中的容器，添加 -f 参数 --慎用。先stop在删除</span><br></pre></td></tr></table></figure>
+
+<p>根据格式删除所有容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker rm $(docker ps -qf status=exited)</span></span><br><span class="line">-f：过滤</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pause :暂停容器中所有的进程</span><br><span class="line">unpause：恢复容器内暂停的进程，与pause对应</span><br><span class="line"></span><br><span class="line">[root@yixuan ~]# docker pause c7</span><br><span class="line">[root@yixuan ~]# docker ps </span><br><span class="line">CONTAINER ID        IMAGE                          COMMAND             CREATED             STATUS                  PORTS               NAMES</span><br><span class="line">3c0e0f43807d        98ebf73aba                     "/bin/bash"         7 minutes ago       Up 7 minutes (Paused)   80/tcp              c7</span><br><span class="line">[root@yixuan ~]# docker unpause c7  #恢复</span><br></pre></td></tr></table></figure>
+
+<p>重启容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">docker restart name</span></span><br></pre></td></tr></table></figure>
+
+<p>让容器运行在后台：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker run -dit 镜像ID /bin/bash</span></span><br><span class="line">-d后台运行必须要加-it</span><br></pre></td></tr></table></figure>
+
+<p>﻿如果在docker run后面追加-d=true或者-d，那么容器将会运行在后台模式。此时所有I/O数据只能通过网络资源或者共享卷组来进行交互。因为容器不再监听你执行docker run的这个终端命令行窗口。但你可以通过执行</p>
+<p>docker attach来重新附着到该容器的回话中。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker attach 容器ID/容器名字</span><br></pre></td></tr></table></figure>
+
+<p> 注：</p>
+<p> 容器运行在后台模式下，是不能使用–rm选项的(老版本是这样，新版本已经可以同时生效)</p>
+<p><strong>rename  —修改容器名称</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker rename mytest testmy</span><br><span class="line">[root@yixuan ~]# docker ps -a </span><br><span class="line">CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS               NAMES</span><br><span class="line">774c02898fb1        daocloud.io/library/nginx   "/bin/bash -c 'while…"   5 minutes ago       Up About a minute   80/tcp              testmy</span><br></pre></td></tr></table></figure>
+
+<p>stats     </p>
+<p>​    Display a live stream of container(s) resource usage statistics—显示容器资源使用统计信息的实时流</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker stats</span><br><span class="line">--当有容器在运行的时候动态显示容器的资源消耗情况，包括：CPU、内存、网络I/O</span><br></pre></td></tr></table></figure>
+
+<p>连接容器：前提是容器在运行状态中 </p>
+<p>方法1.attach</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker attach 容器id   <span class="comment">#前提是容器创建时必须指定了交互shell</span></span></span><br></pre></td></tr></table></figure>
+
+<p>方法2.exec      </p>
+<p>通过exec命令可以创建两种任务：后台型任务和交互型任务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.交互型任务：</span><br><span class="line">[root@yixuan ~]# docker exec -it  容器id  /bin/bash</span><br><span class="line">root@68656158eb8e:/# ls</span><br><span class="line"></span><br><span class="line">2.后台型任务：不进入容器里面执行命令</span><br><span class="line">[root@yixuan ~]# docker exec 容器id touch /testfile</span><br></pre></td></tr></table></figure>
+
+<p>监控容器的运行：</p>
+<p><strong>可以使用logs、top、wait这些子命令</strong></p>
+<p>​    logs:使用logs命令查看守护式容器</p>
+<p>​        可以通过使用docker logs命令来查看容器的运行日志，其中–tail选项可以指定查看最后几条日志，使用-f选项可以跟踪日志的输出，直到手动停止。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/nginx</span><br><span class="line">[root@yixuan ~]# docker images </span><br><span class="line">[root@yixuan ~]# docker run -it --name nginx1 98ebf73 /bin/bash </span><br><span class="line">root@8459191dbe7c:/# /usr/sbin/nginx   #启动nginx</span><br><span class="line">ctrl+p+q --- 退出</span><br><span class="line">[root@yixuan ~]# docker inspect nginx1  #找到ip地址</span><br><span class="line">[root@yixuan ~]# curl -I http://172.17.0.3  #宿主机访问容器可以访问成功</span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: nginx/1.17.1</span><br><span class="line">Date: Mon, 09 Mar 2020 14:49:40 GMT</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Content-Length: 612</span><br><span class="line">Last-Modified: Tue, 25 Jun 2019 12:19:45 GMT</span><br><span class="line">Connection: keep-alive</span><br><span class="line">ETag: "5d121161-264"</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">[root@yixuan ~]# curl -I http://172.17.0.3  #继续测试访问</span><br><span class="line"></span><br><span class="line">在开启一个终端：</span><br><span class="line">[root@yixuan ~]# docker logs -f nginx1  </span><br><span class="line">root@8459191dbe7c:/# /usr/sbin/nginx</span><br><span class="line">root@8459191dbe7c:/# 172.17.0.1 - - [09/Mar/2020:14:49:33 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/7.29.0" "-"</span><br><span class="line">172.17.0.1 - - [09/Mar/2020:14:49:40 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/7.29.0" "-"</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> docker logs --tail -2 App_Conainer</span></span><br></pre></td></tr></table></figure>
+
+<p>​    top:显示一个运行的容器里面的进程信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker top  nginx   #容器ID也可以</span><br></pre></td></tr></table></figure>
+
+<p>​    wait :–捕捉容器停止时的退出码</p>
+<p>执行此命令后，该命令会”hang”在当前终端，直到容器停止，此时，会打印出容器的退出码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">在第一个终端执行停止容器命令</span><br><span class="line">[root@yixuan ~]# docker stop nginx1</span><br><span class="line">===============================</span><br><span class="line">[root@yixuan ~]# docker wait 01d8aa  #第二个终端操作</span><br><span class="line">0</span><br><span class="line"></span><br><span class="line">docker run 之后容器退出的状态码：</span><br><span class="line">0，表示正常退出</span><br><span class="line">非0，表示异常退出（退出状态码采用chroot标准）</span><br><span class="line">125，Docker守护进程本身的错误</span><br><span class="line">126，容器启动后，要执行的默认命令无法调用</span><br><span class="line">127，容器启动后，要执行的默认命令不存在</span><br></pre></td></tr></table></figure>
+
+<p>宿主机和容器之间相互COPY文件</p>
+<p>​    cp的用法如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Usage: </span><br><span class="line">docker cp [OPTIONS] CONTAINER:PATH LOCALPATH   --从容器拷贝到本机</span><br><span class="line">docker cp [OPTIONS] LOCALPATH CONTAINER:PATH   --从本机拷贝到容器</span><br></pre></td></tr></table></figure>
+
+<p>​    如：容器nginx中/usr/local/bin/存在test.sh文件，可如下方式copy到宿主机</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker exec -it nginx /bin/bash</span><br><span class="line">root@2a9a18b4a485:/# cd /usr/local/bin/</span><br><span class="line">root@2a9a18b4a485:/usr/local/bin# touch test.sh</span><br><span class="line">ctrl+p+q  退出</span><br><span class="line">[root@yixuan ~]# docker cp mytest:/usr/local/bin/test.sh /root/</span><br></pre></td></tr></table></figure>
+
+<p> 修改完毕后，将该文件重新copy回容器</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# ls</span><br><span class="line">anaconda-ks.cfg  test.sh</span><br><span class="line">[root@yixuan ~]# echo "123" &gt;&gt; test.sh</span><br><span class="line">[root@yixuan ~]# docker cp /root/test.sh mytest:/usr/local/bin/</span><br></pre></td></tr></table></figure>
+
+<h1 id="docker容器镜像制作"><a href="#docker容器镜像制作" class="headerlink" title="docker容器镜像制作"></a><strong>docker容器镜像制作</strong></h1><h2 id="一、容器文件系统打包"><a href="#一、容器文件系统打包" class="headerlink" title="一、容器文件系统打包"></a><strong>一、容器文件系统打包</strong></h2><p>将容器的文件系统打包成tar文件,也就是把正在运行的容器直接导出为tar包的镜像文件</p>
+<p> export    </p>
+<p>​    Export a container’s filesystem as a tar archive</p>
+<p> 有两种方式：</p>
+<p>第一种：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker ps #运行一个容器</span><br><span class="line">CONTAINER ID        IMAGE                            COMMAND             CREATED              STATUS              PORTS               NAMES</span><br><span class="line">96e2b7265d93        daocloud.io/library/centos:6     "/bin/bash"         About an hour ago    Up About an hour                        c6</span><br><span class="line">[root@yixuan ~]# docker exec -it c6 /bin/bash</span><br><span class="line">[root@96e2b7265d93 /]# vi a.txt #编辑一个文件</span><br><span class="line">123</span><br><span class="line">[root@96e2b7265d93 /]# yum install -y vim wget  #安装一个软件</span><br><span class="line">[root@yixuan ~]# docker export -o centos6-1.tar 96e2b726</span><br><span class="line">-o, --output</span><br><span class="line">[root@yixuan ~]# ls  #保存到当前目录下</span><br><span class="line">anaconda-ks.cfg  centos6-1.tar</span><br></pre></td></tr></table></figure>
+
+<p>第二种：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker export 容器名称 &gt; 镜像.tar</span><br></pre></td></tr></table></figure>
+
+<p>导入镜像归档文件到其他宿主机：</p>
+<p>import    </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> [root@yixuan ~]# docker import centos6-1.tar centos6-1:v1</span><br><span class="line"> sha256:b8414448c913259a28d623643a7b67a6c13da9b3259e70ee5febb16c2b0b1095</span><br><span class="line"> [root@yixuan ~]# docker images</span><br><span class="line"> [root@yixuan ~]# docker run -it --name c6.1 centos6-1:v1 /bin/bash </span><br><span class="line">[root@4a29d58d3bd2 /]# ls</span><br><span class="line">a.txt  bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  sbin  selinux  srv  sys  tmp  usr  var</span><br><span class="line">[root@4a29d58d3bd2 /]# cat a.txt </span><br><span class="line">123123</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、通过容器创建本地镜像"><a href="#二、通过容器创建本地镜像" class="headerlink" title="二、通过容器创建本地镜像"></a>二、通过容器创建本地镜像</h2><p>背景：<strong>容器运行起来后，又在里面做了一些操作，并且要把操作结果保存到镜像里</strong></p>
+<p> 方案：使用 docker commit 指令，把一个正在运行的容器，直接提交为一个镜像。</p>
+<p>  commit 是提交的意思,类似告诉svn服务器我要生成一个新的版本。</p>
+<p> 例子：</p>
+<p>在容器内部新建了一个文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker run -it --name c7 daocloud.io/library/centos:7 /bin/bash</span><br><span class="line">[root@2e8f79cb5922 /]# touch test.txt</span><br></pre></td></tr></table></figure>
+
+<p>#  将这个新建的文件提交到镜像中保存</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker commit 2e8f79cb5922 soso/test:v2</span><br><span class="line">sha256:2214bad66e9b1c2079dc89a2e14e997604237cd49a6dc6c29d84e915fbbeb5bd</span><br><span class="line">[root@yixuan ~]# docker images</span><br></pre></td></tr></table></figure>
+
+<p>也可以这样例子：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker commit -m <span class="string">"my images version1"</span> -a <span class="string">"soso"</span> 108a85b1ed99 daocloud.io/ubuntu:v2</span></span><br><span class="line">sha256:ffa8a185ee526a9b0d8772740231448a25855031f25c61c1b63077220469b057</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-m                           添加注释</span><br><span class="line">-a                           作者</span><br><span class="line">108a85b1ed99                 容器环境id</span><br><span class="line">daocloud.io/ubuntu:v2      镜像名称：hub的名称/镜像名称：tag </span><br><span class="line">-p，–pause=true              提交时暂停容器运行</span><br></pre></td></tr></table></figure>
+
+<h2 id="镜像迁移"><a href="#镜像迁移" class="headerlink" title="镜像迁移"></a><strong>镜像迁移</strong></h2><p>保存一台宿主机上的镜像为tar文件，然后可以导入到其他的宿主机上：</p>
+<p>save      </p>
+<p>​    将镜像打包，与下面的load命令相对应</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker save -o nginx.tar daocloud.io/library/nginx</span><br></pre></td></tr></table></figure>
+
+<p>load   </p>
+<p>​    与上面的save命令相对应，将上面sava命令打包的镜像通过load命令导入,（实验环境中原来机器上面有镜像可以先删除掉。）</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker load &lt; nginx.tar</span><br><span class="line">[root@yixuan ~]# docker images</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">把容器导出成tar包 export   import </span><br><span class="line"></span><br><span class="line">把容器做成镜像  commit  -a "" -m ""  </span><br><span class="line"></span><br><span class="line">把镜像保存为tar包 save    load</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过Dockerfile创建镜像"><a href="#通过Dockerfile创建镜像" class="headerlink" title="通过Dockerfile创建镜像"></a><strong>通过Dockerfile创建镜像</strong></h2><p>Docker 提供了一种更便捷的方式，叫作 Dockerfile</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker build命令用于根据给定的Dockerfile构建Docker镜像。</span><br></pre></td></tr></table></figure>
+
+<p>docker build语法：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker build [OPTIONS] &lt;PATH | URL | -&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1. 常用选项说明</span><br><span class="line">--build-arg，设置构建时的变量</span><br><span class="line">--no-cache，默认false。设置该选项，将不使用Build Cache构建镜像</span><br><span class="line">--pull，默认false。设置该选项，总是尝试pull镜像的最新版本</span><br><span class="line">--compress，默认false。设置该选项，将使用gzip压缩构建的上下文</span><br><span class="line">--disable-content-trust，默认true。设置该选项，将对镜像进行验证</span><br><span class="line">--file, -f，Dockerfile的完整路径，默认值为‘PATH/Dockerfile’</span><br><span class="line">--isolation，默认--isolation="default"，即Linux命名空间；其他还有process或hyperv</span><br><span class="line">--label，为生成的镜像设置metadata</span><br><span class="line">--squash，默认false。设置该选项，将新构建出的多个层压缩为一个新层，但是将无法在多个镜像之间共享新层；设置该选项，实际上是创建了新image，同时保留原有image。</span><br><span class="line">--tag, -t，镜像的名字及tag，通常name:tag或者name格式；可以在一次构建中为一个镜像设置多个tag</span><br><span class="line">--network，默认default。设置该选项，Set the networking mode for the RUN instructions during build</span><br><span class="line">--quiet, -q ，默认false。设置该选项，Suppress the build output and print image ID on success</span><br><span class="line">--force-rm，默认false。设置该选项，总是删除掉中间环节的容器</span><br><span class="line">--rm，默认--rm=true，即整个构建过程成功后删除中间环节的容器</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">示例： </span><br><span class="line">docker build -t soso/bbauto:v2.1 .</span><br><span class="line"></span><br><span class="line">docker build  是docker创建镜像的命令 </span><br><span class="line">-t 是标识新建的镜像属于 soso的 bbauto镜像 </span><br><span class="line">：v2 是tag </span><br><span class="line">"."是用来指明 我们的使用的Dockerfile文件当前目录的</span><br></pre></td></tr></table></figure>
+
+<p>2.1、 创建镜像所在的文件夹和Dockerfile文件 </p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# mkdir sinatra</span><br><span class="line">[root@yixuan ~]# cd sinatra/</span><br><span class="line">[root@yixuan sinatra]# touch Dockerfile</span><br></pre></td></tr></table></figure>
+
+<p>2.2、 在Dockerfile文件中写入指令，每一条指令都会更新镜像的信息例如：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan sinatra]# vim Dockerfile</span><br><span class="line"><span class="meta">#</span><span class="bash">This is a comment </span></span><br><span class="line">FROM daocloud.io/library/centos:7</span><br><span class="line">MAINTAINER soso soso@yixuan</span><br><span class="line">RUN touch a.txt</span><br><span class="line">RUN mkdir /test</span><br></pre></td></tr></table></figure>
+
+<p>格式说明：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">命令要大写，"#"是注解。 </span><br><span class="line">每一个指令后面需要跟空格，语法。</span><br><span class="line">FROM 命令是告诉docker 我们的镜像什么从哪里下载。 </span><br><span class="line">MAINTAINER 是描述 镜像的创建人。 </span><br><span class="line">RUN 命令是在镜像内部执行。就是说他后面的命令应该是针对镜像可以运行的命令。</span><br></pre></td></tr></table></figure>
+
+<p> 2.3、创建镜像 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">命令：</span><br><span class="line"><span class="meta">#</span><span class="bash"> docker build -t soso/centso:7 . </span></span><br><span class="line"></span><br><span class="line">docker build  是docker创建镜像的命令</span><br></pre></td></tr></table></figure>
+
+<p> 详细执行过程：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan sinatra]# docker build -t soso/centos:7 . </span><br><span class="line">Sending build context to Docker daemon  2.048kB</span><br><span class="line">Step 1/4 : FROM daocloud.io/library/centos</span><br><span class="line">latest: Pulling from library/centos</span><br><span class="line">d8d02d457314: Pull complete </span><br><span class="line">Digest: sha256:a36b9e68613d07eec4ef553da84d0012a5ca5ae4a830cf825bb68b929475c869</span><br><span class="line">Status: Downloaded newer image for daocloud.io/library/centos:latest</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> 67fa590cfc1c</span></span><br><span class="line">Step 2/4 : MAINTAINER soso soso@yixuan</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> Running <span class="keyword">in</span> aab3d80939d8</span></span><br><span class="line">Removing intermediate container aab3d80939d8</span><br><span class="line"><span class="meta"> ---&gt;</span><span class="bash"> 12bae7d75a23</span></span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<p> 2.4、创建完成后，从镜像创建容器</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570288025491.png" alt="1570288025491"></p>
+<p><img src= "/img/loading.gif" data-src="assets/1570288081326.png" alt="1570288081326"></p>
+<h3 id="Dockerfile实例：容器化python的flask应用"><a href="#Dockerfile实例：容器化python的flask应用" class="headerlink" title="Dockerfile实例：容器化python的flask应用"></a><strong>Dockerfile实例：容器化python的flask应用</strong></h3><p>目标： 用 Docker 部署一个用 Python 编写的 Web 应用。</p>
+<p>首先部署整个流程：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">基础镜像（python）--&gt;flask--&gt;部署python应用</span><br><span class="line">web框架 flask django</span><br></pre></td></tr></table></figure>
+
+<p> 代码功能：</p>
+<p>​    如果当前环境中有”NAME”这个环境变量，就把它打印在”Hello”后，否则就打印”Hello world”，最后再打印出当前环境的 hostname。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# mkdir python_app</span><br><span class="line">[root@yixuan ~]# cd python_app/</span><br><span class="line">[root@yixuan python_app]# vim app.py</span><br><span class="line">from flask import Flask</span><br><span class="line">import socket</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">@app.route('/')</span><br><span class="line">def hello():</span><br><span class="line">    html = "&lt;h3&gt;Hello &#123;name&#125;!&lt;/h3&gt;" \</span><br><span class="line">           "&lt;b&gt;Hostname:&lt;/b&gt; &#123;hostname&#125;&lt;br/&gt;"</span><br><span class="line">    return html.format(name=os.getenv("NAME", "world"), hostname=socket.gethostname())</span><br><span class="line"></span><br><span class="line">if __name__ == "__main__":</span><br><span class="line">    app.run(host='0.0.0.0', port=80)</span><br></pre></td></tr></table></figure>
+
+<p>应用依赖：</p>
+<p>定义在同目录下的 requirements.txt 文件里，内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan python_app]# vim requirements.txt</span><br><span class="line">Flask</span><br></pre></td></tr></table></figure>
+
+<p>Dockerfile制作容器镜像:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim Dockerfile</span></span><br><span class="line">FROM python:2.7-slim</span><br><span class="line">WORKDIR /app</span><br><span class="line">ADD . /app</span><br><span class="line">RUN pip install --trusted-host pypi.python.org -r requirements.txt</span><br><span class="line">EXPOSE 80</span><br><span class="line">ENV NAME World</span><br><span class="line">CMD ["python", "app.py"]</span><br></pre></td></tr></table></figure>
+
+<p>Dockerfile文件说明：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">FROM python:2.7-slim</span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用官方提供的 Python 开发镜像作为基础镜像 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 指定<span class="string">"python:2.7-slim"</span>这个官方维护的基础镜像，从而免去安装 Python 等语言环境的操作。：</span></span><br><span class="line"></span><br><span class="line">WORKDIR /app     ---cd /app</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将工作目录切换为 /app,意思是在这一句之后，Dockerfile 后面的操作都以这一句指定的 /app 目录作为当前目录。 </span></span><br><span class="line"></span><br><span class="line">ADD . /app</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将当前目录下的所有内容复制到 /app 下 Dockerfile 里的原语并不都是指对容器内部的操作。比如 ADD，指的是把当前目录（即 Dockerfile 所在的目录）里的文件，复制到指定容器内的目录当中。</span></span><br><span class="line"></span><br><span class="line">RUN pip install --trusted-host pypi.python.org -r requirements.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用 pip 命令安装这个应用所需要的依赖</span></span><br><span class="line"></span><br><span class="line">EXPOSE 80</span><br><span class="line"><span class="meta">#</span><span class="bash"> 允许外界访问容器的 80 端口</span></span><br><span class="line"></span><br><span class="line">ENV NAME World</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置环境变量</span></span><br><span class="line"></span><br><span class="line">CMD ["python", "app.py"]</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置容器进程为：python app.py，即：这个 Python 应用的启动命令,这里app.py 的实际路径是 /app/app.py。CMD [<span class="string">"python"</span>, <span class="string">"app.py"</span>] 等价于 <span class="string">"docker run python app.py"</span>。</span></span><br></pre></td></tr></table></figure>
+
+<p>现在目录结构：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan python_app]# ls</span><br><span class="line">Dockerfile  app.py   requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>构建镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan python_app]# docker build -t testpython .</span><br><span class="line">-t  给这个镜像加一个 Tag</span><br></pre></td></tr></table></figure>
+
+<p>Dockerfile 中的每个原语执行后，都会生成一个对应的镜像层。即使原语本身并没有明显地修改文件的操作（比如，ENV 原语），它对应的层也会存在。只不过在外界看来，这个层是空的。</p>
+<p>查看结果：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan python_app]# docker images</span><br><span class="line">REPOSITORY                              TAG                 IMAGE ID           ...</span><br><span class="line">testpython                              latest              16bc21f3eea3</span><br></pre></td></tr></table></figure>
+
+<p>启动容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan python_app]# docker run -it -p 4000:80 testpython /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>查看容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan python_app]# docker ps </span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED                  </span><br><span class="line">ce02568e64ce        testpython          "/bin/bash"         About a minute ago</span><br></pre></td></tr></table></figure>
+
+<p>进入容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan python_app]# docker exec -it ce02568 /bin/bash </span><br><span class="line">root@ce02568e64ce:/app# python app.py &amp;        #将python运行起来</span><br></pre></td></tr></table></figure>
+
+<p>访问容器内应用：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# curl http://localhost:4000</span><br><span class="line">&lt;h3&gt;Hello World!&lt;/h3&gt;&lt;b&gt;Hostname:&lt;/b&gt; f201f6855136&lt;br/&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实战练习</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.创建一个jenkins的Dockerfile</span><br><span class="line">[root@yixuan ~]# mkdir tomcat </span><br><span class="line">[root@yixuan ~]# cd tomcat/</span><br><span class="line">[root@yixuan tomcat]# vim Dockerfile</span><br><span class="line"><span class="meta">#</span><span class="bash"> This my first jenkins Dockerfile</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Version 1.0</span></span><br><span class="line"></span><br><span class="line">FROM daocloud.io/library/centos:7</span><br><span class="line">MAINTAINER yixuan</span><br><span class="line">ENV JAVA_HOME /usr/local/jdk1.8.0_211</span><br><span class="line">ENV TOMCAT_HOME /usr/local/apache-tomcat-8.5.47</span><br><span class="line">ENV PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH</span><br><span class="line">ENV CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$JAVA_HOME/lib/tools.jar</span><br><span class="line">ADD apache-tomcat-8.5.47.tar.gz /usr/local/</span><br><span class="line">ADD jdk-8u211-linux-x64.tar.gz /usr/local/</span><br><span class="line">RUN rm -rf /usr/local/apache-tomcat-8.5.47/webapps/*</span><br><span class="line">ADD jenkins.war /usr/local/apache-tomcat-8.5.47/webapps</span><br><span class="line">RUN rm -rf apache-tomcat-8.5.47.tar.gz  apache-tomcat-8.5.47.tar.gz</span><br><span class="line">EXPOSE 8080</span><br><span class="line">ENTRYPOINT ["/usr/local/apache-tomcat-8.5.47/bin/catalina.sh","run"]  #运行的命令</span><br><span class="line"></span><br><span class="line">[root@yixuan tomcat]# pwd</span><br><span class="line">/root/tomcat</span><br><span class="line">[root@yixuan tomcat]# ls  #将jdk与tomcat还有jenkins的包上传到tomcat目录中</span><br><span class="line">apache-tomcat-8.5.47.tar.gz  Dockerfile  jdk-8u211-linux-x64.tar.gz  jenkins.war</span><br><span class="line">[root@yixuan tomcat]# docker build -t jenkins:v1 .</span><br><span class="line">[root@yixuan tomcat]# docker run -itd --name jenkins1 -p 8081:8080 jenkins:v1</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="assets/image-20200307230106461.png" alt="image-20200307230106461"></p>
+<p><strong>扩展—-CMD与ENTRYPOINT区别</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">一、dockerfile中的 CMD</span><br><span class="line"></span><br><span class="line">1、每个dockerfile中只能有一个CMD如果有多个那么只执行最后一个。</span><br><span class="line">2、CMD 相当于启动docker时候后面添加的参数看，举个简单例子：</span><br><span class="line"><span class="meta">#</span><span class="bash"> docker run -itd --name <span class="built_in">test</span> image(镜像) /bin/bash -c</span></span><br><span class="line">a、镜像名称后面跟了一个/bin/bash -c ，其实等价于在dockerfile中的CMD ["/bin/bash","-c"]。</span><br><span class="line">b、如果dockerfile中的CMD中有了CMD["/bin/bash","-c"],那么就不用在执行的时候再添加了，如果添加了参数的话那么就相当于要执行你添加的参数，默认的CMD中的参数就无效了。</span><br><span class="line"></span><br><span class="line">二、dockerfile中的ENTRYPOINT</span><br><span class="line">1、一个dockerfile中ENTRYPOINT也只能存在一个，若存在多个那么只执行最后一个，你可以理解为开机启动的意思，和CMD有点像，不过还是有区别。</span><br><span class="line"></span><br><span class="line">2、举个简单例子：</span><br><span class="line">a、dockerfile中有ENTRYPOINT ["tail","-f","/var/log/nginx/access.log"]，那么启动的时候镜像就执行了这个里面的内容，如果你像上面带参数的话就相当于在这个执行的内容后面再加入参数。</span><br><span class="line">案例:</span><br><span class="line">如果我们的dockerfile中有a中的这句话然后我们启动我们的docker:</span><br><span class="line"><span class="meta">#</span><span class="bash">docker run -itd --name <span class="built_in">test</span> image(镜像名) /bin/bash -c</span></span><br><span class="line"></span><br><span class="line">此时就相当于我们启动docker的时候执行了：tail -f /var/log/nginx/access.log /bin/bash -c</span><br><span class="line">这个命令明显就不对.</span><br></pre></td></tr></table></figure>
+
+<h2 id="dockerfile优化"><a href="#dockerfile优化" class="headerlink" title="dockerfile优化"></a>dockerfile优化</h2><p>编译一个简单的nginx成功以后发现好几百M。</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1、RUN 命令要尽量写在一条里，每次 RUN 命令都是在之前的镜像上封装，只会增大不会减小</span><br><span class="line"></span><br><span class="line">2、每次进行依赖安装后，记得yum clean all【centos】 </span><br><span class="line"><span class="meta">#</span><span class="bash">yum clean all 清除缓存中的rpm头文件和包文件</span></span><br><span class="line"></span><br><span class="line">3、选择比较小的基础镜像。alpine</span><br></pre></td></tr></table></figure>
+
+<h1 id="部署私有仓库应用"><a href="#部署私有仓库应用" class="headerlink" title="部署私有仓库应用"></a><strong>部署私有仓库应用</strong></h1><p>私有仓库镜像:</p>
+<p>registry  –官方出品， 没有图形界面.Docker hub官方已提供容器镜像registry,用于搭建私有仓库</p>
+<p>拉取镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/registry:latest</span><br></pre></td></tr></table></figure>
+
+<p>运行容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker run -d -v /home/dockerdata/registry:/var/lib/registry --name "pri_registry" --restart=always -p 5000:5000 daocloud.io/library/registry</span><br><span class="line"></span><br><span class="line">参数解释:</span><br><span class="line">/home/dockerdata/registry表示为宿主机的目录，如果不存在自动创建</span><br><span class="line">-v映射目录：  宿主机的目录:容器目录</span><br><span class="line">把宿主机的目录挂载到容器中，将数据目录挂载出来就是为了防止docker私有仓库这个容器被删除的时候，仓库里面的镜像也被删除。</span><br><span class="line">-p 端口映射：本地端口:容器端口</span><br></pre></td></tr></table></figure>
+
+<p>​    注：如果创建容器不成功，报错防火墙，解决方案如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">systemctl stop firewalld</span></span><br><span class="line"><span class="meta">#</span><span class="bash">yum install iptaqbles*</span></span><br><span class="line"><span class="meta">#</span><span class="bash">systemctl start iptables</span></span><br><span class="line"><span class="meta">#</span><span class="bash">iptables -F</span></span><br><span class="line"><span class="meta">#</span><span class="bash">systemctl restart docker</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker ps </span><br><span class="line">CONTAINER ID        IMAGE                          COMMAND                  CREATED              STATUS              PORTS                    NAMES</span><br><span class="line">0823df72b160        daocloud.io/library/registry   "/entrypoint.sh /etc…"   About a minute ago   Up About a minute   0.0.0.0:5000-&gt;5000/tcp   pri_registry</span><br></pre></td></tr></table></figure>
+
+<p>﻿连接容器查看端口状态：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker exec -it  0823df7  /bin/sh</span><br><span class="line">/ # netstat -lntp    #查看5000端口是否开启</span><br><span class="line">Active Internet connections (only servers)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    </span><br><span class="line">tcp        0      0 :::5000                 :::*                    LISTEN      1/registry</span><br><span class="line">/ #</span><br></pre></td></tr></table></figure>
+
+<p>﻿在本机查看能否访问该私有仓库,﻿ 看看状态码是不是200</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# curl -I http://127.0.0.1:5000</span><br><span class="line">HTTP/1.1 200 OK</span><br></pre></td></tr></table></figure>
+
+<p>为了测试，下载1个比较小的镜像,buysbox</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/busybox</span><br></pre></td></tr></table></figure>
+
+<p>上传前必须给镜像打tag  注明ip和端口：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker tag daocloud.io/library/busybox 192.168.246.141:5000/busybox</span><br></pre></td></tr></table></figure>
+
+<p>   下面这个Mysql是我测试的第二个镜像，从daocloud拉取的：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/mysql</span><br><span class="line">[root@yixuan ~]# docker tag daocloud.io/library/mysql 192.168.246.141:5000/daocloud.io/library/mysql</span><br><span class="line">[root@yixuan ~]# docker images</span><br></pre></td></tr></table></figure>
+
+<p>注：tag后面可以使用镜像名称也可以使用id,我这里使用的镜像名称，如果使用官方的镜像，不需要加前缀，但是daocloud.io的得加前缀.</p>
+<p>修改请求方式为http:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">默认为https，不改会报以下错误:</span><br><span class="line">Get https://master.up.com:5000/v1/_ping: http: server gave HTTP response to HTTPS client</span><br><span class="line"></span><br><span class="line">[root@yixuan ~]# vim /etc/docker/daemon.json    #不存在则创建</span><br><span class="line">&#123; "insecure-registries":["192.168.246.141:5000"] &#125;</span><br><span class="line"></span><br><span class="line">重启docker：</span><br><span class="line">[root@yixuan ~]# systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>上传镜像到私有仓库：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker push 192.168.246.141:5000/busybox</span><br><span class="line">[root@yixuan ~]# docker push 192.168.246.141:5000/daocloud.io/library/mysql</span><br><span class="line"></span><br><span class="line">宿主机查看存放镜像目录：</span><br><span class="line">[root@yixuan ~]# ls /home/dockerdata/registry/docker/registry/v2/repositories/</span><br></pre></td></tr></table></figure>
+
+<p>查看私有仓库里的所有镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">语法： # curl  http://ip:port/v2/repo名字/tags/list</span><br><span class="line">[root@yixuan ~]# curl http://192.168.246.141:5000/v2/busybox/tags/list</span><br><span class="line">&#123;"name":"busybox","tags":["latest"]&#125;</span><br><span class="line"></span><br><span class="line">[root@yixuan ~]# curl http://192.168.246.141:5000/v2/daocloud.io/library/mysql/tags/list</span><br><span class="line">&#123;"name":"daocloud.io/library/mysql","tags":["latest"]&#125; </span><br><span class="line"></span><br><span class="line">这条命令会查看仓库下面所有的镜像：</span><br><span class="line">[root@yixuan ~]# curl http://192.168.246.141:5000/v2/_catalog</span><br></pre></td></tr></table></figure>
+
+<p>拉取镜像测试：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.先将刚才打了tags的镜像删掉</span><br><span class="line">[root@yixuan ~]# docker rmi 192.168.246.141:5000/busybox</span><br><span class="line">2.拉取镜像：</span><br><span class="line">[root@yixuan ~]# docker pull 192.168.246.141:5000/busybox</span><br><span class="line">[root@yixuan ~]# docker images</span><br></pre></td></tr></table></figure>
+
+<h1 id="部署docker-web-ui应用"><a href="#部署docker-web-ui应用" class="headerlink" title="部署docker web ui应用"></a><strong>部署docker web ui应用</strong></h1><p>下载并运行容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker pull uifd/ui-for-docker</span><br><span class="line">[root@yixuan ~]# docker run -it -d --name docker-web -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock docker.io/uifd/ui-for-docker</span><br></pre></td></tr></table></figure>
+
+<p>浏览器访问测试：</p>
+<p>​    ip:9000    </p>
+<p><img src= "/img/loading.gif" data-src="assets/wps1-1570414924725.jpg" alt="img"></p>
+<h1 id="docker资源限制"><a href="#docker资源限制" class="headerlink" title="docker资源限制"></a><strong>docker资源限制</strong></h1><p>在使用 docker 运行容器时，一台主机上可能会运行几百个容器，这些容器虽然互相隔离，但是底层却使用着相同的 CPU、内存和磁盘资源。如果不对容器使用的资源进行限制，那么容器之间会互相影响，小的来说会导致容器资源使用不公平；大的来说，可能会导致主机和集群资源耗尽，服务完全不可用。</p>
+<p>CPU 和内存的资源限制已经是比较成熟和易用，能够满足大部分用户的需求。磁盘限制也是不错的，虽然现在无法动态地限制容量，但是限制磁盘读写速度也能应对很多场景。</p>
+<p>至于网络，docker 现在并没有给出网络限制的方案，也不会在可见的未来做这件事情，因为目前网络是通过插件来实现的，和容器本身的功能相对独立，不是很容易实现，扩展性也很差。</p>
+<p>资源限制一方面可以让我们为容器（应用）设置合理的 CPU、内存等资源，方便管理；另外一方面也能有效地预防恶意的攻击和异常，对容器来说是非常重要的功能。</p>
+<h2 id="系统压力测试工具stress"><a href="#系统压力测试工具stress" class="headerlink" title="系统压力测试工具stress"></a><strong>系统压力测试工具stress</strong></h2><p>​    stress是一个linux下的压力测试工具，专门为那些想要测试自己的系统，完全高负荷和监督这些设备运行的用户。</p>
+<h2 id="cpu资源限制"><a href="#cpu资源限制" class="headerlink" title="cpu资源限制"></a><strong>cpu资源限制</strong></h2><h3 id="限制CPU-Share"><a href="#限制CPU-Share" class="headerlink" title="限制CPU Share"></a><strong>限制CPU Share</strong></h3><p>什么是cpu share:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker 允许用户为每个容器设置一个数字，代表容器的 CPU share，默认情况下每个容器的 share 是 1024。这个 share 是相对的，本身并不能代表任何确定的意义。当主机上有多个容器运行时，每个容器占用的 CPU 时间比例为它的 share 在总额中的比例。docker 会根据主机上运行的容器和进程动态调整每个容器使用 CPU 的时间比例。</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">如果主机上有两个一直使用 CPU 的容器（为了简化理解，不考虑主机上其他进程），其 CPU share 都是 1024，那么两个容器 CPU 使用率都是 50%；如果把其中一个容器的 share 设置为 512，那么两者 CPU 的使用率分别为 70% 和 30%；如果删除 share 为 1024 的容器，剩下来容器的 CPU 使用率将会是 100%。</span><br></pre></td></tr></table></figure>
+
+<p>  好处：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">能保证 CPU 尽可能处于运行状态，充分利用 CPU 资源，而且保证所有容器的相对公平；</span><br></pre></td></tr></table></figure>
+
+<p>   缺点：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">无法指定容器使用 CPU 的确定值。</span><br></pre></td></tr></table></figure>
+
+<p>设置 CPU share 的参数：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-c --cpu-shares，它的值是一个整数</span><br></pre></td></tr></table></figure>
+
+<p>我的机器是 4 核 CPU，因此运行一个stress容器,使用 stress 启动 4 个进程来产生计算压力：（无CPU限制）</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker pull progrium/stress</span><br><span class="line">[root@yixuan ~]# yum install -y htop</span><br><span class="line">[root@yixuan ~]# docker run --rm -it progrium/stress --cpu 4</span><br><span class="line">stress: info: [1] dispatching hogs: 4 cpu, 0 io, 0 vm, 0 hdd</span><br><span class="line">stress: dbug: [1] using backoff sleep of 12000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 4 [6] forked</span><br><span class="line">stress: dbug: [1] using backoff sleep of 9000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 3 [7] forked</span><br><span class="line">stress: dbug: [1] using backoff sleep of 6000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 2 [8] forked</span><br><span class="line">stress: dbug: [1] using backoff sleep of 3000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 1 [9] forked</span><br></pre></td></tr></table></figure>
+
+<p>在另外一个 terminal 使用 htop 查看资源的使用情况：</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570424556113.png" alt="1570424556113"> </p>
+<p>上图中看到，CPU 四个核资源都达到了 100%。</p>
+<p> 为了比较，另外启动一个 share 为 512 的容器：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.先将没有做限制的命令运行起来</span><br><span class="line">[root@yixuan ~]# docker run --rm -it progrium/stress --cpu 4</span><br><span class="line">2.在开启一个终端，运行做了CPU限制的命令</span><br><span class="line">[root@yixuan ~]# docker run --rm -it -c 512 progrium/stress --cpu 4</span><br><span class="line">stress: info: [1] dispatching hogs: 4 cpu, 0 io, 0 vm, 0 hdd</span><br><span class="line">stress: dbug: [1] using backoff sleep of 12000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 4 [6] forked</span><br><span class="line">stress: dbug: [1] using backoff sleep of 9000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 3 [7] forked</span><br><span class="line">stress: dbug: [1] using backoff sleep of 6000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 2 [8] forked</span><br><span class="line">stress: dbug: [1] using backoff sleep of 3000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 1 [9] forked</span><br><span class="line">3.在开启一个终端执行htop命令</span><br><span class="line">[root@yixuan ~]# htop</span><br></pre></td></tr></table></figure>
+
+<p>因为默认情况下，容器的 CPU share 为 1024，所以这两个容器的 CPU 使用率应该大致为 2：1，下面是启动第二个容器之后的监控截图：</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570425017249.png" alt="1570425017249"> </p>
+<p>两个容器分别启动了四个 stress 进程，第一个容器 stress 进程 CPU 使用率都在 60% 左右，第二个容器 stress 进程 CPU 使用率在 30% 左右，比例关系大致为 2：1，符合之前的预期。 </p>
+<h3 id="限制CPU-核数"><a href="#限制CPU-核数" class="headerlink" title="限制CPU 核数"></a><strong>限制CPU 核数</strong></h3><p>限制容器能使用的 CPU 核数</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-c --cpu-shares 参数只能限制容器使用 CPU 的比例，或者说优先级，无法确定地限制容器使用 CPU 的具体核数；从 1.13 版本之后，docker 提供了 --cpus 参数可以限定容器能使用的 CPU 核数。这个功能可以让我们更精确地设置容器 CPU 使用量，是一种更容易理解也因此更常用的手段.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--cpus 后面跟着一个浮点数，代表容器最多使用的核数，可以精确到小数点二位，也就是说容器最小可以使用 0.01 核 CPU。</span><br></pre></td></tr></table></figure>
+
+<p>限制容器只能使用 1.5 核数 CPU：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker run --rm -it --cpus 1.5 progrium/stress --cpu 3</span><br><span class="line">stress: info: [1] dispatching hogs: 3 cpu, 0 io, 0 vm, 0 hdd</span><br><span class="line">stress: dbug: [1] using backoff sleep of 9000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 3 [6] forked</span><br><span class="line">stress: dbug: [1] using backoff sleep of 6000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 2 [7] forked</span><br><span class="line">stress: dbug: [1] using backoff sleep of 3000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 1 [8] forked</span><br></pre></td></tr></table></figure>
+
+<p>在容器里启动三个 stress 来跑 CPU 压力，如果不加限制，这个容器会导致 CPU 的使用率为 300% 左右（也就是说会占用三个核的计算能力）。实际的监控如下图：</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570425708170.png" alt="img"> </p>
+<p>可以看到，每个 stress 进程 CPU 使用率大约在 50%，总共的使用率为 150%，符合 1.5 核的设置。 </p>
+<p>如果设置的 –cpus 值大于主机的 CPU 核数，docker 会直接报错：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker run --rm -it --cpus 8 progrium/stress --cpu 3  #启用三个进程做测试</span><br><span class="line">docker: Error response from daemon: Range of CPUs is from 0.01 to 4.00, as there are only 4 CPUs available.</span><br><span class="line">See 'docker run --help'.</span><br></pre></td></tr></table></figure>
+
+<p>如果多个容器都设置了 –cpus ，并且它们之和超过主机的 CPU 核数，并不会导致容器失败或者退出，这些容器之间会竞争使用 CPU，具体分配的 CPU 数量取决于主机运行情况和容器的 CPU share 值。也就是说 –cpus 只能保证在 CPU 资源充足的情况下容器最多能使用的 CPU 数，docker 并不能保证在任何情况下容器都能使用这么多的 CPU（因为这根本是不可能的）。    </p>
+<h3 id="CPU-绑定"><a href="#CPU-绑定" class="headerlink" title="CPU 绑定"></a><strong>CPU 绑定</strong></h3><p>限制容器运行在某些 CPU 核</p>
+<p><strong>注</strong>：</p>
+<p>一般并不推荐在生产中这样使用</p>
+<p>docker 允许调度的时候限定容器运行在哪个 CPU 上。</p>
+<p>案例：</p>
+<p>假如主机上有 4 个核，可以通过 –cpuset 参数让容器只运行在前两个核上：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker run --rm -it --cpuset-cpus=0,1 progrium/stress --cpu 2 </span><br><span class="line">stress: info: [1] dispatching hogs: 2 cpu, 0 io, 0 vm, 0 hdd</span><br><span class="line">stress: dbug: [1] using backoff sleep of 6000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 2 [6] forked</span><br><span class="line">stress: dbug: [1] using backoff sleep of 3000us</span><br><span class="line">stress: dbug: [1] --&gt; hogcpu worker 1 [7] forked</span><br></pre></td></tr></table></figure>
+
+<p>这样，监控中可以看到只有前面两个核 CPU 达到了 100% 使用率。</p>
+<p><img src= "/img/loading.gif" data-src="assets/1570426108182.png" alt="img"> </p>
+<h2 id="mem资源限制"><a href="#mem资源限制" class="headerlink" title="mem资源限制"></a><strong>mem资源限制</strong></h2><p>docker 默认没有对容器内存进行限制，容器可以使用主机提供的所有内存。 </p>
+<p>不限制内存带来的问题：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">这是非常危险的事情，如果某个容器运行了恶意的内存消耗软件，或者代码有内存泄露，很可能会导致主机内存耗尽，因此导致服务不可用。可以为每个容器设置内存使用的上限，一旦超过这个上限，容器会被杀死，而不是耗尽主机的内存。</span><br></pre></td></tr></table></figure>
+
+<p>限制内存带来的问题：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">限制内存上限虽然能保护主机，但是也可能会伤害到容器里的服务。如果为服务设置的内存上限太小，会导致服务还在正常工作的时候就被 OOM 杀死；如果设置的过大，会因为调度器算法浪费内存。</span><br></pre></td></tr></table></figure>
+
+<p>合理做法：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1. 为应用做内存压力测试，理解正常业务需求下使用的内存情况，然后才能进入生产环境使用</span><br><span class="line">2. 一定要限制容器的内存使用上限，尽量保证主机的资源充足，一旦通过监控发现资源不足，就进行扩容或者对容器进行迁移</span><br><span class="line">3. 尽量不要使用 swap，swap 的使用会导致内存计算复杂，对调度器非常不友好</span><br></pre></td></tr></table></figure>
+
+<p><strong>docker 限制容器内存使用量:</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker 启动参数中，和内存限制有关的包括（参数的值一般是内存大小，也就是一个正数，后面跟着内存单位 b、k、m、g，分别对应 bytes、KB、MB、和 GB):</span><br><span class="line"></span><br><span class="line">-m --memory：容器能使用的最大内存大小，最小值为 4m</span><br></pre></td></tr></table></figure>
+
+<p>如果限制容器的内存使用为 64M，在申请 64M 资源的情况下，容器运行正常（如果主机上内存非常紧张，并不一定能保证这一点）：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker run --rm -it -m 64m progrium/stress --vm 1 --vm-bytes 64M --vm-hang 0</span><br><span class="line">stress: info: [1] dispatching hogs: 0 cpu, 0 io, 1 vm, 0 hdd</span><br><span class="line">stress: dbug: [1] using backoff sleep of 3000us</span><br><span class="line">stress: dbug: [1] --&gt; hogvm worker 1 [6] forked</span><br><span class="line">stress: dbug: [6] allocating 67108864 bytes ...</span><br><span class="line">stress: dbug: [6] touching bytes in strides of 4096 bytes ...</span><br><span class="line">stress: dbug: [6] sleeping forever with allocated memory</span><br><span class="line"></span><br><span class="line">容器可以正常运行。</span><br><span class="line">-m 64m：限制你这个容器只能使用64M</span><br><span class="line">--vm-bytes 64M：将内存撑到64兆是不会报错，因为我有64兆内存可用。</span><br><span class="line">hang:就是卡在这里。</span><br><span class="line">--vm：生成几个占用内存的进程</span><br></pre></td></tr></table></figure>
+
+<p>而如果申请 150M 内存，会发现容器里的进程被 kill 掉了（worker 6 got signal 9，signal 9 就是 kill 信号）</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker run --rm -it -m 64m progrium/stress --vm 1 --vm-bytes 150M --vm-hang 0</span><br><span class="line">stress: info: [1] dispatching hogs: 0 cpu, 0 io, 1 vm, 0 hdd</span><br><span class="line">stress: dbug: [1] using backoff sleep of 3000us</span><br><span class="line">stress: dbug: [1] --&gt; hogvm worker 1 [6] forked</span><br><span class="line">stress: dbug: [6] allocating 157286400 bytes ...</span><br><span class="line">stress: dbug: [6] touching bytes in strides of 4096 bytes ...</span><br><span class="line">stress: FAIL: [1] (416) &lt;-- worker 6 got signal 9</span><br><span class="line">stress: WARN: [1] (418) now reaping child worker processes</span><br><span class="line">stress: FAIL: [1] (422) kill error: No such process</span><br><span class="line">stress: FAIL: [1] (452) failed run completed in 1s</span><br></pre></td></tr></table></figure>
+
+<h2 id="io-资源限制-了解"><a href="#io-资源限制-了解" class="headerlink" title="io 资源限制(了解)"></a><strong>io 资源限制(了解)</strong></h2><p>对于磁盘来说，考量的参数是容量和读写速度，因此对容器的磁盘限制也应该从这两个维度出发。目前 docker 支持对磁盘的读写速度进行限制，但是并没有方法能限制容器能使用的磁盘容量（一旦磁盘 mount 到容器里，容器就能够使用磁盘的所有容量）。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">第一种是：磁盘的读写速率的限制</span><br><span class="line">第二种是：磁盘的读写频率的限制</span><br></pre></td></tr></table></figure>
+
+<h1 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a><strong>端口转发</strong></h1><p> <img src= "/img/loading.gif" data-src="assets/1570429105816.png" alt="1570429105816"></p>
+<p>使用端口转发解决容器端口访问问题</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-p:创建应用容器的时候，一般会做端口映射，这样是为了让外部能够访问这些容器里的应用。可以用多个-p指定多个端口映射关系。</span><br></pre></td></tr></table></figure>
+
+<p>mysql应用端口转发：</p>
+<p>查看本地地址：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# ip a </span><br><span class="line">...</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 1000</span><br><span class="line">    link/ether 00:0c:29:9c:bf:66 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.246.141/24 brd 192.168.246.255 scope global dynamic ens33</span><br><span class="line">       valid_lft 5217593sec preferred_lft 5217593sec</span><br><span class="line">    inet6 fe80::a541:d470:4d9a:bc29/64 scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+
+<p>运行容器：使用-p作端口转发，<strong>把本地3307转发到容器的3306</strong>，其他参数需要查看发布容器的页面提示</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/mysql:5.7</span><br><span class="line">[root@yixuan ~]# docker run -d --name mysql1 -p 3307:3306  -e MYSQL_ROOT_PASSWORD=Qf@123! daocloud.io/library/mysql:5.7</span><br><span class="line">a4327dbddf665b4302c549320bff869b8a027c2e1eead363d84ce5d06acf2698</span><br><span class="line"></span><br><span class="line">-e MYSQL_ROOT_PASSWORD= 设置环境变量，这里是设置mysql的root用户的密码</span><br></pre></td></tr></table></figure>
+
+<p>通过本地IP：192.168.246.141的3307端口访问容器mysql1内的数据库，出现如下提示恭喜你</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.安装一个mysql客户端</span><br><span class="line">[root@yixuan ~]# yum install -y mysql</span><br><span class="line">2.登录</span><br><span class="line">[root@yixuan ~]# mysql -uroot -p'Qf@123!' -h 192.168.246.141 -P3307</span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 3</span><br><span class="line">Server version: 5.7.26 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-P（大P）:当使用-P标记时，Docker 会随机映射一个 32768~49900 的端口到内部容器开放的网络端口。如下：</span><br><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/redis</span><br><span class="line">[root@yixuan ~]# docker images</span><br><span class="line">REPOSITORY                   TAG        IMAGE ID            CREATED           SIZE</span><br><span class="line">daocloud.io/library/redis    latest     598a6f110d01        2months ago       118MB</span><br><span class="line">[root@yixuan ~]# docker run --name myredis -P -d daocloud.io/library/redis</span><br><span class="line">ca06a026d84a0605d9a9ce6975389a79f4ab9a9a043a03f088cd909c1fe52e29</span><br><span class="line">[root@yixuan ~]# docker ps </span><br><span class="line">CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                               NAMES</span><br><span class="line">ca06a026d84a        daocloud.io/library/redis       "docker-entrypoint.s…"   22 seconds ago      Up 21 seconds       0.0.0.0:32768-&gt;6379/tcp             myredis</span><br></pre></td></tr></table></figure>
+
+<p>从上面的结果中可以看出，本地主机的32768端口被映射到了redis容器的6379端口上，也就是说访问本机的32768端口即可访问容器内redis端口。</p>
+<p>在别的机器上通过上面映射的端口32768连接这个容器的redis</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-server2 ~]# yum install -y redis</span><br><span class="line">[root@docker-server2 ~]# redis-cli -h 192.168.246.141 -p 32768</span><br><span class="line">192.168.246.141:32768&gt; ping</span><br><span class="line">PONG</span><br><span class="line">192.168.246.141:32768&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="容器卷"><a href="#容器卷" class="headerlink" title="容器卷"></a><strong>容器卷</strong></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">把本地宿主机上面的某一个目录挂载到容器里面的目录去。这两个目录都不用提前存在，会自动创建</span><br></pre></td></tr></table></figure>
+
+<p>新卷只能在容器创建过程当中挂载</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker run -it --name testnginx -v /test:/test2 daocloud.io/library/nginx /bin/bash</span><br><span class="line">root@86320e734cd1:/# ls</span><br><span class="line">root@86320e734cd1:/# ctrl+p+q  #退出</span><br><span class="line"></span><br><span class="line">测试：</span><br><span class="line">[root@yixuan ~]# cd /test/</span><br><span class="line">[root@yixuan test]# ls</span><br><span class="line">[root@yixuan test]# touch a.txt </span><br><span class="line">[root@yixuan test]# cd</span><br><span class="line">[root@yixuan ~]# docker exec -it testnginx /bin/bash</span><br><span class="line">root@86320e734cd1:/# cd test2/</span><br><span class="line">root@86320e734cd1:/test2# ls</span><br><span class="line">a.txt</span><br><span class="line"></span><br><span class="line">共享文件：</span><br><span class="line">[root@yixuan ~]# mkdir /dir</span><br><span class="line">[root@yixuan ~]# vim /dir/a.txt</span><br><span class="line">123</span><br><span class="line">[root@yixuan ~]# docker run -it --name testnginx2 -v /dir/a.txt:/dir1/a.txt daocloud.io/library/nginx /bin/bash</span><br><span class="line">root@f899be627552:/# cat dir1/a.txt </span><br><span class="line">123</span><br><span class="line">root@f899be627552:/#</span><br></pre></td></tr></table></figure>
+
+<p>共享其他容器的卷（其他容器用同一个卷）：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker run -it --name testnginx1 --volumes-from testnginx daocloud.io/library/nginx /bin/bash</span><br><span class="line">root@50e6f726335c:/# ls</span><br><span class="line">bin   dev  home  lib64	mnt  proc  run	 srv  test2  usr</span><br><span class="line">boot  etc  lib	 media	opt  root  sbin  sys  tmp    var</span><br><span class="line">root@50e6f726335c:/# cd test2/</span><br><span class="line">root@50e6f726335c:/test2# ls</span><br><span class="line">a.txt</span><br></pre></td></tr></table></figure>
+
+<p>实际应用中可以利用多个-v选项把宿主机上的多个目录同时共享给新建容器：</p>
+<p>比如：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> docker run -it -v /abc:/abc -v /def:/def 1ae9</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="部署centos7容器应用"><a href="#部署centos7容器应用" class="headerlink" title="部署centos7容器应用"></a><strong>部署centos7容器应用</strong></h1><p>镜像下载：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker pull daocloud.io/library/centos:7</span><br></pre></td></tr></table></figure>
+
+<p>systemd 整合:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">因为 systemd 要求 CAPSYSADMIN 权限，从而得到了读取到宿主机 cgroup 的能力，CentOS7 中已经用 fakesystemd 代替了 systemd 。 但是我们使用systemd，可用参考下面的 Dockerfile：</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# mkdir test</span><br><span class="line">[root@yixuan ~]# cd test/</span><br><span class="line">[root@yixuan test]# vim Dockerfile</span><br><span class="line">FROM daocloud.io/library/centos:7</span><br><span class="line">MAINTAINER "soso"  soso@qq.com</span><br><span class="line">ENV container docker</span><br><span class="line"></span><br><span class="line">RUN yum -y swap -- remove fakesystemd -- install systemd systemd-libs</span><br><span class="line">RUN yum -y update; yum clean all; \</span><br><span class="line">(cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \</span><br><span class="line">rm -f /lib/systemd/system/multi-user.target.wants/*;\</span><br><span class="line">rm -f /etc/systemd/system/*.wants/*;\</span><br><span class="line">rm -f /lib/systemd/system/local-fs.target.wants/*; \</span><br><span class="line">rm -f /lib/systemd/system/sockets.target.wants/*udev*; \</span><br><span class="line">rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \</span><br><span class="line">rm -f /lib/systemd/system/basic.target.wants/*;\</span><br><span class="line">rm -f /lib/systemd/system/anaconda.target.wants/*;</span><br><span class="line"></span><br><span class="line">VOLUME [ "/sys/fs/cgroup" ]</span><br><span class="line"></span><br><span class="line">CMD ["/usr/sbin/init"]</span><br></pre></td></tr></table></figure>
+
+<p>这个Dockerfile删除fakesystemd 并安装了 systemd。然后再构建基础镜像:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan test]# docker build -t local/c7-systemd .</span><br></pre></td></tr></table></figure>
+
+<p>执行没有问题这就生成一个包含 systemd 的应用容器示例</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan test]# docker images</span><br><span class="line">REPOSITORY         TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">local/c7-systemd   latest              a153dcaa642e        6 minutes ago       391MB</span><br></pre></td></tr></table></figure>
+
+<p>为了使用像上面那样包含 systemd 的容器，需要创建一个类似下面的Dockerfile：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan test]# mkdir http</span><br><span class="line">[root@yixuan test]# cd http/</span><br><span class="line">[root@yixuan http]# vim Dockerfile</span><br><span class="line">FROM local/c7-systemd</span><br><span class="line">RUN yum -y install httpd; yum clean all; systemctl enable httpd.service</span><br><span class="line">EXPOSE 80</span><br><span class="line">CMD ["/usr/sbin/init"]</span><br></pre></td></tr></table></figure>
+
+<p>构建镜像:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan http]# docker build -t local/c7-systemd-httpd .</span><br></pre></td></tr></table></figure>
+
+<p>运行包含 systemd 的应用容器:</p>
+<p>为了运行一个包含 systemd 的容器，需要使用–privileged选项， 并且挂载主机的 cgroups 文件夹。 下面是运行包含 systemd 的 httpd 容器的示例命令：</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan http]# docker run --privileged -tid -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 80:80 local/c7-systemd-httpd</span><br><span class="line"></span><br><span class="line">--privileged:授权提权。让容器内的root用户拥有正真root权限(有些权限是没有的)</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果不加会运行在前台(没有用-d)，可以用ctrl+p+q放到后台去</p>
+<p>测试可用：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan http]# yum install -y elinks</span><br><span class="line">[root@yixuan http]# elinks --dump http://192.168.246.141  #apache的默认页面</span><br><span class="line">                                 Testing 123..</span><br><span class="line"></span><br><span class="line">   This page is used to test the proper operation of the [1]Apache HTTP</span><br><span class="line">   server after it has been installed. If you can read this page it means</span><br><span class="line">   that this site is working properly. This server is powered by [2]CentOS.</span><br></pre></td></tr></table></figure>
+
+<p>再来个安装openssh-server的例子：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan http]# cd ..</span><br><span class="line">[root@yixuan test]# mkdir ssh</span><br><span class="line">[root@yixuan test]# cd ssh/</span><br><span class="line">[root@yixuan ssh]# vim Dockerfile</span><br><span class="line">FROM local/c7-systemd</span><br><span class="line">RUN yum -y install openssh-server; yum clean all; systemctl enable sshd.service</span><br><span class="line">RUN echo 1 | passwd --stdin root</span><br><span class="line">EXPOSE 22</span><br><span class="line">CMD ["/usr/sbin/init"]</span><br><span class="line">[root@yixuan ssh]# docker build --rm -t local/c7-systemd-sshd .</span><br><span class="line">[root@yixuan ssh]# docker run --privileged -tid -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 2222:22 local/c7-systemd-sshd</span><br><span class="line">[root@yixuan ssh]# ssh 192.168.246.141 -p 2222</span><br><span class="line">[root@ce1af52a6f6c ~]#</span><br></pre></td></tr></table></figure>
+
+<h1 id="docker数据存储位置"><a href="#docker数据存储位置" class="headerlink" title="docker数据存储位置"></a>docker数据存储位置</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">查看存储路径</span><br><span class="line">[root@yixuan ~]# docker info | grep Root</span><br><span class="line"> Docker Root Dir: /var/lib/docker</span><br><span class="line"> </span><br><span class="line">修改默认存储位置：</span><br><span class="line">在dockerd的启动命令后面追加--data-root参数指定新的位置</span><br><span class="line">[root@yixuan ~]# vim  /usr/lib/systemd/system/docker.service</span><br><span class="line">ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --data-root=/data</span><br><span class="line"></span><br><span class="line">[root@yixuan ~]# systemctl daemon-reload </span><br><span class="line">[root@yixuan ~]# systemctl restart docker</span><br><span class="line"></span><br><span class="line">查看是否生效：</span><br><span class="line">[root@yixuan ~]# docker info | grep Root</span><br><span class="line"> Docker Root Dir: /data</span><br><span class="line"> </span><br><span class="line"> [root@yixuan ~]# cd /data/</span><br><span class="line">[root@yixuan data]# ls</span><br><span class="line">builder  buildkit  containers  image  network  overlay2  plugins  runtimes  swarm  tmp  trust  volumes</span><br></pre></td></tr></table></figure>
+
+<h1 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h1><h2 id="容器网络分类"><a href="#容器网络分类" class="headerlink" title="容器网络分类"></a><strong>容器网络分类</strong></h2><p>注：</p>
+<p>面试用，用了编排之后就没有用了</p>
+<p> 查看当前网络：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@yixuan ~]# docker network list</span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">9b902ee3eafb        bridge              bridge              local</span><br><span class="line">140a9ff4bb94        host                host                local</span><br><span class="line">d1210426b3b0        none                null                local</span><br></pre></td></tr></table></figure>
+
+<p><strong>docker安装后，默认会创建三种网络类型，bridge、host和none</strong></p>
+<p>1、bridge:网络桥接</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">默认情况下启动、创建容器都是用该模式，所以每次docker容器重启时会按照顺序获取对应ip地址。</span><br></pre></td></tr></table></figure>
+
+<p>2、none：无指定网络</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">启动容器时，可以通过--network=none,docker容器不会分配局域网ip</span><br></pre></td></tr></table></figure>
+
+<p>3、host：主机网络</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> docker容器和主机共用一个ip地址。</span><br><span class="line"> 使用host网络创建容器：</span><br><span class="line">[root@yixuan ~]# docker run -it --name testnginx2 --net host 98ebf73ab</span><br><span class="line">[root@yixuan ~]# netstat -lntp | grep 80</span><br><span class="line">tcp6       0      0 :::80                   :::*                    LISTEN      3237/docker-proxy</span><br><span class="line"></span><br><span class="line">浏览器访问宿主ip地址</span><br></pre></td></tr></table></figure>
+
+<p>4、固定ip:</p>
+<p>  创建固定Ip的容器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">4.1、创建自定义网络类型，并且指定网段</span><br><span class="line">[root@yixuan ~]# docker network create --subnet=192.168.0.0/16 staticnet</span><br><span class="line">4efd309244c6ad70eda2d047a818a3aec5b162f5ca29fb6024c09a5efbf15854</span><br><span class="line">通过docker network ls可以查看到网络类型中多了一个staticnet:</span><br><span class="line">[root@yixuan ~]# docker network ls</span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">9b902ee3eafb        bridge              bridge              local</span><br><span class="line">140a9ff4bb94        host                host                local</span><br><span class="line">d1210426b3b0        none                null                local</span><br><span class="line">4efd309244c6        staticnet           bridge              local</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> 4.2、使用新的网络类型创建并启动容器</span><br><span class="line"> [root@yixuan ~]# docker run -itd --name userserver --net staticnet --ip 192.168.0.2 daocloud.io/library/centos:7</span><br><span class="line"> 通过docker inspect可以查看容器ip为192.168.0.2:</span><br><span class="line"> [root@yixuan ~]# docker inspect userserver | grep -i ipaddress</span><br><span class="line">            "SecondaryIPAddresses": null,</span><br><span class="line">            "IPAddress": "",</span><br><span class="line">                    "IPAddress": "192.168.0.2",</span><br><span class="line"></span><br><span class="line">关闭容器并重启，发现容器ip并未发生改变</span><br></pre></td></tr></table></figure>
+
+<h2 id="异主容器互联"><a href="#异主容器互联" class="headerlink" title="异主容器互联"></a><strong>异主容器互联</strong></h2><h3 id="方式1、路由方式"><a href="#方式1、路由方式" class="headerlink" title="方式1、路由方式"></a><strong>方式1、路由方式</strong></h3><p>小规模docker环境大部分运行在单台主机上，如果公司大规模采用docker，那么多个宿主机上的docker如何互联</p>
+<p><img src= "/img/loading.gif" data-src="assets/wps2-1570439764225.jpg" alt="img"></p>
+<p>Docker默认的内部ip为172.17.42.0网段，所以必须要修改其中一台的默认网段以免ip冲突。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">注:docker版本为1.13</span><br><span class="line">1.在docker-server1上面操作----192.168.246.141</span><br><span class="line">[root@docker-server1 ~]# docker pull daocloud.io/library/centos</span><br><span class="line">[root@docker-server1 ~]# vim /etc/sysconfig/docker-network</span><br><span class="line">DOCKER_NETWORK_OPTIONS=--bip=172.17.0.1/16</span><br><span class="line">[root@docker-server1 ~]# vim /etc/sysctl.conf</span><br><span class="line">net.ipv4.ip_forward=1</span><br><span class="line">[root@docker-server1 ~]# sysctl -p</span><br><span class="line">[root@docker-server1 ~]# reboot</span><br><span class="line">[root@docker-server1 ~]# docker images</span><br><span class="line">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">daocloud.io/library/centos   latest              0f3e07c0138f        3 weeks ago         220MB</span><br><span class="line">[root@docker-server1 ~]# docker run -it --name centos 0f3e07c0138f /bin/bash</span><br><span class="line">[root@ef1a4d6be97f /]#</span><br><span class="line">[root@docker-server1 ~]# docker inspect centos | grep IPAddress</span><br><span class="line">            "SecondaryIPAddresses": null,</span><br><span class="line">            "IPAddress": "172.17.0.2",</span><br><span class="line">                    "IPAddress": "172.17.0.2",</span><br><span class="line">===============================================</span><br><span class="line">2.docker-server2(192.168.246.143)上：</span><br><span class="line">[root@docker-server2 ~]# vim /etc/sysconfig/docker-network</span><br><span class="line">DOCKER_NETWORK_OPTIONS=--bip=172.18.0.1/16</span><br><span class="line">[root@docker-server2 ~]# vim /etc/sysctl.conf</span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">[root@docker-server2 ~]# sysctl -p</span><br><span class="line">[root@docker-server2 ~]# reboot</span><br><span class="line">[root@docker-server2 ~]# systemctl daemon-reload</span><br><span class="line">[root@docker-server2 ~]# systemctl restart docker</span><br><span class="line">[root@docker-server2 ~]# docker images</span><br><span class="line">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">daocloud.io/library/centos   latest              0f3e07c0138f        3 weeks ago         220MB</span><br><span class="line">[root@docker-server2 ~]# docker run -it --name centos 0f3e07c0138f /bin/bash </span><br><span class="line">[root@c84a8c704d03 /]#</span><br><span class="line">[root@docker-server2 ~]# docker inspect c | grep IPAddress</span><br><span class="line">            "SecondaryIPAddresses": null,</span><br><span class="line">            "IPAddress": "172.18.0.2",</span><br><span class="line">                    "IPAddress": "172.18.0.2",</span><br></pre></td></tr></table></figure>
+
+<p>添加路由：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@docker-server1 ~]# route add -net 172.18.0.0/16 gw 192.168.246.143</span><br><span class="line">[root@docker-server2 ~]# route add -net 172.17.0.0/16 gw 192.168.246.141</span><br></pre></td></tr></table></figure>
+
+<p>验证：</p>
+<p><img src= "/img/loading.gif" data-src="assets/1571838897484.png" alt="1571838897484"></p>
+<p><img src= "/img/loading.gif" data-src="assets/1571839100999.png" alt="1571839100999"></p>
+<p>现在两台宿主机里的容器就可以通信了。</p>
+<h3 id="方式二、open-vswitch"><a href="#方式二、open-vswitch" class="headerlink" title="方式二、open vswitch"></a><strong>方式二、open vswitch</strong></h3><p>如果要在生产和测试环境大规模采用docker技术，首先就需要解决不同物理机建的docker容器互联问题。</p>
+<p>centos7环境下可以采用open vswitch实现不同物理服务器上的docker容器互联</p>
 ]]></content>
   </entry>
 </search>
