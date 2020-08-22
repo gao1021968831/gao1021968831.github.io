@@ -63,166 +63,286 @@
       </tags>
   </entry>
   <entry>
-    <title>python-面向对象编程</title>
-    <url>/2020/07/27/python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h2 id="面向对象编程介绍"><a href="#面向对象编程介绍" class="headerlink" title="面向对象编程介绍"></a>面向对象编程介绍</h2><h3 id="1、什么是对象和类OOP"><a href="#1、什么是对象和类OOP" class="headerlink" title="1、什么是对象和类OOP"></a>1、什么是对象和类OOP</h3><h4 id="1、从现实世界说起"><a href="#1、从现实世界说起" class="headerlink" title="1、从现实世界说起"></a>1、从现实世界说起</h4><h5 id="a、什么是对象"><a href="#a、什么是对象" class="headerlink" title="a、什么是对象"></a>a、什么是对象</h5><p>现实世界中，任何一个可见，可触及的物体都可以成为对象。</p>
-<p>比如说一辆汽车，一个人，都可以称为对象。</p>
-<p>那每个对象都是有属性和功能(或者说技能)的。<br>比如：<br>一辆汽车的属性有：</p>
-<blockquote>
-<ul>
-<li>重量</li>
-<li>具体的大小尺寸</li>
-<li>车身颜色</li>
-<li>价格</li>
-</ul>
-</blockquote>
-<p>一辆汽车的功能有:</p>
-<blockquote>
-<ul>
-<li>行驶</li>
-<li>载人</li>
-</ul>
-</blockquote>
-<h5 id="b、什么是类"><a href="#b、什么是类" class="headerlink" title="b、什么是类"></a>b、什么是类</h5><p>什么又是类呢？</p>
-<p>听人们常说，<strong>物以类聚，人以群分</strong>。</p>
-<p>从字里行间不难看出，类就是具体很多对象共有属性和共有功能的抽象体。</p>
-<p>这个抽象体，只是一个称谓，代表了具有相同属性和功能的某些对象。</p>
-<p>比如，具体的一辆汽车是一个对象，红色汽车就是这些具有红色车身的汽车的统称，红色汽车就是一个类了。</p>
-<p>相关的例子还有很多，比如 蔬菜是一个类，一个具体的茄子是属于蔬菜这个类的。</p>
-<blockquote>
-<p>现实世界中是先有对象后有类的。</p>
-</blockquote>
-<h4 id="2、回到计算机的世界"><a href="#2、回到计算机的世界" class="headerlink" title="2、回到计算机的世界"></a>2、回到计算机的世界</h4><p>在计算机的代码中要表示对象的属性就是使用变量名 和数据的绑定方式。<br>如 <code>color = &#39;red&#39;</code></p>
-<p>那要表示对象的功能(或者说技能)，在计算机的代码中是用函数实现的。这里的函数会被称为对象的 <code>方法</code></p>
-<p>计算机世界中是先有类，后有对象的。</p>
-<blockquote>
-<p>就像建造一栋楼房，需要先有图纸，之后按照这个图纸建造房子。<br>在计算机语言中，都是先创建一个类，给这个类定义一些属性和方法。之后通过这个类去实例化出一个又一个的对象。</p>
-</blockquote>
-<h4 id="3、什么是面向对象的编程"><a href="#3、什么是面向对象的编程" class="headerlink" title="3、什么是面向对象的编程"></a>3、什么是面向对象的编程</h4><p>先说编程，个人理解，编程就是利用编程语言书写代码逻辑，来描述一些事件，在这个过程中会涉及到具体对象，具体的条件约束，以及事件的结果。</p>
-<p>比如，现实世界中的一件事，学员学开车。</p>
-<p>这里涉及到的对象有</p>
-<ul>
-<li>车</li>
-<li>教练</li>
-<li>学员</li>
-<li>道路</li>
-</ul>
-<p>涉及到的技能有</p>
-<ul>
-<li>车 ：<ul>
-<li>行驶</li>
-</ul>
-</li>
-<li>教练 ：<ul>
-<li>开车</li>
-<li>教学员学开车</li>
-</ul>
-</li>
-<li>学员：<ul>
-<li>学习开车</li>
-</ul>
-</li>
-</ul>
-<p>当然所涉及到的东西，不止上面的这些，这里只是简单举例，表明原理即可。</p>
-<p>假如想表述学员学开车这件事。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">学员跟着教练学习开车技能，使用的是绿色吉普汽车，之后他学会了开车。</span><br></pre></td></tr></table></figure>
-
-<p>很简单是吧，但是，要在计算机中体现出来该怎么办呢？</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span> 先定义每个对象的类，在类里定义各自对象的属性和方法</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 通过类把对象创建处来，这个创建的过程成为实例化，实例化的结果成为这个类的一个实例，当然这个实例也是一个对象，一切皆对象嘛。</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 利用实例的方法互相作用得到事件单结果。</span><br></pre></td></tr></table></figure>
-
-<p>从最后一条不难发现， 每个对象的方法可以和其他对象进行交换作用的，从而也产生了新的结果。</p>
-<p>这种用对象的方法和属性去相互作用来编写代码的逻辑思维或者说是编写代码的风格就是面向对象的编程了。</p>
-<p>面向对象编程 Object Oriented Programming 简称 OOP，是一种程序设计思想。</p>
-<p>OOP把对象作为程序的基本单元，一个对象包含了数据和操作数据的函数。</p>
-<p>面向对象的程序设计是把计算机程序视为一组对象的集合，而且每个对象都可以接收其他对象发过来的消息，并处理这些消息，计算机程序的执行就是一系列消息在各个对象之间传递。这就是对象之间的交互。</p>
-<h3 id="2、Python-中一切皆对象"><a href="#2、Python-中一切皆对象" class="headerlink" title="2、Python 中一切皆对象"></a>2、Python 中一切皆对象</h3><p>你可能听说过，在 Python 中一切皆对象。</p>
-<p>在python中，一切皆对象。数字、字符串、元组、列表、字典、函数、方法、类、模块等等都是对象，包括你的代码。</p>
-<p>之前也提到过，Python 中的对象都有三个特性</p>
-<ul>
-<li><strong>id</strong><br>标识了一个对象的唯一性，使用内置函数 <code>id()</code> 可以获取到</li>
-<li><strong>类型</strong><br>表明了这个对象是属于哪个类， 使用内置函数 <code>type()</code> 可以获取到</li>
-<li><strong>值</strong><br>就是这个对象的本身，可以使用内置函数 <code>print()</code> 看到，这个看到的是 Python 让你看到的一个对象特有的表现方式而已。</li>
-</ul>
-<h3 id="3、创建类"><a href="#3、创建类" class="headerlink" title="3、创建类"></a>3、创建类</h3><p>使用关键字 <code>class</code> 创建一个类。</p>
-<p>类名其实和之前我们说的使用变量名的规则一样。</p>
-<p>但是这里有一点儿要注意，就是类名的第一个字母需要大写，这是规范。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">()</span>:</span></span><br><span class="line">    color = <span class="string">'red'</span>    <span class="comment"># 属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span>   <span class="comment"># 方法 </span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">self 指的是类实例对象本身(注意：不是类本身)。</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        self.name=name</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sayhello</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'My name is:'</span>,self.name)</span><br><span class="line">        </span><br><span class="line">p = Person(<span class="string">'newrain'</span>)</span><br><span class="line">p.sayhello()</span><br><span class="line">print(p)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span>  <span class="comment">#构造函数</span></span><br><span class="line">        self.name=name</span><br><span class="line">        self.age=age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sayhello</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'My name is:'</span>,self.name)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">age1</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'is age'</span>,self.age)</span><br><span class="line"></span><br><span class="line">p = Person(<span class="string">'newrain'</span>,<span class="string">'18'</span>)</span><br><span class="line">p.sayhello()</span><br><span class="line">p.age1()</span><br><span class="line">print(p)</span><br><span class="line"><span class="comment"># 注意变量名和函数名不要重复</span></span><br><span class="line"></span><br><span class="line">在上述例子中，self指向Person的实例p。 为什么不是指向类本身呢，如下例子：</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span>  <span class="comment">#构造函数</span></span><br><span class="line">        self.name=name</span><br><span class="line">        self.age=age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sayhello</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'My name is:'</span>,self.name)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">age1</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'is age'</span>,self.age)</span><br><span class="line"></span><br><span class="line">p = Person(<span class="string">'newrain'</span>,<span class="string">'18'</span>)  <span class="comment"># p的实例对象（p的self）</span></span><br><span class="line">p.sayhello()</span><br><span class="line">p.age1()</span><br><span class="line"></span><br><span class="line">p1 = Person(<span class="string">'test'</span>,<span class="string">'18'</span>)  <span class="comment">#p1的实例对象地址 （p1的self）</span></span><br><span class="line">p1.sayhello()</span><br><span class="line">p1.age1()</span><br><span class="line"></span><br><span class="line">print(p)</span><br><span class="line">print(p1)</span><br><span class="line"></span><br><span class="line">如果self指向类本身，那么当有多个实例对象时，self指向哪一个呢？</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">self 在定义时需要定义，但是在调用时会自动传入。</span><br><span class="line">self 的名字并不是规定死的，但是最好还是按照约定是用self</span><br><span class="line">self 总是指调用时的类的实例。</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#_*_ coding:utf-8 _*_</span></span><br><span class="line"><span class="comment"># 面向函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'name'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(name)</span>:</span></span><br><span class="line">    print(<span class="string">'i am %s'</span> % name)</span><br><span class="line"></span><br><span class="line">f1()</span><br><span class="line">f2(<span class="string">'lili'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 面向对象</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'name'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        print(<span class="string">'i am %s'</span> % name)</span><br><span class="line"></span><br><span class="line">obj = foo()</span><br><span class="line">obj.f1()</span><br><span class="line">obj.f2(<span class="string">'name'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4、实例化对象"><a href="#4、实例化对象" class="headerlink" title="4、实例化对象"></a>4、实例化对象</h3><p>使用 <code>类名()</code> 可以实例化一个对象，你可以使用给这个实例化的对象起一个名字。（根据类实例化对象）</p>
-<p>定义类</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">()</span>:</span></span><br><span class="line">    color = <span class="string">'red'</span>  <span class="comment"># 属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">travel</span><span class="params">(self)</span>:</span>   <span class="comment"># 方法</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<p>实例化一个对象</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Car()  <span class="comment"># 没有起名字</span></span><br><span class="line"></span><br><span class="line">mycar = Car()  <span class="comment"># 起了个名字 mycar</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>由类实例化出的对象成为这个类的一个实例</p>
-</blockquote>
-<h3 id="5、属性"><a href="#5、属性" class="headerlink" title="5、属性"></a>5、属性</h3><p>类的属性分为类的数据属性（key=value）和函数属性</p>
-<p>类的实例只有数据属性（key=value）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line">    city = <span class="string">"BeiJing"</span>             <span class="comment"># 类的数据属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span>  <span class="comment"># 类的函数属性</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>类属性可以被类和对象调用, 是所有对象共享的</p>
-<p>实例属性只能由对象调用</p>
-</blockquote>
-<h3 id="6、对象的初始化方法-init"><a href="#6、对象的初始化方法-init" class="headerlink" title="6、对象的初始化方法 __init__()"></a>6、对象的初始化方法 <code>__init__()</code></h3><p>对象的初始化方法是用于实例化对象时使用的。</p>
-<p>方法的名称是固定的 <code>__init__()</code></p>
-<p>当进行实例化的时候，此方法就会自动被调用。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 类的封装</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span>  <span class="comment"># 初始化方法</span></span><br><span class="line">        self.Name = name</span><br><span class="line">        self.Age = age</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; is running'</span>.format(self.Name))</span><br><span class="line">        </span><br><span class="line"><span class="comment">#_*_ coding:utf-8 _*_</span></span><br><span class="line"><span class="comment"># 面向函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果参数化也可以解决</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(hostname,port ,user, pwd ,db)</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 面向对象</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,hostname,port ,user, pwd ,db)</span>:</span> <span class="comment">#构造方法</span></span><br><span class="line">        self.hostname = hostname</span><br><span class="line">        self.port = port</span><br><span class="line">        <span class="comment">#...将所有的参数构造成方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetch</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="comment"># 连接 self.hostname,self.port  (直接调用构造函数的方法)</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">obj = foo(hostname,port,user,pwd,db)</span><br><span class="line">obj.create()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 类的执行流程（封装）</span></span><br><span class="line"><span class="comment">#1，解释器从上往下执行，将类读到内存里</span></span><br><span class="line"><span class="comment">#2，获取类的各种方法，没有创建对象</span></span><br><span class="line"><span class="comment">#3，创建一个foo对象obj，类对象指针（python一切都是对象，对象就有创建他的类）</span></span><br><span class="line"><span class="comment">#4，把值传给了构造函数，保存在了构造函数里</span></span><br><span class="line"><span class="comment">#5，通过类对象指针指向foo类，调用里面的方法（简单理解还是变量，把类和对象关联起来）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#类里面要公用的字段统一封装到构造函数里，统一调用</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="7、方法"><a href="#7、方法" class="headerlink" title="7、方法"></a>7、方法</h3><p>凡是在类里定义的函数都都称为方法</p>
-<p>方法本质上是函数，也是类的函数属性</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span>  <span class="comment"># 方法</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span><span class="params">(self)</span>:</span>  <span class="comment"># 方法 </span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="comment">#_*_ coding:utf-8 _*_</span></span><br><span class="line"><span class="comment">#游戏模式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1、创建三个游戏人物，分别是：</span></span><br><span class="line"><span class="comment">#莎莎，女，18，初始战斗力1000</span></span><br><span class="line"><span class="comment">#浪浪，男，20，初始战斗力1800</span></span><br><span class="line"><span class="comment">#小爱，女，19，初始战斗力2500</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># class Person:</span></span><br><span class="line"><span class="comment">#     def __init__(self, name, gen, age, fig):  # 构造函数</span></span><br><span class="line"><span class="comment">#         self.name = name</span></span><br><span class="line"><span class="comment">#         self.gender = gen</span></span><br><span class="line"><span class="comment">#         self.age = age</span></span><br><span class="line"><span class="comment">#         self.fight =fig</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># #创建角色</span></span><br><span class="line"><span class="comment"># obj1 = Person('莎莎','女',18,1000)</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment"># 内存里根据类，创建了3个对象，3个对象都指向同一个类</span></span><br><span class="line"><span class="comment"># 给游戏添加功能（聊天，打架）怎么添加</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, na, gen, age, fig)</span>:</span></span><br><span class="line">        self.name = na</span><br><span class="line">        self.gender = gen</span><br><span class="line">        self.age = age</span><br><span class="line">        self.fight = fig</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">grassland</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""注释：战斗，消耗200战斗力"""</span></span><br><span class="line">        self.fight = self.fight - <span class="number">200</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">practice</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""注释：自我修炼，增长100战斗力"""</span></span><br><span class="line">        self.fight = self.fight + <span class="number">200</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">war</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""注释：多人游戏，消耗500战斗力"""</span></span><br><span class="line">        self.fight = self.fight - <span class="number">500</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""注释：当前对象的详细情况"""</span></span><br><span class="line">        temp = <span class="string">"姓名:%s ; 性别:%s ; 年龄:%s ; 战斗力:%s"</span> % (self.name, self.gender, self.age, self.fight)</span><br><span class="line">        print(temp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建游戏角色</span></span><br><span class="line">obj1 = Person(<span class="string">'莎莎'</span>,<span class="string">'女'</span>,<span class="number">18</span>,<span class="number">1000</span>)</span><br><span class="line">obj1.grassland()</span><br><span class="line">obj1.practice()</span><br><span class="line">obj1.detail()</span><br><span class="line"></span><br><span class="line">obj1 = Person(<span class="string">'浪浪'</span>,<span class="string">'男'</span>,<span class="number">18</span>,<span class="number">2000</span>)</span><br><span class="line">obj1.grassland()</span><br><span class="line">obj1.detail()</span><br><span class="line"></span><br><span class="line">obj1 = Person(<span class="string">'小爱'</span>,<span class="string">'女'</span>,<span class="number">18</span>,<span class="number">10000</span>)</span><br><span class="line">obj1.grassland()</span><br><span class="line">obj1.detail()</span><br><span class="line"></span><br><span class="line"><span class="comment">#1, 通过obj2找到类，</span></span><br><span class="line"><span class="comment">#2，再通过类执行类里面的方法</span></span><br><span class="line"><span class="comment">#3，执行对应的方法，然后就是对自身属性的改变（减少增加）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 面向对象模板的实现过程（函数式编程做不到）</span></span><br><span class="line"><span class="comment"># 通过面向对象的类先创建模板，通过模板创建多个角色，</span></span><br><span class="line"><span class="comment"># 然后多个角色再来执行模板里面的方法</span></span><br><span class="line"><span class="comment"># 将内存里对象的属性进行改变</span></span><br></pre></td></tr></table></figure>
-
-<p>方法可以被这个类的每个实例对象调用，当一个实例对象调用此方法的时候， <code>self</code> 会不自动传值，传入的值就是目前的 实例对象。</p>
-<h3 id="8、魔法函数-str-实现定义类的实例的表现形式"><a href="#8、魔法函数-str-实现定义类的实例的表现形式" class="headerlink" title="8、魔法函数__str__() 实现定义类的实例的表现形式"></a>8、魔法函数<code>__str__()</code> 实现定义类的实例的表现形式</h3><p>当我们定义一个类的时候，默认打印出它实例时是不易读的，某些情况下我需要让这个类的实例的表现形式更易读。就可以使用 <code>__str__()</code> 这个方法。</p>
-<p><strong>使用前</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        </span><br><span class="line">p = Person(<span class="string">'shark'</span>)</span><br><span class="line"></span><br><span class="line">print(p)</span><br><span class="line"><span class="comment"># &lt;__main__.Person object at 0x10ac290f0&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>使用后</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#123;&#125;"</span>.format(self.name)</span><br><span class="line">p = Person(<span class="string">'shark'</span>)</span><br><span class="line"></span><br><span class="line">print(p)</span><br><span class="line"><span class="comment"># shark</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>其实，<code>__str__()</code> 方法本身在我们定义类的时候就已经存在了，是 Python 内置的。我们在这里只是有把这个方法重写了。<br>这个方法在使用的时候有<strong>返回值</strong>，且返回值必须是<strong>字符串</strong>类型</p>
-</blockquote>
-<h3 id="9、继承"><a href="#9、继承" class="headerlink" title="9、继承"></a>9、继承</h3><p>在现实世界中，类的继承，表现为我们可以把一个类的共同的属性和方法再进行一个高度的抽象，成为另一个类，这个被抽象出来的类成为父类，刚才被抽象的类成为子类。</p>
-<p>但在计算机中，需要先定义一个父类，之后再定义其他的类（子类）并且继承父类。</p>
-<p>这时子类即使什么也不用做，就会具备父类的所以属性(数据属性和函数属性）。这在计算机语言中就被称为<code>继承</code>。 继承并不是 Python 语言特有的，而是所有面向对象语言都有的特性。</p>
-<p>面向对象语言的特性还有另外两个: <code>多态</code>, <code>封装</code>。</p>
-<p><code>继承</code>、 <code>多态</code> 和 <code>封装</code> 被称为面向对象语言都三大特性。</p>
-<p>这里我们先只对 <code>继承</code> 来讲解。</p>
-<h4 id="1、单纯的继承"><a href="#1、单纯的继承" class="headerlink" title="1、单纯的继承"></a>1、单纯的继承</h4><p>(菱形继承)</p>
-<p>下面我是定义了两个类 <code>Person</code> 和 <code>Teacher</code>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Teacher 继承了 Person</span><br></pre></td></tr></table></figure>
-
-<p><code>Teacher</code> 被称为子类， <code>Person</code> 就是父类</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f'<span class="subst">&#123;self.name&#125;</span> is running'</span>)</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">t = Teacher(<span class="string">'shark'</span>, <span class="string">'18'</span>)</span><br><span class="line">t.run()</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、添加新方法"><a href="#2、添加新方法" class="headerlink" title="2、添加新方法"></a>2、添加新方法</h4><p>在继承的时候，子类可以定义只属于自己的方法。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f'<span class="subst">&#123;self.name&#125;</span> is running'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;self.name&#125;</span> is talking..."</span>)</span><br><span class="line"></span><br><span class="line">t = Teacher(<span class="string">'shark'</span>, <span class="string">'18'</span>)</span><br><span class="line">t.talk()</span><br></pre></td></tr></table></figure>
-
-<h4 id="3、覆盖方法（方法重写）"><a href="#3、覆盖方法（方法重写）" class="headerlink" title="3、覆盖方法（方法重写）"></a>3、覆盖方法（方法重写）</h4><p>在继承中，子类还可以把父类的方法重新实现一下。</p>
-<p>就是定义一个和父类方法同名的方法，但是方法中代码不一样。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f'<span class="subst">&#123;self.name&#125;</span> is running'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;self.name&#125;</span> running on the road"</span>)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;self.name&#125;</span> is talking..."</span>)</span><br><span class="line"></span><br><span class="line">t = Teacher(<span class="string">'shark'</span>, <span class="string">'18'</span>)</span><br><span class="line">t.run()</span><br></pre></td></tr></table></figure>
-
-<h4 id="4、添加属性"><a href="#4、添加属性" class="headerlink" title="4、添加属性"></a>4、添加属性</h4><p>在继承时，子类还可以为自己的实例对象添加实例的属性。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">3.6</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f'<span class="subst">&#123;self.name&#125;</span> is running'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name, age, lev)</span>:</span></span><br><span class="line">        super().__init__(name, age)</span><br><span class="line">        self.lev = lev</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">t = Teacher(<span class="string">'shark'</span>, <span class="number">18</span>, <span class="number">5</span>)</span><br><span class="line">print(t.lev)</span><br><span class="line"><span class="number">3.7</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; is running'</span>.format(self.name))</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age,lev)</span>:</span></span><br><span class="line">        super(Teacher, self).__init__(name,age)</span><br><span class="line">        self.lev = lev</span><br><span class="line">t = Teacher(<span class="string">'morning'</span>,<span class="string">'18'</span>,<span class="number">5</span>)</span><br><span class="line">print(t.lev)</span><br></pre></td></tr></table></figure>
-
-<h3 id="10、对象之间的互相作用"><a href="#10、对象之间的互相作用" class="headerlink" title="10、对象之间的互相作用"></a>10、对象之间的互相作用</h3><p>王者农药</p>
-<p>在一个类中的方法中，可以通过给其传递相应的参数，从而对其他类的的实例对象进行操作。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#_*_ coding:utf-8 _*_</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Master</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age,init_self=<span class="number">516</span>, mana=<span class="number">230</span>, attack_num=<span class="number">100</span>)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.init_self = init_self</span><br><span class="line">        self.init_mana = mana</span><br><span class="line">        self.attack_num = attack_num</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">attack</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        self.init_mana = self.init_mana - <span class="number">20</span>  <span class="comment"># 210</span></span><br><span class="line">        <span class="comment">#print(self.init_mana)</span></span><br><span class="line">        obj_self_num = obj.init_self - self.attack_num  <span class="comment"># 516-90=426</span></span><br><span class="line">        obj.init_self = obj_self_num     <span class="comment">#426</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#123;&#125;"</span>.format(self.init_mana)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Soldier</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age,init_self=<span class="number">960</span>, attack_num=<span class="number">90</span>)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.init_self = init_self</span><br><span class="line">        self.attack_num = attack_num</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">attack</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        obj_self_num = obj.init_self - self.attack_num   <span class="comment">#960-100=860</span></span><br><span class="line">        obj.init_self = obj_self_num   <span class="comment">#860</span></span><br><span class="line">m = Master(<span class="string">'貂蝉'</span>, <span class="number">18</span>)</span><br><span class="line">print(m)</span><br><span class="line"></span><br><span class="line">s = Soldier(<span class="string">"阿轲"</span>, <span class="number">30</span>)</span><br><span class="line"><span class="comment">#s.attack()</span></span><br><span class="line"><span class="comment"># 貂蝉攻击 阿轲， 把被攻击的对象 s 作为实参传给 m 对象的方法 `attack`</span></span><br><span class="line">m.attack(s)</span><br><span class="line">s.attack(m)</span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">print(s.init_self)</span><br><span class="line">print(m.init_self)</span><br><span class="line">print(m.init_mana)</span><br></pre></td></tr></table></figure>
+    <title>Docker报错 WARNING_ IPv4 forwarding is disabled. Networking will not work.</title>
+    <url>/2020/08/22/Docker%E6%8A%A5%E9%94%99%20WARNING_%20IPv4%20forwarding%20is%20disabled.%20Networking%20will%20not%20work./</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>问题：<br>创建容器的时候报错WARNING: IPv4 forwarding is disabled. Networking will not work.<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200520150756534.png" alt="在这里插入图片描述">  </p>
+<p>解决办法：</p>
+<pre><code>vim  /usr/lib/sysctl.d/00-system.conf</code></pre><p>添加如下代码：</p>
+<pre><code>net.ipv4.ip_forward=1</code></pre><p>重启network服务</p>
+<pre><code>systemctl restart network</code></pre><p>完成以后，删除错误的容器，再次创建新容器，就不再报错了。</p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200520150831701.png" alt="在这里插入图片描述"></p>
 ]]></content>
-      <categories>
-        <category>编程</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
+  </entry>
+  <entry>
+    <title>VMware15.5版本启动centos黑屏无响应解决方法，关机虚拟机繁忙解决方法</title>
+    <url>/2020/08/22/VMware15.5%E7%89%88%E6%9C%AC%E5%90%AF%E5%8A%A8centos%E9%BB%91%E5%B1%8F%E6%97%A0%E5%93%8D%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%EF%BC%8C%E5%85%B3%E6%9C%BA%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%B9%81%E5%BF%99%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p><strong>问题</strong></p>
+<p>今天安装VMware后，在里面新增CentOS7虚拟机，学习云计算基础，加了几个虚拟磁盘后，一直黑屏无法启动。</p>
+<p><strong>解决办法</strong></p>
+<p>1、以管理员身份启动CMD命令窗口，并输入命令 “ netsh winsock reset ”，重置成功，如下图：<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200224122547322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="重置winsock网络规范"></p>
+<p>2、还有时关闭显示虚拟机繁忙，无法关机<br>     1）、首先使用任务管理器强行关闭<br>    2）、进入编辑 -&gt; 首选项，勾选启用虚拟打印机，确定</p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200420142613788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>接下来重启电脑就行了</strong></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>IPtables中SNAT、DNAT和MASQUERADE的含义</title>
+    <url>/2020/08/22/IPtables%E4%B8%ADSNAT%E3%80%81DNAT%E5%92%8CMASQUERADE%E7%9A%84%E5%90%AB%E4%B9%89/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>IPtables中可以灵活的做各种网络地址转换（NAT），网络地址转换主要有两种：SNAT和DNAT。</p>
+<p>SNAT是source networkaddress translation的缩写，即源地址目标转换。<br>比如，多个PC机使用ADSL路由器共享上网，每个PC机都配置了内网IP，PC机访问外部网络的时候，路由器将数据包的报头中的源地址替换成路由器的ip，当外部网络的服务器比如网站web服务器接到访问请求的时候，他的日志记录下来的是路由器的ip地址，而不是pc机的内网ip，这是因为，这个服务器收到的数据包的报头里边的“源地址”，已经被替换了，所以叫做SNAT，基于源地址的地址转换。</p>
+<p>DNAT是destination networkaddress translation的缩写，即目标网络地址转换，典型的应用是，有个web服务器放在内网配置内网ip，前端有个防火墙配置公网ip，互联网上的访问者使用公网ip来访问这个网站，当访问的时候，客户端发出一个数据包，这个数据包的报头里边，目标地址写的是防火墙的公网ip，防火墙会把这个数据包的报头改写一次，将目标地址改写成web服务器的内网ip，然后再把这个数据包发送到内网的web服务器上，这样，数据包就穿透了防火墙，并从公网ip变成了一个对内网地址的访问了，即DNAT，基于目标的网络地址转换。</p>
+<p>MASQUERADE，地址伪装，算是snat中的一种特例，可以实现自动化的snat。</p>
+<p>在iptables中有着和SNAT相近的效果，但也有一些区别，但使用SNAT的时候，出口ip的地址范围可以是一个，也可以是多个，例如：</p>
+<p>如下命令表示把所有10.8.0.0网段的数据包SNAT成192.168.5.3的ip然后发出去，</p>
+<p>iptables-t nat -A POSTROUTING -s 10.8.0.0/255.255.255.0 -o eth0 -j SNAT –to-source192.168.5.3</p>
+<p>如下命令表示把所有10.8.0.0网段的数据包SNAT成192.168.5.3/192.168.5.4/192.168.5.5等几个ip然后发出去</p>
+<p>iptables-t nat -A POSTROUTING -s 10.8.0.0/255.255.255.0 -o eth0 -j SNAT –to-source192.168.5.3-192.168.5.5</p>
+<p>这就是SNAT的使用方法，即可以NAT成一个地址，也可以NAT成多个地址，但是，对于SNAT，不管是几个地址，必须明确的指定要SNAT的ip，假如当前系统用的是ADSL动态拨号方式，那么每次拨号，出口ip192.168.5.3都会改变，而且改变的幅度很大，不一定是192.168.5.3到192.168.5.5范围内的地址，这个时候如果按照现在的方式来配置iptables就会出现问题了，因为每次拨号后，服务器地址都会变化，而iptables规则内的ip是不会随着自动变化的，每次地址变化后都必须手工修改一次iptables，把规则里边的固定ip改成新的ip，这样是非常不好用的。</p>
+<p>MASQUERADE就是针对这种场景而设计的，他的作用是，从服务器的网卡上，自动获取当前ip地址来做NAT。</p>
+<p>比如下边的命令：</p>
+<p>iptables-t nat -A POSTROUTING -s 10.8.0.0/255.255.255.0 -o eth0 -j MASQUERADE</p>
+<p>如此配置的话，不用指定SNAT的目标ip了，不管现在eth0的出口获得了怎样的动态ip，MASQUERADE会自动读取eth0现在的ip地址然后做SNAT出去，这样就实现了很好的动态SNAT地址转换。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>ansible运行剧本报DEPRECATION WARNING 解决方法</title>
+    <url>/2020/08/22/ansible%E8%BF%90%E8%A1%8C%E5%89%A7%E6%9C%AC%E6%8A%A5DEPRECATION%20WARNING%20%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>今天学习了企业自动化运维工具ansible，但是在运行剧本的时候总是会报错，但是不影响剧本的使用以及功能，经过查看报错信息，发现只需要在ansible的安装配置文件里加一行就可以了。</p>
+<p>报错信息<br>    [root@ansible-server ansible]# ansible-playbook  install.yml</p>
+<pre><code>PLAY [webservers1] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible-web1]
+
+TASK [install packages] ********************************************************
+[DEPRECATION WARNING]: Invoking &quot;yum&quot; only once while using a loop via 
+squash_actions is deprecated. Instead of using a loop to supply multiple items 
+and specifying `name: &quot;{{ item }}&quot;`, please use `name: [&apos;httpd&apos;, &apos;php&apos;, 
+&apos;nginx&apos;]` and remove the loop. This feature will be removed in version 2.11. 
+Deprecation warnings can be disabled by setting deprecation_warnings=False in 
+ansible.cfg.
+changed: [ansible-web1] =&gt; (item=[u&apos;httpd&apos;, u&apos;php&apos;, u&apos;nginx&apos;])
+
+PLAY RECAP *********************************************************************</code></pre><p>翻译一下就是</p>
+<pre><code>[弃用警告]:在使用循环via时只调用“yum”一次
+
+squash_actions弃用。而不是使用循环来提供多个项
+
+并指定&apos; name: &quot;{{item}}&quot; &apos;，请使用&apos; name: [&apos;httpd&apos;， &apos;php&apos;，
+
+&apos;nginx&apos;] &apos;并移除循环。该特性将在2.11版本中删除。
+
+可以通过设置deprecation_warnings=False in来禁用弃用警告
+
+ansible.cfg。</code></pre><p><strong>解决方法：</strong><br>进入配置文件<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200423120226268.png" alt="在这里插入图片描述"></p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/2020042312032875.png" alt="在这里插入图片描述"><br>然后在运行试一试<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200423120517888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>centos5.8配置本地yum源</title>
+    <url>/2020/08/22/centos5.8%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0yum%E6%BA%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>下面记录一下我配置本地yum源的方法：</p>
+<p>1、下载CentOS镜像文件（下载地址如果失败，需自己寻找）到/data/目录下；</p>
+<p>wget -0 /data/ <a href="http://vault.centos.org/5.8/isos/x86_64/CentOS-5.8-x86_64-bin-DVD-1of2.iso" target="_blank" rel="noopener">http://vault.centos.org/5.8/isos/x86_64/CentOS-5.8-x86_64-bin-DVD-1of2.iso</a><br>2、挂载镜像文件</p>
+<p>mount -o loop CentOS-5.8-x86_64-bin-DVD-1of2.iso /mnt/<br>3、修改yum配置文件<br>vi /etc/yum.repos.d/CentOS-Base.repo<br>[base]<br>name=CentOS-$releasever - Base<br>baseurl=file:///mnt/<br>gpgcheck=0<br>4、<br>yum clean all<br>yum makecache</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>centos7.4升级内核3.x到4.x，使用yum安装的方式</title>
+    <url>/2020/08/22/centos7.4%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B83.x%E5%88%B04.x%EF%BC%8C%E4%BD%BF%E7%94%A8yum%E5%AE%89%E8%A3%85%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>1、centos版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# cat &#x2F;etc&#x2F;redhat-release </span><br><span class="line">CentOS Linux release 7.4.1708 (Core)</span><br></pre></td></tr></table></figure>
+<p>2、导入elrepo的key，然后安装elrepo的yum源</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# rpm -import https:&#x2F;&#x2F;www.elrepo.org&#x2F;RPM-GPG-KEY-elrepo.org</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# rpm -Uvh http:&#x2F;&#x2F;www.elrepo.org&#x2F;elrepo-release-7.0-2.el7.elrepo.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">获取http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm</span><br><span class="line">获取http://elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm</span><br><span class="line">准备中...                          <span class="comment">################################# [100%]</span></span><br><span class="line">正在升级/安装...</span><br><span class="line">   1:elrepo-release-7.0-4.el7.elrepo  <span class="comment">################################# [100%]</span></span><br></pre></td></tr></table></figure>
+<p>3、列出可升级的内核</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># yum --disablerepo="*" --enablerepo="elrepo-kernel" list available</span></span><br><span class="line"> </span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">elrepo-kernel                                                 | 2.9 kB  00:00:00     </span><br><span class="line">elrepo-kernel/primary_db                                      | 1.9 MB  00:00:09     </span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * elrepo-kernel: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line">可安装的软件包</span><br><span class="line">elrepo-release.noarch                     7.0-5.el7.elrepo              elrepo-kernel</span><br><span class="line">kernel-lt.x86_64                          4.4.232-1.el7.elrepo          elrepo-kernel</span><br><span class="line">kernel<span class="_">-lt</span>-devel.x86_64                    4.4.232-1.el7.elrepo          elrepo-kernel</span><br><span class="line">kernel<span class="_">-lt</span>-doc.noarch                      4.4.232-1.el7.elrepo          elrepo-kernel</span><br><span class="line">kernel<span class="_">-lt</span>-headers.x86_64                  4.4.232-1.el7.elrepo          elrepo-kernel</span><br><span class="line">kernel<span class="_">-lt</span>-tools.x86_64                    4.4.232-1.el7.elrepo          elrepo-kernel</span><br><span class="line">kernel<span class="_">-lt</span>-tools-libs.x86_64               4.4.232-1.el7.elrepo          elrepo-kernel</span><br><span class="line">kernel<span class="_">-lt</span>-tools-libs-devel.x86_64         4.4.232-1.el7.elrepo          elrepo-kernel</span><br><span class="line">kernel-ml.x86_64                          5.8.0-1.el7.elrepo            elrepo-kernel</span><br><span class="line">kernel-ml-devel.x86_64                    5.8.0-1.el7.elrepo            elrepo-kernel</span><br><span class="line">kernel-ml-doc.noarch                      5.8.0-1.el7.elrepo            elrepo-kernel</span><br><span class="line">kernel-ml-headers.x86_64                  5.8.0-1.el7.elrepo            elrepo-kernel</span><br><span class="line">kernel-ml-tools.x86_64                    5.8.0-1.el7.elrepo            elrepo-kernel</span><br><span class="line">kernel-ml-tools-libs.x86_64               5.8.0-1.el7.elrepo            elrepo-kernel</span><br><span class="line">kernel-ml-tools-libs-devel.x86_64         5.8.0-1.el7.elrepo            elrepo-kernel</span><br><span class="line">perf.x86_64                               5.8.0-1.el7.elrepo            elrepo-kernel</span><br><span class="line">python-perf.x86_64                        5.8.0-1.el7.elrepo            elrepo-kernel</span><br></pre></td></tr></table></figure>
+<p>4、如图可以看出，长期维护版本lt为4.4，最新主线稳定版ml为5.8，我们安装长期维护版本内核，使用如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># yum -y --enablerepo=elrepo-kernel install kernel-lt.x86_64  kernel-lt-devel.x86_64 </span></span><br><span class="line">已加载插件：fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirror.bit.edu.cn</span><br><span class="line"> * elrepo: mirrors.tuna.tsinghua.edu.cn</span><br></pre></td></tr></table></figure>
+<p>5、查看内核默认启动顺序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># awk -F\' '$1=="menuentry " &#123;print $2&#125;' /etc/grub2.cfg</span></span><br><span class="line">CentOS Linux (4.4.232-1.el7.elrepo.x86_64) 7 (Core)</span><br><span class="line">CentOS Linux (3.10.0-693.el7.x86_64) 7 (Core)</span><br><span class="line">CentOS Linux (0-rescue-61e6672250f14dc4bb5130e77f9f621b) 7 (Core)</span><br></pre></td></tr></table></figure>
+<p>如上，4.4版本内核目前位置为0，原来的3.10版本内核目前位置为1，所以需要修改内核启动顺序为0。<img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200808165505107.png" alt="在这里插入图片描述"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># vim /etc/default/grub</span></span><br><span class="line"></span><br><span class="line">原本的GRUB_DEFAULT=saved改为GRUB_0=saved</span><br></pre></td></tr></table></figure>
+<p>运行grub2-mkconfig命令来重新创建内核配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># grub2-mkconfig -o /boot/grub2/grub.cfg</span></span><br><span class="line">Generating grub configuration file ...</span><br><span class="line">Found linux image: /boot/vmlinuz-4.4.232-1.el7.elrepo.x86_64</span><br><span class="line">Found initrd image: /boot/initramfs-4.4.232-1.el7.elrepo.x86_64.img</span><br><span class="line">Found linux image: /boot/vmlinuz-3.10.0-693.el7.x86_64</span><br><span class="line">Found initrd image: /boot/initramfs-3.10.0-693.el7.x86_64.img</span><br><span class="line">Found linux image: /boot/vmlinuz-0-rescue-61e6672250f14dc4bb5130e77f9f621b</span><br><span class="line">Found initrd image: /boot/initramfs-0-rescue-61e6672250f14dc4bb5130e77f9f621b.img</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>6、重启</p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200808165626822.png" alt="在这里插入图片描述"><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200808165851599.png" alt="在这里插入图片描述"><br>可以更新一下，到此内核升级完成<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200808165932175.png" alt="在这里插入图片描述"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>centos7中安装php7.2</title>
+    <url>/2020/08/22/centos7%E4%B8%AD%E5%AE%89%E8%A3%85php7.2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>1、 <strong>安装php的yum源</strong></p>
+<pre><code>方法一：
+
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+
+方法二：
+
+yum install epel-release -y
+rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</code></pre><p>2、<strong>清理旧的php</strong></p>
+<pre><code>yum -y remove php*</code></pre><p>3、<strong>查看可以安装的php版本</strong></p>
+<pre><code>yum list php*</code></pre><p>4、<strong>安装php以及扩展</strong></p>
+<pre><code>yum -y install php72w php72w-cli php72w-fpm php72w-common php72w-devel php72w-embedded php72w-gd php72w-mbstring php72w-mysqlnd php72w-opcache php72w-pdo php72w-xml</code></pre><p><strong>5、开启php</strong></p>
+<pre><code>systemctl start php-fpm
+systemctl enable php-fpm</code></pre>]]></content>
+  </entry>
+  <entry>
+    <title>centos7中搭建的nextcloud 登陆不了，填写密码后登陆没反应解决办法</title>
+    <url>/2020/08/22/centos7%E4%B8%AD%E6%90%AD%E5%BB%BA%E7%9A%84nextcloud%20%E7%99%BB%E9%99%86%E4%B8%8D%E4%BA%86%EF%BC%8C%E5%A1%AB%E5%86%99%E5%AF%86%E7%A0%81%E5%90%8E%E7%99%BB%E9%99%86%E6%B2%A1%E5%8F%8D%E5%BA%94%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p><strong>原因：</strong><br>web、php nginx 和/var/lib/php/session/不是同一个用户<br><strong>路径：</strong><br>/var/lib/php/session/</p>
+<p><strong>解决方法：</strong><br>将session文件夹属主改为你的web服务器，nginx或者是apache<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200615133641415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>重启apache就可以登入了。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>centos7使用静默安装weblogic</title>
+    <url>/2020/08/22/centos7%E4%BD%BF%E7%94%A8%E9%9D%99%E9%BB%98%E5%AE%89%E8%A3%85weblogic/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h2 id="weblogic介绍"><a href="#weblogic介绍" class="headerlink" title="weblogic介绍"></a>weblogic介绍</h2><p>​        WebLogic是美国Oracle公司出品的一个application server，确切的说是一个基于JAVAEE架构的中间件，WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。将Java的动态功能和Java Enterprise标准的安全性引入大型网络应用的开发、集成、部署和管理之中。</p>
+<p>​        WebLogic是美商Oracle的主要产品之一，是并购BEA得来。是商业市场上主要的Java（J2EE）应用服务器软件（application server）之一，是世界上第一个成功商业化的J2EE应用服务器, 已推出到12c(12.2.1.4) 版。而此产品也延伸出WebLogic Portal，WebLogic Integration等企业用的中间件（但当下Oracle主要以Fusion Middleware融合中间件来取代这些WebLogic Server之外的企业包），以及OEPE(Oracle Enterprise Pack for Eclipse)开发工具。</p>
+<p>​        WebLogic Server凭借其出色的群集技术，拥有处理关键Web应用系统问题所需的性能、可扩展性和高可用性。WebLogic Server既实现了网页群集，也实现了EJB组件 群集，而且不需要任何专门的硬件或操作系统支持。网页群集可以实现透明的复制、负载平衡以及表示内容容错 。无论是网页群集，还是组件群集，对于电子商务解决方案所要求的可扩展性和可用性都是至关重要的。共享的客户机/服务器和数据库连接以及数据缓存和EJB都增强了性能表现。这是其它Web应用系统所不具备的。所以，在扩展性方面WebLogic是远远超越了Tomcat。</p>
+<h1 id="weblogic搭建"><a href="#weblogic搭建" class="headerlink" title="weblogic搭建"></a>weblogic搭建</h1><p>注意：无法使用root用户进行安装，需要自行创建用户。</p>
+<h2 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h2><p>centos7.4</p>
+<p>下载weblogic安装包以及jdk安装包</p>
+<p>weblogic官网地址：<a href="https://www.oracle.com/middleware/technologies/weblogic-server-installers-downloads.html" target="_blank" rel="noopener">https://www.oracle.com/middleware/technologies/weblogic-server-installers-downloads.html</a></p>
+<p>jdk官网：<a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html" target="_blank" rel="noopener">https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html</a></p>
+<p>weblogic版本：fmw_12.2.1.4.0_wls_Disk1_1of1</p>
+<p>jdk版本：jdk-8u211-linux-x64</p>
+<h2 id="二、jdk安装"><a href="#二、jdk安装" class="headerlink" title="二、jdk安装"></a>二、jdk安装</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@weblogic1 ~]# tar xzf jdk-8u211-linux-x64.tar.gz -C &#x2F;usr&#x2F;local&#x2F;</span><br><span class="line">[root@weblogic1 ~]# cd &#x2F;usr&#x2F;local&#x2F;</span><br><span class="line">[root@weblogic1 local]# mv jdk1.8.0_211&#x2F; java</span><br><span class="line">设置环境变量:</span><br><span class="line">[root@weblogic1 local]# vim &#x2F;etc&#x2F;profile</span><br><span class="line">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java</span><br><span class="line">export PATH&#x3D;$JAVA_HOME&#x2F;bin:$JAVA_HOME&#x2F;jre&#x2F;bin:$PATH</span><br><span class="line">[root@weblogic1 local]# source &#x2F;etc&#x2F;profile</span><br><span class="line">[root@weblogic1 local]# java -version</span><br><span class="line">java version &quot;1.8.0_211&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、安装weblogic"><a href="#三、安装weblogic" class="headerlink" title="三、安装weblogic"></a>三、安装weblogic</h2><h4 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h4><p>1、创建用户和组</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># useradd  weblogic &#x2F;&#x2F;创建用户以及组</span><br><span class="line"></span><br><span class="line"># passwd weblogic &#x2F;&#x2F;修改用户密码</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="二、开始安装"><a href="#二、开始安装" class="headerlink" title="二、开始安装"></a>二、开始安装</h4><h5 id="1、创建ORACLE-HOME"><a href="#1、创建ORACLE-HOME" class="headerlink" title="1、创建ORACLE_HOME"></a>1、创建ORACLE_HOME</h5><p>使用root账户创建目录，并将所有权赋予weblogic</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mkdir -p &#x2F;weblogic&#x2F;bea</span><br><span class="line"></span><br><span class="line"># chown -R weblogic .weblogic &#x2F;weblogic</span><br><span class="line"></span><br><span class="line">#chmod 777 &#x2F;weblogic&#x2F;bea</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2、创建目录，并将安装包复制到目录下"><a href="#2、创建目录，并将安装包复制到目录下" class="headerlink" title="2、创建目录，并将安装包复制到目录下"></a>2、创建目录，并将安装包复制到目录下</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># cp &#x2F;root&#x2F;fmw_12.2.1.3.0_wls.jar   &#x2F;home&#x2F;weblogic</span><br><span class="line"></span><br><span class="line">\# su weblogic</span><br><span class="line"></span><br><span class="line">\# cd</span><br></pre></td></tr></table></figure>
+
+<h5 id="3、创建wls-rsp和oraInst-loc文件"><a href="#3、创建wls-rsp和oraInst-loc文件" class="headerlink" title="3、创建wls.rsp和oraInst.loc文件"></a>3、创建wls.rsp和oraInst.loc文件</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># vim wls.rsp</span><br></pre></td></tr></table></figure>
+
+<p>wls.rsp文件内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[ENGINE]</span><br><span class="line">#DO NOT CHANGE THIS.</span><br><span class="line">Response File Version&#x3D;1.0.0.0.0</span><br><span class="line"></span><br><span class="line">[GENERIC]</span><br><span class="line">#The oracle home location. This can be an existing Oracle Home or a new Oracle Home</span><br><span class="line"></span><br><span class="line">ORACLE_HOME&#x3D;&#x2F;weblogic&#x2F;bea</span><br><span class="line"></span><br><span class="line">#Set this variable value to the Installation Type selected. e.g. WebLogic Server, Coherence, Complete with Examples.</span><br><span class="line"></span><br><span class="line">INSTALL_TYPE&#x3D;WebLogic Server</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim  oraInst.loc</span><br></pre></td></tr></table></figure>
+
+<p>oraInst.loc文件内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">inventory_loc&#x3D;&#x2F;home&#x2F;weblogic&#x2F;oraInventory</span><br><span class="line"></span><br><span class="line">inst_group&#x3D;weblogic</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：确保 oraInst.loc wls.rsp fmw_12.2.1.4.0_wls.jar 三个文件weblogic用户必须要有读写权限</strong></p>
+<h5 id="4、开始安装"><a href="#4、开始安装" class="headerlink" title="4、开始安装"></a>4、开始安装</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># java -jar fmw_12.2.1.4.0_wls.jar -silent -responseFile &#x2F;home&#x2F;weblogic&#x2F;wls.rsp -invPtrLoc &#x2F;home&#x2F;weblogic&#x2F;oraInst.loc ORACLE_HOME&#x3D;&quot;&#x2F;weblogic&#x2F;bea&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="5、设置环境变量"><a href="#5、设置环境变量" class="headerlink" title="5、设置环境变量"></a>5、设置环境变量</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># sh &#x2F;weblogic&#x2F;bea&#x2F;wlserver&#x2F;server&#x2F;bin&#x2F;setWLSEnv.sh   &#x2F;&#x2F;实际效果与之前jdk设置类似</span><br></pre></td></tr></table></figure>
+
+<h5 id="6、创建Domain域名"><a href="#6、创建Domain域名" class="headerlink" title="6、创建Domain域名"></a>6、创建Domain域名</h5><p>有两种方式</p>
+<p>​    方式1：通过命令行交互创建</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[weblogic@localhost bea]$ cd &#x2F;weblogic&#x2F;bea&#x2F;wlserver&#x2F;common&#x2F;bin</span><br><span class="line">[weblogic@localhost bin]$ .&#x2F;wlst.sh </span><br><span class="line">WARNING: This is a deprecated script. Please invoke the wlst.sh script under oracle_common&#x2F;common&#x2F;bin.</span><br><span class="line"></span><br><span class="line">Initializing WebLogic Scripting Tool (WLST) ...</span><br><span class="line"></span><br><span class="line">Jython scans all the jar files it can find at first startup. Depending on the system, this process may take a few minutes to complete, and WLST may not return a prompt right away.</span><br><span class="line"></span><br><span class="line">Welcome to WebLogic Server Administration Scripting Shell</span><br><span class="line"></span><br><span class="line">Type help() for help on available commands</span><br><span class="line"></span><br><span class="line">wls:&#x2F;offline&gt; readTemplate(&#39;&#x2F;weblogic&#x2F;bea&#x2F;wlserver&#x2F;common&#x2F;templates&#x2F;wls&#x2F;wls.jar&#39;)</span><br><span class="line">WARNING: The readTemplate is deprecated. Use selectTemplate followed by loadTemplates in place of readTemplate.</span><br><span class="line">wls:&#x2F;offline&#x2F;base_domain&gt;cd(&#39;Servers&#x2F;AdminServer&#39;)</span><br><span class="line">wls:&#x2F;offline&#x2F;base_domain&#x2F;Server&#x2F;AdminServer&gt;set(&#39;ListenAddress&#39;,&#39;&#39;)</span><br><span class="line">wls:&#x2F;offline&#x2F;base_domain&#x2F;Server&#x2F;AdminServer&gt;set(&#39;ListenPort&#39;,7001)</span><br><span class="line">wls:&#x2F;offline&#x2F;base_domain&#x2F;Server&#x2F;AdminServer&gt;cd(&#39;..&#x2F;..&#39;)</span><br><span class="line">wls:&#x2F;offline&#x2F;base_domain&gt;cd(&#39;Security&#x2F;base_domain&#x2F;User&#x2F;weblogic&#39;)</span><br><span class="line">wls:&#x2F;offline&#x2F;base_domain&#x2F;Security&#x2F;base_domain&#x2F;User&#x2F;weblogic&gt;cmo.setPassword(&#39;weblogic123&#39;)</span><br><span class="line">wls:&#x2F;offline&#x2F;base_domain&#x2F;Security&#x2F;base_domain&#x2F;User&#x2F;weblogic&gt;setOption(&#39;OverwriteDomain&#39;,&#39;true&#39;)</span><br><span class="line">wls:&#x2F;offline&#x2F;base_domain&#x2F;Security&#x2F;base_domain&#x2F;User&#x2F;weblogic&gt;writeDomain(&#39;&#x2F;weblogic&#x2F;bea&#x2F;user_projects&#x2F;domains&#x2F;base_domain&#39;)</span><br><span class="line">wls:&#x2F;offline&#x2F;base_domain&#x2F;Security&#x2F;base_domain&#x2F;User&#x2F;weblogic&gt;closeTemplate()</span><br><span class="line">wls:&#x2F;offline&gt;exit()</span><br><span class="line"></span><br><span class="line">Exiting WebLogic Scripting Tool.</span><br></pre></td></tr></table></figure>
+
+<p>​    方式2：通过py脚本来创建</p>
+<p>创建create_domains.py,添加内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">readTemplate(&#39;&#x2F;weblogic&#x2F;bea&#x2F;wlserver&#x2F;common&#x2F;templates&#x2F;wls&#x2F;wls.jar&#39;)</span><br><span class="line">cd(&#39;Servers&#x2F;AdminServer&#39;)</span><br><span class="line">set(&#39;ListenAddress&#39;,&#39;ip地址&#39;)</span><br><span class="line">set(&#39;ListenPort&#39;, 7001)cd(&#39;..&#x2F;..&#39;)</span><br><span class="line">cd(&#39;&#x2F;Security&#x2F;base_domain&#x2F;User&#x2F;weblogic&#39;)</span><br><span class="line">cmo.setPassword(&#39;weblogic123&#39;)</span><br><span class="line">setOption(&#39;OverwriteDomain&#39;, &#39;true&#39;)</span><br><span class="line">setOption(&#39;ServerStartMode&#39;, &#39;prod&#39;)</span><br><span class="line">writeDomain(&#39;&#x2F;weblogic&#x2F;bea&#x2F;user_projects&#x2F;domains&#x2F;base_domain&#39;)</span><br><span class="line">closeTemplate()</span><br><span class="line">exit()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">执行安装 .&#x2F;wlst.sh  .&#x2F;create_domains.py</span><br></pre></td></tr></table></figure>
+
+<h5 id="7、启动weblogic服务"><a href="#7、启动weblogic服务" class="headerlink" title="7、启动weblogic服务"></a>7、启动weblogic服务</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[weblogic@localhost bin]$ cd &#x2F;weblogic&#x2F;bea&#x2F;user_projects&#x2F;domains&#x2F;base_domain&#x2F;bin&#x2F;</span><br><span class="line">[weblogic@localhost bin]$ .&#x2F;startWebLogic.sh</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JAVA Memory arguments: -Xms256m -Xmx512m -XX:CompileThreshold&#x3D;8000</span><br><span class="line">.</span><br><span class="line">CLASSPATH&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;lib&#x2F;tools.jar:&#x2F;home&#x2F;weblogic&#x2F;weblogic_install_dir&#x2F;wls12213&#x2F;wlserver&#x2F;server&#x2F;lib&#x2F;weblogic.jar:&#x2F;home&#x2F;weblogic&#x2F;weblogic_install_dir&#x2F;wls12213&#x2F;wlserver&#x2F;..&#x2F;oracle_common&#x2F;modules&#x2F;thirdparty&#x2F;ant-contrib-1.0b3.jar:&#x2F;home&#x2F;weblogic&#x2F;weblogic_install_dir&#x2F;wls12213&#x2F;wlserver&#x2F;modules&#x2F;features&#x2F;oracle.wls.common.nodemanager.jar::&#x2F;home&#x2F;weblogic&#x2F;weblogic_install_dir&#x2F;wls12213&#x2F;wlserver&#x2F;common&#x2F;derby&#x2F;lib&#x2F;derbynet.jar:&#x2F;home&#x2F;weblogic&#x2F;weblogic_install_dir&#x2F;wls12213&#x2F;wlserver&#x2F;common&#x2F;derby&#x2F;lib&#x2F;derbyclient.jar:&#x2F;home&#x2F;weblogic&#x2F;weblogic_install_dir&#x2F;wls12213&#x2F;wlserver&#x2F;common&#x2F;derby&#x2F;lib&#x2F;derby.jar:.:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;lib:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;jre&#x2F;lib</span><br><span class="line">.</span><br><span class="line">PATH&#x3D;&#x2F;weblogic&#x2F;bea&#x2F;user_projects&#x2F;domains&#x2F;base_domain&#x2F;bin:&#x2F;home&#x2F;weblogic&#x2F;weblogic_install_dir&#x2F;wls12213&#x2F;wlserver&#x2F;server&#x2F;bin:&#x2F;home&#x2F;weblogic&#x2F;weblogic_install_dir&#x2F;wls12213&#x2F;wlserver&#x2F;..&#x2F;oracle_common&#x2F;modules&#x2F;thirdparty&#x2F;org.apache.ant&#x2F;1.9.8.0.0&#x2F;apache-ant-1.9.8&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;jre&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;bin:&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;jdk1.8.0_161&#x2F;bin:&#x2F;usr&#x2F;local&#x2F;sbin:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;bin:&#x2F;root&#x2F;bin</span><br><span class="line">.</span><br><span class="line">***************************************************</span><br><span class="line">*  To start WebLogic Server, use a username and   *</span><br><span class="line">*  password assigned to an admin-level user.  For *</span><br><span class="line">*  server administration, use the WebLogic Server *</span><br><span class="line">*  console at http:&#x2F;&#x2F;hostname:port&#x2F;console        *</span><br><span class="line">***************************************************</span><br><span class="line">Starting WLS with line:</span><br><span class="line"></span><br><span class="line">········中间省略</span><br><span class="line"></span><br><span class="line">Oracle Coherence Version 12.2.1.4.0 Build 74888</span><br><span class="line"> Grid Edition: Development mode</span><br><span class="line">Copyright (c) 2000, 2019, Oracle and&#x2F;or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">2020-06-17 20:16:33.141&#x2F;10.411 Oracle Coherence GE 12.2.1.4.0 &lt;Info&gt; (thread&#x3D;[STANDBY] ExecuteThread: &#39;10&#39; for queue: &#39;weblogic.kernel.Default (self-tuning)&#39;, member&#x3D;n&#x2F;a): Configured versioned, multi-cluster Management over ReST</span><br></pre></td></tr></table></figure>
+
+<h5 id="8、验证"><a href="#8、验证" class="headerlink" title="8、验证"></a>8、验证</h5><p><code>http://IP:7001/console</code></p>
+<p>账户密码在之前的第六步设置</p>
+<p><strong>账号：weblogic</strong></p>
+<p><strong>密码：weblogic123</strong></p>
+<p>实际环境中可以配置免密登录等，可自行摸索</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>centos7对根分区进行扩容</title>
+    <url>/2020/08/22/centos7%E5%AF%B9%E6%A0%B9%E5%88%86%E5%8C%BA%E8%BF%9B%E8%A1%8C%E6%89%A9%E5%AE%B9/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>查看本机磁盘环境</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# df -h</span><br><span class="line">文件系统                 容量  已用  可用 已用% 挂载点</span><br><span class="line">&#x2F;dev&#x2F;mapper&#x2F;centos-root   35G  5.5G   30G   16% &#x2F;</span><br><span class="line">devtmpfs                 3.9G     0  3.9G    0% &#x2F;dev</span><br><span class="line">tmpfs                    3.9G     0  3.9G    0% &#x2F;dev&#x2F;shm</span><br><span class="line">tmpfs                    3.9G   11M  3.9G    1% &#x2F;run</span><br><span class="line">tmpfs                    3.9G     0  3.9G    0% &#x2F;sys&#x2F;fs&#x2F;cgroup</span><br><span class="line">&#x2F;dev&#x2F;sda1               1014M  275M  740M   28% &#x2F;boot</span><br><span class="line">tmpfs                    783M   52K  783M    1% &#x2F;run&#x2F;user&#x2F;0</span><br><span class="line">[root@localhost ~]# lsblk</span><br><span class="line">NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">fd0               2:0    1    4K  0 disk</span><br><span class="line">sda               8:0    0  500G  0 disk</span><br><span class="line">├─sda1            8:1    0    1G  0 part &#x2F;boot</span><br><span class="line">└─sda2            8:2    0   39G  0 part</span><br><span class="line">  ├─centos-root 253:0    0   35G  0 lvm  &#x2F;</span><br><span class="line">  └─centos-swap 253:1    0    4G  0 lvm  [SWAP]</span><br></pre></td></tr></table></figure>
+
+<p>可以看到根目录总容量为35G, 设备sda 的总容量为500G。</p>
+<p>添加磁盘分区<br>需要120G 容量，已有35G, 还需添加85G 容量。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# fdisk &#x2F;dev&#x2F;sda</span><br><span class="line">欢迎使用 fdisk (util-linux 2.23.2)。</span><br><span class="line"></span><br><span class="line">更改将停留在内存中，直到您决定将更改写入磁盘。</span><br><span class="line">使用写入命令前请三思。</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：n</span><br><span class="line">Partition type:</span><br><span class="line">   p   primary (2 primary, 0 extended, 2 free)</span><br><span class="line">   e   extended</span><br><span class="line">Select (default p):</span><br><span class="line">Using default response p</span><br><span class="line">分区号 (3,4，默认 3)：</span><br><span class="line">起始 扇区 (83886080-1048575999，默认为 83886080)：</span><br><span class="line">将使用默认值 83886080</span><br><span class="line">Last 扇区, +扇区 or +size&#123;K,M,G&#125; (83886080-1048575999，默认为 1048575999)：+85G</span><br><span class="line">分区 3 已设置为 Linux 类型，大小设为 85 GiB</span><br><span class="line"></span><br><span class="line">命令(输入 m 获取帮助)：w</span><br><span class="line">The partition table has been altered!</span><br><span class="line"></span><br><span class="line">Calling ioctl() to re-read partition table.</span><br></pre></td></tr></table></figure>
+
+<p>[root@localhost ~]# partprobe<br>然后查看分区是否创建：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# lsblk</span><br><span class="line">NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">fd0               2:0    1    4K  0 disk</span><br><span class="line">sda               8:0    0  500G  0 disk</span><br><span class="line">├─sda1            8:1    0    1G  0 part &#x2F;boot</span><br><span class="line">├─sda2            8:2    0   39G  0 part</span><br><span class="line">│ ├─centos-root 253:0    0   35G  0 lvm  &#x2F;</span><br><span class="line">│ └─centos-swap 253:1    0    4G  0 lvm  [SWAP]</span><br><span class="line">└─sda3            8:3    0   85G  0 part</span><br><span class="line">sr0              11:0    1 1024M  0 rom</span><br></pre></td></tr></table></figure>
+<p>可以看到sda3分区已创建。<br>开始扩容<br>创建物理卷：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# lvm</span><br><span class="line">lvm&gt; pvcreate &#x2F;dev&#x2F;sda3</span><br><span class="line">  Physical volume &quot;&#x2F;dev&#x2F;sda3&quot; successfully created.</span><br><span class="line">查看物理卷和卷组：</span><br><span class="line">lvm&gt; pvdisplay</span><br><span class="line">  --- Physical volume ---</span><br><span class="line">  PV Name               &#x2F;dev&#x2F;sda2</span><br><span class="line">  VG Name               centos</span><br><span class="line">  PV Size               &lt;39.00 GiB &#x2F; not usable 3.00 MiB Allocatable yes (but full) PE Size 4.00 MiB Total PE 9983 Free PE 0 Allocated PE 9983 PV UUID twmUZh-Vnqq-W5Pd-v3ms-6OkH-sSTs-nv8aA8 &quot;&#x2F;dev&#x2F;sda3&quot; is a new physical volume of &quot;85.00 GiB&quot; --- NEW Physical volume --- PV Name &#x2F;dev&#x2F;sda3 VG Name PV Size 85.00 GiB Allocatable NO PE Size 0 Total PE 0 Free PE 0 Allocated PE 0 PV UUID vTD91f-b28E-GgL0-XsqI-ipQ5-rscT-GcQbT6 lvm&gt; vgdisplay</span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               centos</span><br><span class="line">  System ID</span><br><span class="line">  Format                lvm2</span><br><span class="line">  Metadata Areas        1</span><br><span class="line">  Metadata Sequence No  3</span><br><span class="line">  VG Access             read&#x2F;write</span><br><span class="line">  VG Status             resizable</span><br><span class="line">  MAX LV                0</span><br><span class="line">  Cur LV                2</span><br><span class="line">  Open LV               2</span><br><span class="line">  Max PV                0</span><br><span class="line">  Cur PV                1</span><br><span class="line">  Act PV                1</span><br><span class="line">  VG Size               &lt;39.00 GiB</span><br><span class="line">  PE Size               4.00 MiB</span><br><span class="line">  Total PE              9983</span><br><span class="line">  Alloc PE &#x2F; Size       9983 &#x2F; &lt;39.00 GiB</span><br><span class="line">  Free  PE &#x2F; Size       0 &#x2F; 0</span><br><span class="line">  VG UUID               238Yz8-MEQa-NT6a-3aHC-J3TZ-mGux-e9vqPf</span><br></pre></td></tr></table></figure>
+<p>将物理卷加入到卷组：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lvm&gt; vgextend centos &#x2F;dev&#x2F;sda3</span><br><span class="line">  Volume group &quot;centos&quot; successfully extended</span><br><span class="line">lvm&gt; vgdisplay</span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               centos</span><br><span class="line">  System ID</span><br><span class="line">  Format                lvm2</span><br><span class="line">  Metadata Areas        2</span><br><span class="line">  Metadata Sequence No  4</span><br><span class="line">  VG Access             read&#x2F;write</span><br><span class="line">  VG Status             resizable</span><br><span class="line">  MAX LV                0</span><br><span class="line">  Cur LV                2</span><br><span class="line">  Open LV               2</span><br><span class="line">  Max PV                0</span><br><span class="line">  Cur PV                2</span><br><span class="line">  Act PV                2</span><br><span class="line">  VG Size               123.99 GiB</span><br><span class="line">  PE Size               4.00 MiB</span><br><span class="line">  Total PE              31742</span><br><span class="line">  Alloc PE &#x2F; Size       9983 &#x2F; &lt;39.00 GiB</span><br><span class="line">  Free  PE &#x2F; Size       21759 &#x2F; &lt;85.00 GiB</span><br><span class="line">  VG UUID               238Yz8-MEQa-NT6a-3aHC-J3TZ-mGux-e9vqPf</span><br></pre></td></tr></table></figure>
+<p>可以看到卷组的Free size 增加了<br>将卷组剩余空间(刚添加的85G)添加到逻辑卷/dev/centos/root :</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lvm&gt; lvextend -l +100%FREE &#x2F;dev&#x2F;centos&#x2F;root</span><br><span class="line">  Size of logical volume centos&#x2F;root changed from &lt;35.00 GiB (8959 extents) to 119.99 GiB (30718 extents).</span><br><span class="line">  Logical volume centos&#x2F;root successfully resized.</span><br></pre></td></tr></table></figure>
+<p>同步到文件系统<br>之前只是对逻辑卷扩容，还要同步到文件系统，实现对根目录的扩容。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# xfs_growfs &#x2F;dev&#x2F;centos&#x2F;root</span><br><span class="line">meta-data&#x3D;&#x2F;dev&#x2F;mapper&#x2F;centos-root isize&#x3D;512    agcount&#x3D;4, agsize&#x3D;2293504 blks</span><br><span class="line">         &#x3D;                       sectsz&#x3D;512   attr&#x3D;2, projid32bit&#x3D;1</span><br><span class="line">         &#x3D;                       crc&#x3D;1        finobt&#x3D;0 spinodes&#x3D;0</span><br><span class="line">data     &#x3D;                       bsize&#x3D;4096   blocks&#x3D;9174016, imaxpct&#x3D;25</span><br><span class="line">         &#x3D;                       sunit&#x3D;0      swidth&#x3D;0 blks</span><br><span class="line">naming   &#x3D;version 2              bsize&#x3D;4096   ascii-ci&#x3D;0 ftype&#x3D;1</span><br><span class="line">log      &#x3D;internal               bsize&#x3D;4096   blocks&#x3D;4479, version&#x3D;2</span><br><span class="line">         &#x3D;                       sectsz&#x3D;512   sunit&#x3D;0 blks, lazy-count&#x3D;1</span><br><span class="line">realtime &#x3D;none                   extsz&#x3D;4096   blocks&#x3D;0, rtextents&#x3D;0</span><br><span class="line">data blocks changed from 9174016 to 31455232</span><br></pre></td></tr></table></figure>
+<p>然后再查看挂载情况：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# df -h</span><br><span class="line">文件系统                 容量  已用  可用 已用% 挂载点</span><br><span class="line">&#x2F;dev&#x2F;mapper&#x2F;centos-root  120G  5.5G  115G    5% &#x2F;</span><br><span class="line">devtmpfs                 3.9G     0  3.9G    0% &#x2F;dev</span><br><span class="line">tmpfs                    3.9G     0  3.9G    0% &#x2F;dev&#x2F;shm</span><br><span class="line">tmpfs                    3.9G   11M  3.9G    1% &#x2F;run</span><br><span class="line">tmpfs                    3.9G     0  3.9G    0% &#x2F;sys&#x2F;fs&#x2F;cgroup</span><br><span class="line">&#x2F;dev&#x2F;sda1               1014M  275M  740M   28% &#x2F;boot</span><br><span class="line">tmpfs                    783M   52K  783M    1% &#x2F;run&#x2F;user&#x2F;0</span><br></pre></td></tr></table></figure>
+<p>可以发现有120G的空间挂载在根目录上。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>dcoker下载镜像老是超时，可以配置阿里加速器解决</title>
+    <url>/2020/08/22/dcoker%E4%B8%8B%E8%BD%BD%E9%95%9C%E5%83%8F%E8%80%81%E6%98%AF%E8%B6%85%E6%97%B6%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%85%8D%E7%BD%AE%E9%98%BF%E9%87%8C%E5%8A%A0%E9%80%9F%E5%99%A8%E8%A7%A3%E5%86%B3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>配置镜像加速器<br>针对Docker客户端版本大于 1.10.0 的用户<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200520153100936.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>您可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器</p>
+<pre><code>sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json &lt;&lt;-&apos;EOF&apos;
+{
+  &quot;registry-mirrors&quot;: [&quot;https://k5sw1fed.mirror.aliyuncs.com&quot;]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker</code></pre>]]></content>
+  </entry>
+  <entry>
+    <title>docker中CMD与ENTRYPOINT区别</title>
+    <url>/2020/08/22/docker%E4%B8%ADCMD%E4%B8%8EENTRYPOINT%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">一、dockerfile中的 CMD</span><br><span class="line"></span><br><span class="line">1、每个dockerfile中只能有一个CMD如果有多个那么只执行最后一个。</span><br><span class="line">2、CMD 相当于启动docker时候后面添加的参数看，举个简单例子：</span><br><span class="line"><span class="meta">#</span><span class="bash"> docker run -itd --name <span class="built_in">test</span> image(镜像) /bin/bash -c</span></span><br><span class="line">a、镜像名称后面跟了一个/bin/bash -c ，其实等价于在dockerfile中的CMD ["/bin/bash","-c"]。</span><br><span class="line">b、如果dockerfile中的CMD中有了CMD["/bin/bash","-c"],那么就不用在执行的时候再添加了，如果添加了参数的话那么就相当于要执行你添加的参数，默认的CMD中的参数就无效了。</span><br><span class="line"></span><br><span class="line">二、dockerfile中的ENTRYPOINT</span><br><span class="line">1、一个dockerfile中ENTRYPOINT也只能存在一个，若存在多个那么只执行最后一个，你可以理解为开机启动的意思，和CMD有点像，不过还是有区别。</span><br><span class="line"></span><br><span class="line">2、举个简单例子：</span><br><span class="line">a、dockerfile中有ENTRYPOINT ["tail","-f","/var/log/nginx/access.log"]，那么启动的时候镜像就执行了这个里面的内容，如果你像上面带参数的话就相当于在这个执行的内容后面再加入参数。</span><br><span class="line">案例:</span><br><span class="line">如果我们的dockerfile中有a中的这句话然后我们启动我们的docker:</span><br><span class="line"><span class="meta">#</span><span class="bash">docker run -itd --name <span class="built_in">test</span> image(镜像名) /bin/bash -c</span></span><br><span class="line"></span><br><span class="line">此时就相当于我们启动docker的时候执行了：tail -f /var/log/nginx/access.log /bin/bash -c</span><br><span class="line">这个命令明显就不对.</span><br></pre></td></tr></table></figure>
+
+<h2 id="dockerfile优化"><a href="#dockerfile优化" class="headerlink" title="dockerfile优化"></a>dockerfile优化</h2><p>编译一个简单的nginx成功以后发现好几百M。</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1、RUN 命令要尽量写在一条里，每次 RUN 命令都是在之前的镜像上封装，只会增大不会减小</span><br><span class="line"></span><br><span class="line">2、每次进行依赖安装后，记得yum clean all【centos】 </span><br><span class="line"><span class="meta">#</span><span class="bash">yum clean all 清除缓存中的rpm头文件和包文件</span></span><br><span class="line"></span><br><span class="line">3、选择比较小的基础镜像。alpine</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>docker容器内安装vim</title>
+    <url>/2020/08/22/docker%E5%AE%B9%E5%99%A8%E5%86%85%E5%AE%89%E8%A3%85vim/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>在使用docker容器时，有时候里边没有安装vim，敲vim命令时提示说：vim: command not found，这个时候就需要安装vim，可是当你敲apt-get install vim命令时，提示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">E: Unable to locate package vim</span><br></pre></td></tr></table></figure>
+
+<p>这时候需要敲：<code>apt-get update</code>，这个命令的作用是：同步 /etc/apt/sources.list 和 /etc/apt/sources.list.d 中列出的源的索引，这样才能获取到最新的软件包。<br>等更新完毕以后再敲命令：<code>apt-get install vim</code>命令即可。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>k8s二进制安装方式，所有组件都已经启动成功，通过kubectl工具查看当前集群组件状态报错</title>
+    <url>/2020/08/22/k8s%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F%EF%BC%8C%E6%89%80%E6%9C%89%E7%BB%84%E4%BB%B6%E9%83%BD%E5%B7%B2%E7%BB%8F%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F%EF%BC%8C%E9%80%9A%E8%BF%87kubectl%E5%B7%A5%E5%85%B7%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@k8s-master1 ~]# &#x2F;opt&#x2F;kubernetes&#x2F;bin&#x2F;kubectl get cs</span><br><span class="line">error: no configuration has been provided, try setting KUBERNETES_MASTER environment variable</span><br></pre></td></tr></table></figure>
+<p>显示无环境变量，进入？/etc/profile<br>添加<code>export KUBERNETES_MASTER=&quot;127.0.0.1:8080&quot;</code><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200626142636556.png" alt="在这里插入图片描述"></p>
+<p>再次查看<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200626142706882.png" alt="在这里插入图片描述"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>k8s部署etcd时，解决有一个节点无法启动的问题</title>
+    <url>/2020/08/22/k8s%E9%83%A8%E7%BD%B2etcd%E6%97%B6%EF%BC%8C%E8%A7%A3%E5%86%B3%E6%9C%89%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>问题：<br>之前做好了etcd部署，然后做完快照，重启后发现有一个节点一直启动不了<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200626113338539.png" alt="在这里插入图片描述"><br>查看日志发现是由于虚拟环境内的时间不同不造成的<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200626113025258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解决方法;<br>删除所有etcd节点的 data-dir 文件，重启各个节点的etcd服务，这个时候，每个节点的data-dir的数据都会被更新，就不会有以上故障了。<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/2020062611312535.png" alt="在这里插入图片描述"><br>可以看到data-dir文件在/var/lib/etcd/下，直接rm -rf 就好<br>重启后查看集群状态<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200626113313553.png" alt="在这里插入图片描述"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>kali  linux使用远程连接工具，final进行连接</title>
+    <url>/2020/08/22/kali%20%20linux%E4%BD%BF%E7%94%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7%EF%BC%8Cfinal%E8%BF%9B%E8%A1%8C%E8%BF%9E%E6%8E%A5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>进入ssh连接的配置文件，</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@kali:~<span class="comment"># vim /etc/ssh/sshd_config</span></span><br></pre></td></tr></table></figure>
+
+<p>修改配置为如图所示</p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/2020070916553739.png" alt="在这里插入图片描述"><br>重启ssh，并查看端口<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200709165832668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200709165913868.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/2020070917001010.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200709170031662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+]]></content>
   </entry>
   <entry>
     <title>kvm</title>
@@ -439,6 +559,526 @@
       <tags>
         <tag>kvm</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>linux中yum被占用的解决办法</title>
+    <url>/2020/08/22/linux%E4%B8%ADyum%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>Another app is currently holding the yum lock; waiting for it to exit…<br>  The other application is: yum<br>    Memory :  23 M RSS (414 MB VSZ)<br>    Started: Tue Mar 12 08:44:00 2019 - 1:20:21 ago<br>    State  : Traced/Stopped, pid: 8894</p>
+<p>这时候其实是yum锁，就是你的yum被占用了</p>
+<p>解决办法是干掉缓存中的yum进程，重启yum。</p>
+<p>清掉缓存中的进程：</p>
+<pre><code>rm -f /var/run/yum.pid</code></pre><p>重启yum：</p>
+<p>系统是fedora</p>
+<pre><code>systemctl status yum-updatesd.service</code></pre><p>centos用户使用：</p>
+<pre><code>/sbin/service yum-updatesd restart</code></pre>]]></content>
+  </entry>
+  <entry>
+    <title>mysql5.7的安装</title>
+    <url>/2020/08/22/mysql5.7%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>扩展：在CentOS中默认安装有MariaDB，这个是MySQL的分支，但为了需要，还是要在系统中安装MySQL，而且安装完成之后可以直接覆盖掉MariaDB。</p>
+<p>1 下载并安装MySQL官方的 Yum Repository</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># wget -i -c http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm</span></span><br></pre></td></tr></table></figure>
+
+
+<p>1.2 使用上面的命令就直接下载了安装用的Yum Repository，大概25KB的样子，然后就可以直接yum安装了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># yum -y install mysql57-community-release-el7-10.noarch.rpm</span></span><br></pre></td></tr></table></figure>
+
+<p>1.3 开始安装MySQL服务器</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># yum -y install mysql-community-server</span></span><br></pre></td></tr></table></figure>
+
+<p>1.4 这步可能会花些时间，安装完成后就会覆盖掉之前的mariadb</p>
+<p>至此MySQL就安装完成了，然后是对MySQL的一些设置。</p>
+<p>2 MySQL数据库设置<br>2.1 首先启动MySQL</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># systemctl start  mysqld.service</span></span><br></pre></td></tr></table></figure>
+
+<p>2.2 查看MySQL运行状态，运行状态如图</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># systemctl status mysqld.service</span></span><br></pre></td></tr></table></figure>
+
+<p>2.3 此时MySQL已经开始正常运行，不过要想进入MySQL还得先找出此时root用户的密码，通过如下命令可以在日志文件中找出密码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># grep "password" /var/log/mysqld.log</span></span><br></pre></td></tr></table></figure>
+
+<p>2.4 修改密码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># mysqladmin -uroot  -p“刚才查到的密码”     password "新密码"</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>nginxweb页面操作</title>
+    <url>/2020/08/22/nginxweb%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h2 id="nginxweb页面操作反向代理，负载均衡，日志监控，网页上传"><a href="#nginxweb页面操作反向代理，负载均衡，日志监控，网页上传" class="headerlink" title="nginxweb页面操作反向代理，负载均衡，日志监控，网页上传"></a>nginxweb页面操作反向代理，负载均衡，日志监控，网页上传</h2><h3 id="第一步：安装jdk"><a href="#第一步：安装jdk" class="headerlink" title="第一步：安装jdk"></a>第一步：安装jdk</h3><h3 id="第二步：安装nginx"><a href="#第二步：安装nginx" class="headerlink" title="第二步：安装nginx"></a>第二步：安装nginx</h3><h3 id="第三步：安装nginxwebUI的jar包"><a href="#第三步：安装nginxwebUI的jar包" class="headerlink" title="第三步：安装nginxwebUI的jar包"></a>第三步：安装nginxwebUI的jar包</h3><p>官网：<em><a href="https://nginxwebui.gitee.io" target="_blank" rel="noopener">https://nginxwebui.gitee.io</a></em></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;www.nginxwebui.cn&#x2F;download&#x2F;nginxWebUI-1.6.6.jar</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="/2020/08/22/nginxweb%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C/QQ%E6%88%AA%E5%9B%BE20200716165252.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">启动程序：nohup java -jar -Xmx64m nginxWebUI-1.6.6.jar --server.port&#x3D;8080 --project.home&#x3D;&#x2F;home&#x2F;nginxWebUI&#x2F;    ----其实也可以放后台，如果不放后台就在复制一个终端进行操作</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="/2020/08/22/nginxweb%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C/QQ%E6%88%AA%E5%9B%BE20200716165443.png" alt></p>
+<h3 id="第四步：登录web页面http-ip-8080"><a href="#第四步：登录web页面http-ip-8080" class="headerlink" title="第四步：登录web页面http://+ip:8080"></a>第四步：登录web页面http://+ip:8080</h3><p><img src= "/img/loading.gif" data-src="/2020/08/22/nginxweb%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C/QQ%E6%88%AA%E5%9B%BE20200716152904.png" alt></p>
+<p><img src= "/img/loading.gif" data-src="/2020/08/22/nginxweb%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C/QQ%E6%88%AA%E5%9B%BE20200716153011.png" alt></p>
+<p><img src= "/img/loading.gif" data-src="/2020/08/22/nginxweb%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C/QQ%E6%88%AA%E5%9B%BE20200716165755.png" alt></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>python-面向对象编程</title>
+    <url>/2020/07/27/python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h2 id="面向对象编程介绍"><a href="#面向对象编程介绍" class="headerlink" title="面向对象编程介绍"></a>面向对象编程介绍</h2><h3 id="1、什么是对象和类OOP"><a href="#1、什么是对象和类OOP" class="headerlink" title="1、什么是对象和类OOP"></a>1、什么是对象和类OOP</h3><h4 id="1、从现实世界说起"><a href="#1、从现实世界说起" class="headerlink" title="1、从现实世界说起"></a>1、从现实世界说起</h4><h5 id="a、什么是对象"><a href="#a、什么是对象" class="headerlink" title="a、什么是对象"></a>a、什么是对象</h5><p>现实世界中，任何一个可见，可触及的物体都可以成为对象。</p>
+<p>比如说一辆汽车，一个人，都可以称为对象。</p>
+<p>那每个对象都是有属性和功能(或者说技能)的。<br>比如：<br>一辆汽车的属性有：</p>
+<blockquote>
+<ul>
+<li>重量</li>
+<li>具体的大小尺寸</li>
+<li>车身颜色</li>
+<li>价格</li>
+</ul>
+</blockquote>
+<p>一辆汽车的功能有:</p>
+<blockquote>
+<ul>
+<li>行驶</li>
+<li>载人</li>
+</ul>
+</blockquote>
+<h5 id="b、什么是类"><a href="#b、什么是类" class="headerlink" title="b、什么是类"></a>b、什么是类</h5><p>什么又是类呢？</p>
+<p>听人们常说，<strong>物以类聚，人以群分</strong>。</p>
+<p>从字里行间不难看出，类就是具体很多对象共有属性和共有功能的抽象体。</p>
+<p>这个抽象体，只是一个称谓，代表了具有相同属性和功能的某些对象。</p>
+<p>比如，具体的一辆汽车是一个对象，红色汽车就是这些具有红色车身的汽车的统称，红色汽车就是一个类了。</p>
+<p>相关的例子还有很多，比如 蔬菜是一个类，一个具体的茄子是属于蔬菜这个类的。</p>
+<blockquote>
+<p>现实世界中是先有对象后有类的。</p>
+</blockquote>
+<h4 id="2、回到计算机的世界"><a href="#2、回到计算机的世界" class="headerlink" title="2、回到计算机的世界"></a>2、回到计算机的世界</h4><p>在计算机的代码中要表示对象的属性就是使用变量名 和数据的绑定方式。<br>如 <code>color = &#39;red&#39;</code></p>
+<p>那要表示对象的功能(或者说技能)，在计算机的代码中是用函数实现的。这里的函数会被称为对象的 <code>方法</code></p>
+<p>计算机世界中是先有类，后有对象的。</p>
+<blockquote>
+<p>就像建造一栋楼房，需要先有图纸，之后按照这个图纸建造房子。<br>在计算机语言中，都是先创建一个类，给这个类定义一些属性和方法。之后通过这个类去实例化出一个又一个的对象。</p>
+</blockquote>
+<h4 id="3、什么是面向对象的编程"><a href="#3、什么是面向对象的编程" class="headerlink" title="3、什么是面向对象的编程"></a>3、什么是面向对象的编程</h4><p>先说编程，个人理解，编程就是利用编程语言书写代码逻辑，来描述一些事件，在这个过程中会涉及到具体对象，具体的条件约束，以及事件的结果。</p>
+<p>比如，现实世界中的一件事，学员学开车。</p>
+<p>这里涉及到的对象有</p>
+<ul>
+<li>车</li>
+<li>教练</li>
+<li>学员</li>
+<li>道路</li>
+</ul>
+<p>涉及到的技能有</p>
+<ul>
+<li>车 ：<ul>
+<li>行驶</li>
+</ul>
+</li>
+<li>教练 ：<ul>
+<li>开车</li>
+<li>教学员学开车</li>
+</ul>
+</li>
+<li>学员：<ul>
+<li>学习开车</li>
+</ul>
+</li>
+</ul>
+<p>当然所涉及到的东西，不止上面的这些，这里只是简单举例，表明原理即可。</p>
+<p>假如想表述学员学开车这件事。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">学员跟着教练学习开车技能，使用的是绿色吉普汽车，之后他学会了开车。</span><br></pre></td></tr></table></figure>
+
+<p>很简单是吧，但是，要在计算机中体现出来该怎么办呢？</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span> 先定义每个对象的类，在类里定义各自对象的属性和方法</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> 通过类把对象创建处来，这个创建的过程成为实例化，实例化的结果成为这个类的一个实例，当然这个实例也是一个对象，一切皆对象嘛。</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> 利用实例的方法互相作用得到事件单结果。</span><br></pre></td></tr></table></figure>
+
+<p>从最后一条不难发现， 每个对象的方法可以和其他对象进行交换作用的，从而也产生了新的结果。</p>
+<p>这种用对象的方法和属性去相互作用来编写代码的逻辑思维或者说是编写代码的风格就是面向对象的编程了。</p>
+<p>面向对象编程 Object Oriented Programming 简称 OOP，是一种程序设计思想。</p>
+<p>OOP把对象作为程序的基本单元，一个对象包含了数据和操作数据的函数。</p>
+<p>面向对象的程序设计是把计算机程序视为一组对象的集合，而且每个对象都可以接收其他对象发过来的消息，并处理这些消息，计算机程序的执行就是一系列消息在各个对象之间传递。这就是对象之间的交互。</p>
+<h3 id="2、Python-中一切皆对象"><a href="#2、Python-中一切皆对象" class="headerlink" title="2、Python 中一切皆对象"></a>2、Python 中一切皆对象</h3><p>你可能听说过，在 Python 中一切皆对象。</p>
+<p>在python中，一切皆对象。数字、字符串、元组、列表、字典、函数、方法、类、模块等等都是对象，包括你的代码。</p>
+<p>之前也提到过，Python 中的对象都有三个特性</p>
+<ul>
+<li><strong>id</strong><br>标识了一个对象的唯一性，使用内置函数 <code>id()</code> 可以获取到</li>
+<li><strong>类型</strong><br>表明了这个对象是属于哪个类， 使用内置函数 <code>type()</code> 可以获取到</li>
+<li><strong>值</strong><br>就是这个对象的本身，可以使用内置函数 <code>print()</code> 看到，这个看到的是 Python 让你看到的一个对象特有的表现方式而已。</li>
+</ul>
+<h3 id="3、创建类"><a href="#3、创建类" class="headerlink" title="3、创建类"></a>3、创建类</h3><p>使用关键字 <code>class</code> 创建一个类。</p>
+<p>类名其实和之前我们说的使用变量名的规则一样。</p>
+<p>但是这里有一点儿要注意，就是类名的第一个字母需要大写，这是规范。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">()</span>:</span></span><br><span class="line">    color = <span class="string">'red'</span>    <span class="comment"># 属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span>   <span class="comment"># 方法 </span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">self 指的是类实例对象本身(注意：不是类本身)。</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        self.name=name</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sayhello</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'My name is:'</span>,self.name)</span><br><span class="line">        </span><br><span class="line">p = Person(<span class="string">'newrain'</span>)</span><br><span class="line">p.sayhello()</span><br><span class="line">print(p)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span>  <span class="comment">#构造函数</span></span><br><span class="line">        self.name=name</span><br><span class="line">        self.age=age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sayhello</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'My name is:'</span>,self.name)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">age1</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'is age'</span>,self.age)</span><br><span class="line"></span><br><span class="line">p = Person(<span class="string">'newrain'</span>,<span class="string">'18'</span>)</span><br><span class="line">p.sayhello()</span><br><span class="line">p.age1()</span><br><span class="line">print(p)</span><br><span class="line"><span class="comment"># 注意变量名和函数名不要重复</span></span><br><span class="line"></span><br><span class="line">在上述例子中，self指向Person的实例p。 为什么不是指向类本身呢，如下例子：</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span>  <span class="comment">#构造函数</span></span><br><span class="line">        self.name=name</span><br><span class="line">        self.age=age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sayhello</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'My name is:'</span>,self.name)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">age1</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'is age'</span>,self.age)</span><br><span class="line"></span><br><span class="line">p = Person(<span class="string">'newrain'</span>,<span class="string">'18'</span>)  <span class="comment"># p的实例对象（p的self）</span></span><br><span class="line">p.sayhello()</span><br><span class="line">p.age1()</span><br><span class="line"></span><br><span class="line">p1 = Person(<span class="string">'test'</span>,<span class="string">'18'</span>)  <span class="comment">#p1的实例对象地址 （p1的self）</span></span><br><span class="line">p1.sayhello()</span><br><span class="line">p1.age1()</span><br><span class="line"></span><br><span class="line">print(p)</span><br><span class="line">print(p1)</span><br><span class="line"></span><br><span class="line">如果self指向类本身，那么当有多个实例对象时，self指向哪一个呢？</span><br><span class="line"></span><br><span class="line">总结</span><br><span class="line">self 在定义时需要定义，但是在调用时会自动传入。</span><br><span class="line">self 的名字并不是规定死的，但是最好还是按照约定是用self</span><br><span class="line">self 总是指调用时的类的实例。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#_*_ coding:utf-8 _*_</span></span><br><span class="line"><span class="comment"># 面向函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'name'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(name)</span>:</span></span><br><span class="line">    print(<span class="string">'i am %s'</span> % name)</span><br><span class="line"></span><br><span class="line">f1()</span><br><span class="line">f2(<span class="string">'lili'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 面向对象</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'name'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        print(<span class="string">'i am %s'</span> % name)</span><br><span class="line"></span><br><span class="line">obj = foo()</span><br><span class="line">obj.f1()</span><br><span class="line">obj.f2(<span class="string">'name'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、实例化对象"><a href="#4、实例化对象" class="headerlink" title="4、实例化对象"></a>4、实例化对象</h3><p>使用 <code>类名()</code> 可以实例化一个对象，你可以使用给这个实例化的对象起一个名字。（根据类实例化对象）</p>
+<p>定义类</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">()</span>:</span></span><br><span class="line">    color = <span class="string">'red'</span>  <span class="comment"># 属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">travel</span><span class="params">(self)</span>:</span>   <span class="comment"># 方法</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>实例化一个对象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Car()  <span class="comment"># 没有起名字</span></span><br><span class="line"></span><br><span class="line">mycar = Car()  <span class="comment"># 起了个名字 mycar</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>由类实例化出的对象成为这个类的一个实例</p>
+</blockquote>
+<h3 id="5、属性"><a href="#5、属性" class="headerlink" title="5、属性"></a>5、属性</h3><p>类的属性分为类的数据属性（key=value）和函数属性</p>
+<p>类的实例只有数据属性（key=value）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line">    city = <span class="string">"BeiJing"</span>             <span class="comment"># 类的数据属性</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span>  <span class="comment"># 类的函数属性</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>类属性可以被类和对象调用, 是所有对象共享的</p>
+<p>实例属性只能由对象调用</p>
+</blockquote>
+<h3 id="6、对象的初始化方法-init"><a href="#6、对象的初始化方法-init" class="headerlink" title="6、对象的初始化方法 __init__()"></a>6、对象的初始化方法 <code>__init__()</code></h3><p>对象的初始化方法是用于实例化对象时使用的。</p>
+<p>方法的名称是固定的 <code>__init__()</code></p>
+<p>当进行实例化的时候，此方法就会自动被调用。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 类的封装</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span>  <span class="comment"># 初始化方法</span></span><br><span class="line">        self.Name = name</span><br><span class="line">        self.Age = age</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; is running'</span>.format(self.Name))</span><br><span class="line">        </span><br><span class="line"><span class="comment">#_*_ coding:utf-8 _*_</span></span><br><span class="line"><span class="comment"># 面向函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果参数化也可以解决</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(hostname,port ,user, pwd ,db)</span>:</span></span><br><span class="line">    <span class="comment">#连接数据库，hostname，port ,user, pwd ,db,字符集，</span></span><br><span class="line">    <span class="comment">#打开数据连接</span></span><br><span class="line">    <span class="comment">#操作数据库链接</span></span><br><span class="line">    <span class="comment">#关闭</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 面向对象</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,hostname,port ,user, pwd ,db)</span>:</span> <span class="comment">#构造方法</span></span><br><span class="line">        self.hostname = hostname</span><br><span class="line">        self.port = port</span><br><span class="line">        <span class="comment">#...将所有的参数构造成方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetch</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="comment"># 连接 self.hostname,self.port  (直接调用构造函数的方法)</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">obj = foo(hostname,port,user,pwd,db)</span><br><span class="line">obj.create()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 类的执行流程（封装）</span></span><br><span class="line"><span class="comment">#1，解释器从上往下执行，将类读到内存里</span></span><br><span class="line"><span class="comment">#2，获取类的各种方法，没有创建对象</span></span><br><span class="line"><span class="comment">#3，创建一个foo对象obj，类对象指针（python一切都是对象，对象就有创建他的类）</span></span><br><span class="line"><span class="comment">#4，把值传给了构造函数，保存在了构造函数里</span></span><br><span class="line"><span class="comment">#5，通过类对象指针指向foo类，调用里面的方法（简单理解还是变量，把类和对象关联起来）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#类里面要公用的字段统一封装到构造函数里，统一调用</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7、方法"><a href="#7、方法" class="headerlink" title="7、方法"></a>7、方法</h3><p>凡是在类里定义的函数都都称为方法</p>
+<p>方法本质上是函数，也是类的函数属性</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span>  <span class="comment"># 方法</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span><span class="params">(self)</span>:</span>  <span class="comment"># 方法 </span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="comment">#_*_ coding:utf-8 _*_</span></span><br><span class="line"><span class="comment">#游戏模式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1、创建三个游戏人物，分别是：</span></span><br><span class="line"><span class="comment">#莎莎，女，18，初始战斗力1000</span></span><br><span class="line"><span class="comment">#浪浪，男，20，初始战斗力1800</span></span><br><span class="line"><span class="comment">#小爱，女，19，初始战斗力2500</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># class Person:</span></span><br><span class="line"><span class="comment">#     def __init__(self, name, gen, age, fig):  # 构造函数</span></span><br><span class="line"><span class="comment">#         self.name = name</span></span><br><span class="line"><span class="comment">#         self.gender = gen</span></span><br><span class="line"><span class="comment">#         self.age = age</span></span><br><span class="line"><span class="comment">#         self.fight =fig</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># #创建角色</span></span><br><span class="line"><span class="comment"># obj1 = Person('莎莎','女',18,1000)</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment"># 内存里根据类，创建了3个对象，3个对象都指向同一个类</span></span><br><span class="line"><span class="comment"># 给游戏添加功能（聊天，打架）怎么添加</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, na, gen, age, fig)</span>:</span></span><br><span class="line">        self.name = na</span><br><span class="line">        self.gender = gen</span><br><span class="line">        self.age = age</span><br><span class="line">        self.fight = fig</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">grassland</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""注释：战斗，消耗200战斗力"""</span></span><br><span class="line">        self.fight = self.fight - <span class="number">200</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">practice</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""注释：自我修炼，增长100战斗力"""</span></span><br><span class="line">        self.fight = self.fight + <span class="number">200</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">war</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""注释：多人游戏，消耗500战斗力"""</span></span><br><span class="line">        self.fight = self.fight - <span class="number">500</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""注释：当前对象的详细情况"""</span></span><br><span class="line">        temp = <span class="string">"姓名:%s ; 性别:%s ; 年龄:%s ; 战斗力:%s"</span> % (self.name, self.gender, self.age, self.fight)</span><br><span class="line">        print(temp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建游戏角色</span></span><br><span class="line">obj1 = Person(<span class="string">'莎莎'</span>,<span class="string">'女'</span>,<span class="number">18</span>,<span class="number">1000</span>)</span><br><span class="line">obj1.grassland()</span><br><span class="line">obj1.practice()</span><br><span class="line">obj1.detail()</span><br><span class="line"></span><br><span class="line">obj1 = Person(<span class="string">'浪浪'</span>,<span class="string">'男'</span>,<span class="number">18</span>,<span class="number">2000</span>)</span><br><span class="line">obj1.grassland()</span><br><span class="line">obj1.detail()</span><br><span class="line"></span><br><span class="line">obj1 = Person(<span class="string">'小爱'</span>,<span class="string">'女'</span>,<span class="number">18</span>,<span class="number">10000</span>)</span><br><span class="line">obj1.grassland()</span><br><span class="line">obj1.detail()</span><br><span class="line"></span><br><span class="line"><span class="comment">#1, 通过obj2找到类，</span></span><br><span class="line"><span class="comment">#2，再通过类执行类里面的方法</span></span><br><span class="line"><span class="comment">#3，执行对应的方法，然后就是对自身属性的改变（减少增加）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 面向对象模板的实现过程（函数式编程做不到）</span></span><br><span class="line"><span class="comment"># 通过面向对象的类先创建模板，通过模板创建多个角色，</span></span><br><span class="line"><span class="comment"># 然后多个角色再来执行模板里面的方法</span></span><br><span class="line"><span class="comment"># 将内存里对象的属性进行改变</span></span><br></pre></td></tr></table></figure>
+
+<p>方法可以被这个类的每个实例对象调用，当一个实例对象调用此方法的时候， <code>self</code> 会不自动传值，传入的值就是目前的 实例对象。</p>
+<h3 id="8、魔法函数-str-实现定义类的实例的表现形式"><a href="#8、魔法函数-str-实现定义类的实例的表现形式" class="headerlink" title="8、魔法函数__str__() 实现定义类的实例的表现形式"></a>8、魔法函数<code>__str__()</code> 实现定义类的实例的表现形式</h3><p>当我们定义一个类的时候，默认打印出它实例时是不易读的，某些情况下我需要让这个类的实例的表现形式更易读。就可以使用 <code>__str__()</code> 这个方法。</p>
+<p><strong>使用前</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        </span><br><span class="line">p = Person(<span class="string">'shark'</span>)</span><br><span class="line"></span><br><span class="line">print(p)</span><br><span class="line"><span class="comment"># &lt;__main__.Person object at 0x10ac290f0&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用后</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#123;&#125;"</span>.format(self.name)</span><br><span class="line">p = Person(<span class="string">'shark'</span>)</span><br><span class="line"></span><br><span class="line">print(p)</span><br><span class="line"><span class="comment"># shark</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其实，<code>__str__()</code> 方法本身在我们定义类的时候就已经存在了，是 Python 内置的。我们在这里只是有把这个方法重写了。<br>这个方法在使用的时候有<strong>返回值</strong>，且返回值必须是<strong>字符串</strong>类型</p>
+</blockquote>
+<h3 id="9、继承"><a href="#9、继承" class="headerlink" title="9、继承"></a>9、继承</h3><p>在现实世界中，类的继承，表现为我们可以把一个类的共同的属性和方法再进行一个高度的抽象，成为另一个类，这个被抽象出来的类成为父类，刚才被抽象的类成为子类。</p>
+<p>但在计算机中，需要先定义一个父类，之后再定义其他的类（子类）并且继承父类。</p>
+<p>这时子类即使什么也不用做，就会具备父类的所以属性(数据属性和函数属性）。这在计算机语言中就被称为<code>继承</code>。 继承并不是 Python 语言特有的，而是所有面向对象语言都有的特性。</p>
+<p>面向对象语言的特性还有另外两个: <code>多态</code>, <code>封装</code>。</p>
+<p><code>继承</code>、 <code>多态</code> 和 <code>封装</code> 被称为面向对象语言都三大特性。</p>
+<p>这里我们先只对 <code>继承</code> 来讲解。</p>
+<h4 id="1、单纯的继承"><a href="#1、单纯的继承" class="headerlink" title="1、单纯的继承"></a>1、单纯的继承</h4><p>(菱形继承)</p>
+<p>下面我是定义了两个类 <code>Person</code> 和 <code>Teacher</code>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Teacher 继承了 Person</span><br></pre></td></tr></table></figure>
+
+<p><code>Teacher</code> 被称为子类， <code>Person</code> 就是父类</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f'<span class="subst">&#123;self.name&#125;</span> is running'</span>)</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">t = Teacher(<span class="string">'shark'</span>, <span class="string">'18'</span>)</span><br><span class="line">t.run()</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、添加新方法"><a href="#2、添加新方法" class="headerlink" title="2、添加新方法"></a>2、添加新方法</h4><p>在继承的时候，子类可以定义只属于自己的方法。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f'<span class="subst">&#123;self.name&#125;</span> is running'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;self.name&#125;</span> is talking..."</span>)</span><br><span class="line"></span><br><span class="line">t = Teacher(<span class="string">'shark'</span>, <span class="string">'18'</span>)</span><br><span class="line">t.talk()</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、覆盖方法（方法重写）"><a href="#3、覆盖方法（方法重写）" class="headerlink" title="3、覆盖方法（方法重写）"></a>3、覆盖方法（方法重写）</h4><p>在继承中，子类还可以把父类的方法重新实现一下。</p>
+<p>就是定义一个和父类方法同名的方法，但是方法中代码不一样。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f'<span class="subst">&#123;self.name&#125;</span> is running'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;self.name&#125;</span> running on the road"</span>)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">talk</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f"<span class="subst">&#123;self.name&#125;</span> is talking..."</span>)</span><br><span class="line"></span><br><span class="line">t = Teacher(<span class="string">'shark'</span>, <span class="string">'18'</span>)</span><br><span class="line">t.run()</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、添加属性"><a href="#4、添加属性" class="headerlink" title="4、添加属性"></a>4、添加属性</h4><p>在继承时，子类还可以为自己的实例对象添加实例的属性。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">3.6</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">f'<span class="subst">&#123;self.name&#125;</span> is running'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name, age, lev)</span>:</span></span><br><span class="line">        super().__init__(name, age)</span><br><span class="line">        self.lev = lev</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">t = Teacher(<span class="string">'shark'</span>, <span class="number">18</span>, <span class="number">5</span>)</span><br><span class="line">print(t.lev)</span><br><span class="line"><span class="number">3.7</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'&#123;&#125; is running'</span>.format(self.name))</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(Person)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age,lev)</span>:</span></span><br><span class="line">        super(Teacher, self).__init__(name,age)</span><br><span class="line">        self.lev = lev</span><br><span class="line">t = Teacher(<span class="string">'morning'</span>,<span class="string">'18'</span>,<span class="number">5</span>)</span><br><span class="line">print(t.lev)</span><br></pre></td></tr></table></figure>
+
+<h3 id="10、对象之间的互相作用"><a href="#10、对象之间的互相作用" class="headerlink" title="10、对象之间的互相作用"></a>10、对象之间的互相作用</h3><p>王者农药</p>
+<p>在一个类中的方法中，可以通过给其传递相应的参数，从而对其他类的的实例对象进行操作。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#_*_ coding:utf-8 _*_</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Master</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age,init_self=<span class="number">516</span>, mana=<span class="number">230</span>, attack_num=<span class="number">100</span>)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.init_self = init_self</span><br><span class="line">        self.init_mana = mana</span><br><span class="line">        self.attack_num = attack_num</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">attack</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        self.init_mana = self.init_mana - <span class="number">20</span>  <span class="comment"># 210</span></span><br><span class="line">        <span class="comment">#print(self.init_mana)</span></span><br><span class="line">        obj_self_num = obj.init_self - self.attack_num  <span class="comment"># 516-90=426</span></span><br><span class="line">        obj.init_self = obj_self_num     <span class="comment">#426</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#123;&#125;"</span>.format(self.init_mana)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Soldier</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age,init_self=<span class="number">960</span>, attack_num=<span class="number">90</span>)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.init_self = init_self</span><br><span class="line">        self.attack_num = attack_num</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">attack</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        obj_self_num = obj.init_self - self.attack_num   <span class="comment">#960-100=860</span></span><br><span class="line">        obj.init_self = obj_self_num   <span class="comment">#860</span></span><br><span class="line">m = Master(<span class="string">'貂蝉'</span>, <span class="number">18</span>)</span><br><span class="line">print(m)</span><br><span class="line"></span><br><span class="line">s = Soldier(<span class="string">"阿轲"</span>, <span class="number">30</span>)</span><br><span class="line"><span class="comment">#s.attack()</span></span><br><span class="line"><span class="comment"># 貂蝉攻击 阿轲， 把被攻击的对象 s 作为实参传给 m 对象的方法 `attack`</span></span><br><span class="line">m.attack(s)</span><br><span class="line">s.attack(m)</span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">print(s.init_self)</span><br><span class="line">print(m.init_self)</span><br><span class="line">print(m.init_mana)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tomcat隐藏404页面中的版本号</title>
+    <url>/2020/08/22/tomcat%E9%9A%90%E8%97%8F404%E9%A1%B5%E9%9D%A2%E4%B8%AD%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;data&#x2F;application&#x2F;tomcat&#x2F;lib   &#x2F;&#x2F;进入tomcat安装路径下的lib</span><br><span class="line"></span><br><span class="line">mkdir -p org&#x2F;apache&#x2F;catalina&#x2F;util  &#x2F;&#x2F;创建文件夹</span><br><span class="line"></span><br><span class="line">cd org&#x2F;apache&#x2F;catalina&#x2F;util  </span><br><span class="line"></span><br><span class="line">vim ServerInfo.properties  &#x2F;&#x2F;创建自定义版本文件</span><br><span class="line"></span><br><span class="line">server.info&#x3D;Apache Tomcat Version X</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cd &#x2F;data&#x2F;application&#x2F;tomcat&#x2F;bin</span><br><span class="line"></span><br><span class="line">.&#x2F;catalina.sh stop</span><br><span class="line"></span><br><span class="line">.&#x2F;catalina.sh start</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200618101131473.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>yum安装zabbix4.4版本，并配置proxy代理</title>
+    <url>/2020/08/22/yum%E5%AE%89%E8%A3%85zabbix4.4%E7%89%88%E6%9C%AC%EF%BC%8C%E5%B9%B6%E9%85%8D%E7%BD%AEproxy%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h2 id="一、-安装环境及版本信息"><a href="#一、-安装环境及版本信息" class="headerlink" title="一、 安装环境及版本信息"></a>一、 安装环境及版本信息</h2><p>操作系统:centos7.4<br>zabbix版本: 4.4<br>mariadb 5.5</p>
+<p>共三台<br>192.168.245.132 zabbix-server<br>192.168.245.133 zabbix-proxy<br>192.168.245.134 zabbix-node1</p>
+<h2 id="二、zabbix-server安装（192-168-245-132）"><a href="#二、zabbix-server安装（192-168-245-132）" class="headerlink" title="二、zabbix server安装（192.168.245.132）"></a>二、zabbix server安装（192.168.245.132）</h2><p>安装yum源</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpm -Uvh https:&#x2F;&#x2F;repo.zabbix.com&#x2F;zabbix&#x2F;4.4&#x2F;rhel&#x2F;7&#x2F;x86_64&#x2F;zabbix-release-4.4-1.el7.noarch.rpm</span><br><span class="line"></span><br><span class="line">yum -y install epel-release  </span><br><span class="line"></span><br><span class="line">yum install zabbix-server-mysql zabbix-web-mysql zabbix-nginx-conf  -y</span><br></pre></td></tr></table></figure>
+
+
+<p>注意：如果出现yum安装不了，是由于yum源地址为国外的，可以修改/etc/yum.repos.d/zabbix.repo</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[zabbix]</span><br><span class="line">name&#x3D;Zabbix Official Repository - $basearch</span><br><span class="line">#baseurl&#x3D;http:&#x2F;&#x2F;repo.zabbix.com&#x2F;zabbix&#x2F;4.4&#x2F;rhel&#x2F;7&#x2F;$basearch&#x2F;</span><br><span class="line">baseurl&#x3D;https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;zabbix&#x2F;zabbix&#x2F;4.4&#x2F;rhel&#x2F;7&#x2F;$basearch</span><br><span class="line">enabled&#x3D;1</span><br><span class="line">gpgcheck&#x3D;0</span><br><span class="line">gpgkey&#x3D;file:&#x2F;&#x2F;&#x2F;etc&#x2F;pki&#x2F;rpm-gpg&#x2F;RPM-GPG-KEY-ZABBIX-A14FE591</span><br><span class="line">skip_if_unavailable &#x3D; 1</span><br><span class="line">keepcache &#x3D; 0</span><br><span class="line"></span><br><span class="line">[zabbix-debuginfo]</span><br><span class="line">name&#x3D;Zabbix Official Repository debuginfo - $basearch</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;repo.zabbix.com&#x2F;zabbix&#x2F;4.4&#x2F;rhel&#x2F;7&#x2F;$basearch&#x2F;debuginfo&#x2F;</span><br><span class="line">enabled&#x3D;0</span><br><span class="line">gpgkey&#x3D;file:&#x2F;&#x2F;&#x2F;etc&#x2F;pki&#x2F;rpm-gpg&#x2F;RPM-GPG-KEY-ZABBIX-A14FE591</span><br><span class="line">gpgcheck&#x3D;1</span><br></pre></td></tr></table></figure>
+<p>mariadb安装（192.168.245.132）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y install mariadb mariadb-server</span><br><span class="line">systemctl start mariadb</span><br><span class="line">密码可改可不改，修改密码命令如下：</span><br><span class="line">mysqladmin -uroot  password  ‘密码’</span><br></pre></td></tr></table></figure>
+
+<p> 创建zabbix库：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">create database zabbix character set utf8 collate utf8_bin;</span><br></pre></td></tr></table></figure>
+
+<p>授权：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">grant all privileges on zabbix.* to zabbix@&#39;%&#39; identified by &#39;zabbix&#39;;</span><br><span class="line">完成后先用本机使用zabbix登录测试一下，如果拒绝连接，再授权一下</span><br><span class="line">grant all privileges on zabbix.* to zabbix@&#39;localhost‘ identified by &#39;zabbix&#39;;</span><br></pre></td></tr></table></figure>
+<p> 刷新权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p>导入数据到zabbix，密码为刚才创建zabbix用户的密码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">zcat &#x2F;usr&#x2F;share&#x2F;doc&#x2F;zabbix-server-mysql*&#x2F;create.sql.gz |  mysql -uzabbix-p  zabbix</span><br></pre></td></tr></table></figure>
+<p>配置zabbix_server</p>
+<p>1、修改配置<br>#vim /etc/zabbix/zabbix_server.conf</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DBHost&#x3D;192.168.245.132</span><br><span class="line">DBName&#x3D;zabbix</span><br><span class="line">DBUser&#x3D;zabbix</span><br><span class="line">DBPassword&#x3D;zabbix</span><br></pre></td></tr></table></figure>
+
+
+<p>3、修改时区：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;httpd&#x2F;conf.d&#x2F;zabbix.conf</span><br></pre></td></tr></table></figure>
+
+<p>打开注释并修改配置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">php_value date.timezone Asia&#x2F;Shanghai</span><br></pre></td></tr></table></figure>
+
+<p>启动apache</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start httpd.service</span><br></pre></td></tr></table></figure>
+
+<p>启动zabbix server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start zabbix-server.service</span><br></pre></td></tr></table></figure>
+
+<p>访问： http:ip/zabbix  </p>
+<h2 id="三、zabbix-proxy-192-168-245-133-部署"><a href="#三、zabbix-proxy-192-168-245-133-部署" class="headerlink" title="三、zabbix proxy(192.168.245.133) 部署:"></a>三、zabbix proxy(192.168.245.133) 部署:</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpm -Uvh https:&#x2F;&#x2F;repo.zabbix.com&#x2F;zabbix&#x2F;4.4&#x2F;rhel&#x2F;7&#x2F;x86_64&#x2F;zabbix-release-4.4-1.el7.noarch.rpm</span><br><span class="line"></span><br><span class="line">curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;epel.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;epel-7.repo</span><br><span class="line"></span><br><span class="line">yum clean all</span><br><span class="line"></span><br><span class="line">yum makecache</span><br><span class="line"></span><br><span class="line">yum install zabbix-proxy-mysql.x86_64 zabbix-agent.x86_64 zabbix-sender</span><br></pre></td></tr></table></figure>
+<p>安装mariadb，与132主机一致</p>
+<p> 创建zabbix库：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">create database zabbix_proxy character set utf8 collate utf8_bin;</span><br></pre></td></tr></table></figure>
+
+<p> 授权：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">grant all privileges on zabbix_proxy.* to zabbix@&#39;%&#39; identified by &#39;zabbix&#39;;</span><br><span class="line">grant all privileges on zabbix_proxy.* to zabbix@&#39;localhost&#39; identified by &#39;zabbix&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>刷新权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p>#部署mariadb步骤和在zabbix server中部署一样，区别在导入数据时候不一样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">zcat &#x2F;usr&#x2F;share&#x2F;doc&#x2F;zabbix-proxy-mysql*&#x2F;schema.sql.gz | mysql -uroot -p zabbix_proxy</span><br></pre></td></tr></table></figure>
+
+<p>#修改zabbix-proxy配置：vim /etc/zabbix/zabbix_proxy.conf</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Server&#x3D;192.168.245.132            # 真正的服务端(zabbix server)</span><br><span class="line">Hostname&#x3D;zabbix-proxy             # proxy的hostname，在web端网页配置时需要用到</span><br><span class="line">DBHost&#x3D;192.168.245.133            # 数据库，使用本地，也可以使用ip，我喜欢使用localhost，因为我授权就是本地，也因为配置ip失败踩过坑</span><br><span class="line">DBName&#x3D;zabbix_proxy               # 数据库名称，创建zabbix-proxy的mysql的数据库名称</span><br><span class="line">DBUser&#x3D;zabbix                     # 用户</span><br><span class="line">DBPassword&#x3D;zabbix                 # 密码</span><br><span class="line">ConfigFrequency&#x3D;30            # 这个好像是同步配置文件的时间</span><br><span class="line">DataSenderFrequency&#x3D;1             # 这个是proxy端向server端发送数据的时间，单位是秒，几乎等于实时同步</span><br></pre></td></tr></table></figure>
+
+<p>启动zabbix-proxy </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start mariadb</span><br><span class="line">systemctl start zabbix-proxy.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、zabbix客户端安装（192-168-245-134）"><a href="#四、zabbix客户端安装（192-168-245-134）" class="headerlink" title="四、zabbix客户端安装（192.168.245.134）"></a>四、zabbix客户端安装（192.168.245.134）</h2><p>#添加yum源</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rpm -Uvh https:&#x2F;&#x2F;repo.zabbix.com&#x2F;zabbix&#x2F;4.4&#x2F;rhel&#x2F;7&#x2F;x86_64&#x2F;zabbix-release-4.4-1.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>#安装<br>安装失败或者很慢的话修改yum源，参考步骤二</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum install zabbix-agent</span><br></pre></td></tr></table></figure>
+<p>修改配置(/etc/zabbix/zabbix_agentd.conf)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Server&#x3D;[zabbix server&#x2F;zabbix proxy ip]</span><br><span class="line">ServerActive&#x3D;[zabbix server&#x2F;zabbix proxy ip]</span><br><span class="line">Hostname&#x3D;[ Hostname of client system ]</span><br><span class="line"> 例：</span><br><span class="line">Server&#x3D;192.168.245.133</span><br><span class="line">ServerActive&#x3D;192.168.245.133</span><br><span class="line">Hostname&#x3D;zabbix-node1</span><br></pre></td></tr></table></figure>
+
+<p>启动</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start zabbix-agent</span><br></pre></td></tr></table></figure>
+
+
+<p>zabbix server与zabbix proxy的配置的同步是有延时的，如果需要立即同步可以手动执行命令:<br>zabbix_proxy -c /etc/zabbix/zabbix_proxy.conf  -R config_cache_reload</p>
+<p>在web端配置代理<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200630102944513.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>直到代理出现<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200630103016460.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>配置主机，使用代理服务器<br>’<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200630103142310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>创建监控项</p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200630103224444.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>完成</p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200630103249227.png" alt="在这里插入图片描述"><br>有时候可用性出现的慢，等待一会，或者重启服务，还是不出现的话查看日志，查看是否配置出现问题。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>yum安装的keepalived 使用systemctl无法停掉其后台进程</title>
+    <url>/2020/08/22/yum%E5%AE%89%E8%A3%85%E7%9A%84keepalived%20%E4%BD%BF%E7%94%A8systemctl%E6%97%A0%E6%B3%95%E5%81%9C%E6%8E%89%E5%85%B6%E5%90%8E%E5%8F%B0%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>我使用的是阿里源，yum安装的keepalived</p>
+<p>问题：<br>        起初是测试vip漂移时候发现，主备节点都开启keepalived的状况下，一切正常，master的vip也可以访问，当停掉master的keepalived时，发现vip无法漂移到slave，检查进程时，发现keepalived的进程依然还在。</p>
+<p>解决方法：</p>
+<p> 1、这时候想到应该是systemd启动服务脚本的问题，查看keepalived的启动service文件<br>路径：vim   /usr/lib/systemd/system/keepalived.service<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200420131752257.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>2、注释掉一行<br>KillMode=process的大致意思是当停止keepalived的时候只会停掉主进程，而主进程产生的子进程是不会被干掉的。而killmode的默认值是control-group，意思时所有进程都会被干掉，我这里选择把这项注释掉。</p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200420132007985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="技术分享图片"><br>3、重载配置</p>
+<pre><code>systemctl daemon-reload</code></pre><p>之后在使用systemctl stop keepalived就不会出现进程还在的情况了</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>使用PXE+kickstart无人值守安装服务</title>
+    <url>/2020/08/22/%E4%BD%BF%E7%94%A8PXE+kickstart%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h1 id="使用PXE-kickstart无人值守安装服务"><a href="#使用PXE-kickstart无人值守安装服务" class="headerlink" title="使用PXE+kickstart无人值守安装服务"></a><strong>使用PXE+kickstart无人值守安装服务</strong></h1><p>​        使用光盘镜像来安装Linux系统的方法，该方法适用于只安装少量Linux系统的情况。如果生产环境中有数百台服务器都需要安装系统，这种方式就不合时宜了。这时，我们就需要使用PXE + TFTP +HTTP + DHCP + Kickstart服务搭建出一个无人值守安装系统。这种无人值守安装系统可以自动地为数十台服务器安装系统，这一方面将运维人员从重复性的工作中解救出来，也大大提升了系统安装的效率。</p>
+<p>​       PXE（Preboot eXecute Environment，预启动执行环境）是由Intel公司开发的技术，可以让计算机通过网络来启动操作系统（前提是计算机上安装的网卡支持PXE技术），主要用于在无人值守安装系统中引导客户端主机安装Linux操作系统。Kickstart是一种无人值守的安装方式，其工作原理是预先把原本需要运维人员手工填写的参数保存成一个ks.cfg文件，当安装过程中需要填写参数时则自动匹配Kickstart生成的文件。所以只要Kickstart文件包含了安装过程中需要人工填写的所有参数，那么从理论上来讲完全不需要运维人员的干预。</p>
+<p><strong>所需配置服务及安装包</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">DHCP        <span class="comment">#获取IP地址,并提供pxelinux.0文件位置</span></span><br><span class="line">TFTP            <span class="comment">#支持PXE下载内核引导文件</span></span><br><span class="line">HTTP        <span class="comment">#下载ks.cfg以及系统镜像文件</span></span><br><span class="line">Syslinux        <span class="comment">#提供引导文件</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld #关闭防火墙selinux</span><br><span class="line"></span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置DHCP服务</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install dhcp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/dhcp/dhcpd.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">subnet 192.168.91.0 netmask 255.255.255.0 &#123;</span><br><span class="line">range 192.168.91.100 192.168.91.199;</span><br><span class="line">option subnet-mask 255.255.255.0;</span><br><span class="line">default-lease-time 21600;</span><br><span class="line">max-lease-time 43200;</span><br><span class="line">next-server 192.168.91.140;</span><br><span class="line">filename "/pxelinux.0";</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">##启动dhcp服务</span></span><br><span class="line">systemctl start dhcpd</span><br><span class="line"><span class="comment">##开机自启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> dhcpd</span><br><span class="line"><span class="comment">##查看有无端口</span></span><br><span class="line">netstat -lntup|grep dhcpd</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置TFTP服务</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum install tftp-server</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;xinetd.d&#x2F;tftp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service tftp</span><br><span class="line">&#123;</span><br><span class="line">        socket_type             = dgram</span><br><span class="line">        protocol                = udp</span><br><span class="line">        wait                    = yes</span><br><span class="line">        user                    = root</span><br><span class="line">        server                  = /usr/sbin/in.tftpd</span><br><span class="line">        server_args             = -s /var/lib/tftpboot</span><br><span class="line">        disable                 = no   #此处由yes 改为no</span><br><span class="line">        per_source              = 11</span><br><span class="line">        cps                     = 100 2</span><br><span class="line">        flags                   = IPv4</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl restart tftp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl enable tftp</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置HTTP服务</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start httpd</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> httpd</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">##创建挂载点</span></span><br><span class="line">mkdir –p /media/cdrom</span><br><span class="line"><span class="meta">##挂载CentOS7光盘</span></span><br><span class="line">mount /dev/cdrom /media/cdrom</span><br><span class="line">mkdir -p /<span class="keyword">var</span>/www/html/centos/<span class="number">7</span>/x86_64</span><br><span class="line"><span class="meta">##绑定挂载到http默认目录下</span></span><br><span class="line">mount --bind /media/cdrom /<span class="keyword">var</span>/www/html/centos/<span class="number">7</span>/x86_64</span><br><span class="line"></span><br><span class="line">使用浏览器访问，进行测试。</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置SYSLinux服务</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum install syslinux</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;var&#x2F;lib&#x2F;tftpboot</span><br><span class="line">cp &#x2F;usr&#x2F;share&#x2F;syslinux&#x2F;pxelinux.0 .</span><br><span class="line">cp &#x2F;media&#x2F;cdrom&#x2F;images&#x2F;pxeboot&#x2F;&#123;vmlinuz,initrd.img&#125; .</span><br><span class="line">cp &#x2F;media&#x2F;cdrom&#x2F;isolinux&#x2F;&#123;vesamenu.c32,boot.msg&#125; .</span><br><span class="line">mkdir pxelinux.cfg</span><br><span class="line">cp &#x2F;media&#x2F;cdrom&#x2F;isolinux&#x2F;isolinux.cfg pxelinux.cfg&#x2F;default</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim pxelinux.cfg/default #修改内容与行数如下</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1  default linux</span><br><span class="line">64 append initrd=initrd.img inst.stage2=ftp://192.168.10.10 ks=ftp://192.168.10.10/pub/ks.cfg quiet</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">##开机自启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> tftp</span><br><span class="line"><span class="comment">##启动tftp</span></span><br><span class="line">systemctl start tftp</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置kickstart的 ks.cfg文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &#x2F;var&#x2F;www&#x2F;html&#x2F;ks</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;var&#x2F;www&#x2F;html&#x2F;ks&#x2F;ks.cfg</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">Kickstart Configurator <span class="keyword">for</span> CentOS 7 by Mine</span></span><br><span class="line"><span class="meta">#</span><span class="bash">version=DEVEL</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> System authorization information</span></span><br><span class="line">auth --enableshadow --passalgo=sha512</span><br><span class="line"><span class="meta">#</span><span class="bash"> Use CDROM installation media</span></span><br><span class="line"><span class="meta">#</span><span class="bash">cdrom</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Install OS instead of upgrade</span></span><br><span class="line">install</span><br><span class="line"><span class="meta">#</span><span class="bash"> Use network installation</span></span><br><span class="line">url --url=http://10.0.0.61/centos/7/x86_64</span><br><span class="line"><span class="meta">#</span><span class="bash"> Use graphical install</span></span><br><span class="line">graphical</span><br><span class="line"><span class="meta">#</span><span class="bash"> Run the Setup Agent on first boot</span></span><br><span class="line">firstboot --enable</span><br><span class="line"><span class="meta">#</span><span class="bash">ignoredisk --only-use=sda</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Keyboard layouts</span></span><br><span class="line">keyboard --vckeymap=cn --xlayouts='cn'</span><br><span class="line"><span class="meta">#</span><span class="bash"> System language</span></span><br><span class="line">lang zh_CN.UTF-8</span><br><span class="line"><span class="meta">#</span><span class="bash"> Network information</span></span><br><span class="line"><span class="meta">#</span><span class="bash">network  --bootproto=static --device=eth0 --gateway=10.0.0.254 --ip=10.0.0.100 --nameserver=223.5.5.5 --netmask=255.255.255.0 --activate </span></span><br><span class="line"><span class="meta">#</span><span class="bash">network  --bootproto=static --device=eth1 --ip=172.16.1.100 --netmask=255.255.255.0 --activate</span></span><br><span class="line">network  --bootproto=dhcp --device=eth0 --onboot=off --ipv6=auto</span><br><span class="line">network  --hostname=hostname</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Root password</span></span><br><span class="line">rootpw --iscrypted $1$$GmbL3iXOMZR57QuGDLv.L1</span><br><span class="line"><span class="meta">#</span><span class="bash">perl -e <span class="string">'print crypt("123",q($1$)),"\n"'</span> 使用的密码为123 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> System timezone</span></span><br><span class="line">timezone Asia/Shanghai --isUtc</span><br><span class="line"><span class="meta">#</span><span class="bash"> System bootloader configuration</span></span><br><span class="line">bootloader --append=" crashkernel=auto" --location=mbr --boot-drive=sda</span><br><span class="line">autopart --type=lvm</span><br><span class="line"><span class="meta">#</span><span class="bash"> Partition clearing information</span></span><br><span class="line">clearpart --none --initlabel</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">packages</span></span><br><span class="line">@^minimal</span><br><span class="line">@core</span><br><span class="line">kexec-tools</span><br><span class="line">vim</span><br><span class="line">wget</span><br><span class="line">httpd</span><br><span class="line"><span class="meta">%</span><span class="bash">end</span></span><br><span class="line"><span class="meta">%</span><span class="bash">addon com_redhat_kdump --<span class="built_in">enable</span> --reserve-mb=<span class="string">'auto'</span></span></span><br><span class="line"><span class="meta">%</span><span class="bash">end</span></span><br><span class="line">selinux --disabled</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">失败原因：</span><br><span class="line"></span><br><span class="line">IP地址、路径错误</span><br><span class="line"></span><br><span class="line">虚拟机内存不足</span><br><span class="line"></span><br><span class="line">服务未启动</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>在centos中zabbix实现163邮箱报警</title>
+    <url>/2020/08/22/%E5%9C%A8centos%E4%B8%ADzabbix%E5%AE%9E%E7%8E%B0163%E9%82%AE%E7%AE%B1%E6%8A%A5%E8%AD%A6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>1、首先登陆163邮箱，开启smtp服务，获取授权码并保存<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430084916503.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2、在zabbix中管理报警媒介<img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430085041221.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>两种都可以<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200630100157701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3、用户绑定报警媒介<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430085206243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>用户可以自己创建或者使用系统默认的<br>4、创建主机，监控项，触发器<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430085343263.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5、创建报警动作<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430085659792.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430085636786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430085519867.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>6、关闭tomcat，查看是否有邮箱报警<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430085611289.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>使用UnblockNeteaseMusic播放网易云音乐客户端无版权歌曲</title>
+    <url>/2020/08/22/%E4%BD%BF%E7%94%A8UnblockNeteaseMusic%E6%92%AD%E6%94%BE%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%97%A0%E7%89%88%E6%9D%83%E6%AD%8C%E6%9B%B2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h1 id="使用UnblockNeteaseMusic播放网易云音乐客户端无版权歌曲"><a href="#使用UnblockNeteaseMusic播放网易云音乐客户端无版权歌曲" class="headerlink" title="使用UnblockNeteaseMusic播放网易云音乐客户端无版权歌曲"></a>使用UnblockNeteaseMusic播放网易云音乐客户端无版权歌曲</h1><h3 id="linux下yum安装node和npm"><a href="#linux下yum安装node和npm" class="headerlink" title="linux下yum安装node和npm"></a>linux下yum安装node和npm</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum install epel-release -y</span><br><span class="line">yum install nodejs -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行UnblockNeteaseMusic"><a href="#运行UnblockNeteaseMusic" class="headerlink" title="运行UnblockNeteaseMusic"></a>运行UnblockNeteaseMusic</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;nondanee&#x2F;UnblockNeteaseMusic.git</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd UnblockNeteaseMusic</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="开机自启脚本，服务"><a href="#开机自启脚本，服务" class="headerlink" title="开机自启脚本，服务"></a>开机自启脚本，服务</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat &gt; &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;UnblockNeteaseMusic.service &lt;&lt;EOF</span><br><span class="line">[Unit]</span><br><span class="line">Description&#x3D;UnblockNeteaseMusic</span><br><span class="line">After&#x3D;network.target</span><br><span class="line">Wants&#x3D;network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;simple</span><br><span class="line">PIDFile&#x3D;&#x2F;var&#x2F;run&#x2F;UnblockNeteaseMusic.pid</span><br><span class="line">WorkingDirectory&#x3D;&#x2F;home&#x2F;UnblockNeteaseMusic</span><br><span class="line">ExecStart&#x3D;$(command -v node) app.js</span><br><span class="line">RestartPreventExitStatus&#x3D;23</span><br><span class="line">Restart&#x3D;always</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="这里可以自定义端口"><a href="#这里可以自定义端口" class="headerlink" title="这里可以自定义端口"></a>这里可以自定义端口</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">node app.js -p 端口号</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行脚本并开机自启"><a href="#运行脚本并开机自启" class="headerlink" title="运行脚本并开机自启"></a>运行脚本并开机自启</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start UnblockNeteaseMusic</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl enable UnblockNeteaseMusic</span><br></pre></td></tr></table></figure>
+
+<p>注：要关闭防火墙 systemctl stop firewalld</p>
+<p>setenforce 0  关闭selinux</p>
+<p>网易云代理设置方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">网易云客户端设置 &gt; 工具 &gt; 自定义代理 &gt; HTTP代理</span><br><span class="line">这里只需要填上你的服务器ip和端口，保存即可。</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>安装percona-xtrabackup时冲突报错</title>
+    <url>/2020/08/22/%E5%AE%89%E8%A3%85percona-xtrabackup%E6%97%B6%E5%86%B2%E7%AA%81%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>环境：<br>centos+ mysql-community-5.7</p>
+<pre><code>[root@mysql-02 ~]# cat /etc/redhat-release
+CentOS Linux release 7.3.1611 (Core)
+[root@mysql-lh02 ~]# rpm -qa | grep -i mysql
+perl-DBD-MySQL-4.023-5.el7.x86_64
+mysql-community-client-5.7.19-1.el7.x86_64
+mysql-community-libs-compat-5.7.19-1.el7.x86_64
+mysql-community-common-5.7.19-1.el7.x86_64
+mysql-community-server-5.7.19-1.el7.x86_64</code></pre><p>安装percona-xtrabackup时冲突报错</p>
+<pre><code># yum install http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm
+.....
+
+            Running transaction check
+            Running transaction test
+            Transaction check error:
+              file /etc/my.cnf from install of Percona-Server-shared-56-5.6.37-rel82.2.el7.x86_64 conflicts with file from package mysql-community-server-5.7.19-1.el7.x86_64
+
+Error Summary
+-------------</code></pre><p>解决办法：</p>
+<p>补充安装</p>
+<p>包地址:<a href="https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/" target="_blank" rel="noopener">https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/</a></p>
+<pre><code># rpm -ivh mysql-community-libs-compat-5.7.19-1.el7.x86_64.rpm
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-libs-compat-5.7.1################################# [100%]</code></pre><p>然后再次安装percona-xtrabackup成功</p>
+<pre><code># yum -y install percona-xtrabackup-24.x86_64</code></pre>]]></content>
+  </entry>
+  <entry>
+    <title>安装zabbix，配置官方repo源下载速度过慢导致失败解决方法</title>
+    <url>/2020/08/20/%E5%AE%89%E8%A3%85zabbix%EF%BC%8C%E9%85%8D%E7%BD%AE%E5%AE%98%E6%96%B9repo%E6%BA%90%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E8%BF%87%E6%85%A2%E5%AF%BC%E8%87%B4%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>根据官网说明配置的yum源，用yum下载Zabbix时报错的解决方法。</p>
+<h2 id="一、报错如下："><a href="#一、报错如下：" class="headerlink" title="一、报错如下："></a>一、报错如下：</h2><p><strong>过程：</strong><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426114937433.png" alt="rpm -ivh http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-release-3.4-2.el7.noarch.rpm"><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426115007558.png" alt="在这里插入图片描述"><br><strong>结果报错：</strong></p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426114718441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="二、-解决方法："><a href="#二、-解决方法：" class="headerlink" title="二、 解决方法："></a>二、 解决方法：</h2><p><strong>原因：</strong></p>
+<pre><code>国外网站访问速度慢，导致的安装包下载失败，通过国内镜像站可以解决</code></pre><p><strong>1、先查看官方下载的yum源内容</strong><br>    <img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426115234390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>2、通过手动更换成阿里云的yum源</strong><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426115453795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre><code>[zabbix]
+name=Zabbix Official Repository - $basearch
+#baseurl=http://repo.zabbix.com/zabbix/3.4/rhel/7/$basearch/
+baseurl=https://mirrors.aliyun.com/zabbix/zabbix/3.4/rhel/7/$basearch/   
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-A14FE591
+[zabbix-non-supported]
+name=Zabbix Official Repository non-supported - $basearch 
+#baseurl=http://repo.zabbix.com/non-supported/rhel/7/$basearch/
+baseurl=https://mirrors.aliyun.com/zabbix/non-supported/rhel/7/$basearch/
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX
+gpgcheck=1</code></pre><p><strong>3、然后</strong></p>
+<pre><code>yum clean all
+yum  -y install zabbix-server-mysql zabbix-web-mysql  zabbix-agent  zabbix-get-3.4.0-1.el7.x86_64</code></pre><p><strong>4、完成</strong><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426115802679.png" alt="在这里插入图片描述"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>用iptables实现同机器和不同机器间的端口转发</title>
+    <url>/2020/08/22/%E7%94%A8iptables%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%9C%BA%E5%99%A8%E5%92%8C%E4%B8%8D%E5%90%8C%E6%9C%BA%E5%99%A8%E9%97%B4%E7%9A%84%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>用iptables实现同机器和不同机器间的端口转发</p>
+<p>Iptables<br>将本机80端口的请求转发到8080端口</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080</span><br></pre></td></tr></table></figure>
+
+<p>如果需要本机也可以访问，则需要配置OUTPUT链：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -A OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 8080</span><br></pre></td></tr></table></figure>
+
+<p>两机之间的端口转发</p>
+<p>将本机的81端口的请求全部转发到192.168.1.1:80</p>
+<p>首先要启用ipv4的转发功能：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br></pre></td></tr></table></figure>
+
+<p>或者是修改/etc/sysctl.conf (via)以便重启后也会启用转发，然后设定iptables(via)：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 81 -j DNAT --to 192.168.1.1:80 </span><br><span class="line">iptables -t nat -A POSTROUTING -j MASQUERADE</span><br></pre></td></tr></table></figure>
+
+<p>如果开启了防火墙功能，注意要将80和81两个端口都打开。</p>
+<p>SNAT、DNAT、MASQUERADE介绍可参考<a href="https://blog.csdn.net/qq_44273583/article/details/107166087" target="_blank" rel="noopener">https://blog.csdn.net/qq_44273583/article/details/107166087</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>解决xshell连接centos7时使用小键盘数字乱码问题</title>
+    <url>/2020/08/22/%E8%A7%A3%E5%86%B3xshell%E8%BF%9E%E6%8E%A5centos7%E6%97%B6%E4%BD%BF%E7%94%A8%E5%B0%8F%E9%94%AE%E7%9B%98%E6%95%B0%E5%AD%97%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><h3 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h3><p>在使用xshell5连接centos7，使用使用vim时，使用小键盘输入数字时输入的数字会变成莫名其妙的字母。<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/2020062116155757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p><strong>点击文件，进入属性</strong><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200621161646932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200621161918172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>然后再试一试</strong><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200621161956588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>解决中文环境下zabbix监控图形注释乱码</title>
+    <url>/2020/08/22/%E8%A7%A3%E5%86%B3%E4%B8%AD%E6%96%87%E7%8E%AF%E5%A2%83%E4%B8%8Bzabbix%E7%9B%91%E6%8E%A7%E5%9B%BE%E5%BD%A2%E6%B3%A8%E9%87%8A%E4%B9%B1%E7%A0%81/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>zabbix监控的图形界面能够更直观的查看监控状态，当我们把zabbix的语言切换为中文的时候，会发现监控图形中一些中文参数会乱码，我们可以把Windows系统中的字体文件上传并进行简单的配置，问题就解决了</p>
+<p>我的环境centos7.4，zabbix是3.4版本</p>
+<p>方法：<br>1、在window上找控制面板&gt; 外观和个性化&gt;字体&gt;选择合适的字体这里选择的是楷体<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200427153132919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>复制并上传到centos7中<br>2、查看zabbix图形注释字体位置<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200427153311286.png" alt="在这里插入图片描述"><br>将字体上传到这里，并将字体名字改为graphfont.ttf<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200618175329417.png" alt="在这里插入图片描述"><br>3、查看<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200427154153255.png" alt="在这里插入图片描述"></p>
+<p>完成</p>
+<p>探究一下<br>原本的字体与/etc/alternatives/zabbix-web-font链接在一起<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200618175441139.png" alt="在这里插入图片描述"><br>而这个由于系统字体所链接<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200618175543982.png" alt="在这里插入图片描述"><br>在/usr/share/zabbix/include/defines.inc.php文件里找到其字体定义文件，即把字体名修改为graphfont就可以使用。<br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200618180129520.png" alt="在这里插入图片描述"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>阿里源yum安装tomcat后启动无法访问</title>
+    <url>/2020/08/22/%E9%98%BF%E9%87%8C%E6%BA%90yum%E5%AE%89%E8%A3%85tomcat%E5%90%8E%E5%90%AF%E5%8A%A8%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>之前配置过阿里源，直接使用</p>
+<pre><code>yum -y install tomcat</code></pre><p>安装完成，但是启动后访问不到页面，这其实是因为没有安装完全，cd到/usr/share/tomcat/webapps，发现里边什么都没有，我们要继续安装</p>
+<pre><code>yum -y install tomcat-webapps tomcat-admin-webapps</code></pre><p>安装完成后再看</p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430084222120.png" alt="在这里插入图片描述"><br>启动后再访问</p>
+<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430084248628.png" alt="在这里插入图片描述"><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200430084308961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+]]></content>
   </entry>
   <entry>
     <title>docker</title>
@@ -1171,33 +1811,6 @@
       <tags>
         <tag>docker</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>安装zabbix，配置官方repo源下载速度过慢导致失败解决方法</title>
-    <url>/2020/08/20/%E5%AE%89%E8%A3%85zabbix%EF%BC%8C%E9%85%8D%E7%BD%AE%E5%AE%98%E6%96%B9repo%E6%BA%90%E4%B8%8B%E8%BD%BD%E9%80%9F%E5%BA%A6%E8%BF%87%E6%85%A2%E5%AF%BC%E8%87%B4%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\css\APlayer.min.css"><script src="\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\js\Meting.min.js"></script><p>根据官网说明配置的yum源，用yum下载Zabbix时报错的解决方法。</p>
-<h2 id="一、报错如下："><a href="#一、报错如下：" class="headerlink" title="一、报错如下："></a>一、报错如下：</h2><p><strong>过程：</strong><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426114937433.png" alt="rpm -ivh http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-release-3.4-2.el7.noarch.rpm"><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426115007558.png" alt="在这里插入图片描述"><br><strong>结果报错：</strong></p>
-<p><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426114718441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="二、-解决方法："><a href="#二、-解决方法：" class="headerlink" title="二、 解决方法："></a>二、 解决方法：</h2><p><strong>原因：</strong></p>
-<pre><code>国外网站访问速度慢，导致的安装包下载失败，通过国内镜像站可以解决</code></pre><p><strong>1、先查看官方下载的yum源内容</strong><br>    <img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426115234390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><strong>2、通过手动更换成阿里云的yum源</strong><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426115453795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0MjczNTgz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre><code>[zabbix]
-name=Zabbix Official Repository - $basearch
-#baseurl=http://repo.zabbix.com/zabbix/3.4/rhel/7/$basearch/
-baseurl=https://mirrors.aliyun.com/zabbix/zabbix/3.4/rhel/7/$basearch/   
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-A14FE591
-[zabbix-non-supported]
-name=Zabbix Official Repository non-supported - $basearch 
-#baseurl=http://repo.zabbix.com/non-supported/rhel/7/$basearch/
-baseurl=https://mirrors.aliyun.com/zabbix/non-supported/rhel/7/$basearch/
-enabled=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX
-gpgcheck=1</code></pre><p><strong>3、然后</strong></p>
-<pre><code>yum clean all
-yum  -y install zabbix-server-mysql zabbix-web-mysql  zabbix-agent  zabbix-get-3.4.0-1.el7.x86_64</code></pre><p><strong>4、完成</strong><br><img src= "/img/loading.gif" data-src="https://img-blog.csdnimg.cn/20200426115802679.png" alt="在这里插入图片描述"></p>
-]]></content>
   </entry>
   <entry>
     <title>软件</title>
